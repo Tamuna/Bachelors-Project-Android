@@ -14,7 +14,8 @@
     <string name="num_raters">5,493,032</string>
     <string name="google_maps_info">Get the latest Google Maps app.</string>
     <string name="news_header">What\'s new</string>
-    <string name="news">\u2022 Easily find hours and phone numbers for large department stores with the new department store directory in Google Maps (only in US)</string>
+    <string name="news">\u2022 Easily find hours and phone numbers for large department stores with
+        the new department store directory in Google Maps (only in US)</string>
     <string name="similar">Similar</string>
     <string name="read_more">Read More</string>
     <string name="rate_prompt">Rate this app</string>
