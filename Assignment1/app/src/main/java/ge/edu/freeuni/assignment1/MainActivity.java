@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < RATING_RANGE; i++) {
             ImageView star = new ImageView(this);
             star.setBackgroundResource(R.drawable.icons8_star_500);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(getScreenWidth()/10, getScreenWidth()/10);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(getScreenWidth()/15, getScreenWidth()/15);
             if (i > 0) params.setMarginStart(getScreenWidth()/10);
             star.setLayoutParams(params);
             final int curIdx = i;
