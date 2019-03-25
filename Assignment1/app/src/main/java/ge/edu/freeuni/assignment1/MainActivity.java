@@ -1,6 +1,7 @@
 package ge.edu.freeuni.assignment1;
 
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -34,13 +35,19 @@ public class MainActivity extends AppCompatActivity {
         initRating();
     }
 
+    private int getScreenWidth() {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics.widthPixels;
+    }
+
     private void initRating() {
         final ArrayList<ImageView> stars = new ArrayList<>();
         for (int i = 0; i < RATING_RANGE; i++) {
             ImageView star = new ImageView(this);
             star.setBackgroundResource(R.drawable.icons8_star_500);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(60, 60);
-            if (i > 0) params.setMarginStart(100);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(getScreenWidth()/10, getScreenWidth()/10);
+            if (i > 0) params.setMarginStart(getScreenWidth()/10);
             star.setLayoutParams(params);
             final int curIdx = i;
             star.setOnClickListener(new View.OnClickListener() {
