@@ -21,4 +21,9 @@
     <string name="rate_prompt">Rate this app</string>
     <string name="name_lastname">Tamuna Geldiashvili</string>
     <string name="txt_review_info">Reviews are linked to your account and are public</string>
+    <string name="uninstall_info">App will be uninstalled</string>
+    <string name="open_info">App will be opened</string>
+    <string name="travel_and_local_info">App type is travel and local</string>
+    <string name="similar_apps_info">You can see similar apps</string>
+    <string name="common_str_ok">OK</string>
 </resources>
