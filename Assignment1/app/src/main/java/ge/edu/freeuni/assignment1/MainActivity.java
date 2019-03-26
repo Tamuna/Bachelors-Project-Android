@@ -15,9 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-
     private LinearLayout layoutRatingStars;
-
     private Button btnUninstall;
     private Button btnOpen;
     private ImageView imgTravelAndLocal;
@@ -25,89 +23,76 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int RATING_RANGE = 5;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getUiComponents();
+
+        bindUiComponents();
         setUiActions();
-        initRating();
     }
 
-    private int getScreenWidth() {
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        return displayMetrics.widthPixels;
-    }
-
-    private void initRating() {
-        final ArrayList<ImageView> stars = new ArrayList<>();
+    private void initRatingProcess() {
+        int displayWidth = getScreenWidth();
+        ArrayList<ImageView> stars = new ArrayList<>();
         for (int i = 0; i < RATING_RANGE; i++) {
             ImageView star = new ImageView(this);
             star.setBackgroundResource(R.drawable.icons8_star_500);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(getScreenWidth()/15, getScreenWidth()/15);
-            if (i > 0) params.setMarginStart(getScreenWidth()/10);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(displayWidth / (3 * RATING_RANGE), displayWidth / (3 * RATING_RANGE));
+            if (i > 0) params.setMarginStart(displayWidth / (2 * RATING_RANGE));
             star.setLayoutParams(params);
-            final int curIdx = i;
-            star.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    for (int j = 0; j < RATING_RANGE; j++) {
-                        stars.get(j).setBackgroundResource(R.drawable.icons8_star_500);
-                    }
-                    for (int j = 0; j <= curIdx; j++) {
-                        stars.get(j).setBackgroundResource(R.drawable.icons8_star_filled_500);
-                    }
-                }
-            });
             stars.add(star);
+            setOnStarClickAction(i, stars);
             layoutRatingStars.addView(star);
         }
     }
 
+    private int getScreenWidth() {
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics.widthPixels;
+    }
+
+    private void setOnStarClickAction(final int starIdx, final ArrayList<ImageView> stars) {
+        stars.get(starIdx).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < RATING_RANGE; i++) {
+                    stars.get(i).setBackgroundResource(R.drawable.icons8_star_500);
+                }
+                for (int i = 0; i <= starIdx; i++) {
+                    stars.get(i).setBackgroundResource(R.drawable.icons8_star_filled_500);
+                }
+            }
+        });
+    }
 
     private void setUiActions() {
-        btnUninstall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showSnackBar(btnUninstall, getString(R.string.uninstall_info));
-            }
-        });
-        btnOpen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showSnackBar(btnOpen, getString(R.string.open_info));
-            }
-        });
+        setSnackbarEvent(btnUninstall, getString(R.string.uninstall_info));
+        setSnackbarEvent(btnOpen, getString(R.string.open_info));
+        setSnackbarEvent(imgTravelAndLocal, getString(R.string.travel_and_local_info));
+        setSnackbarEvent(imgSimilar, getString(R.string.similar_apps_info));
 
-        imgTravelAndLocal.setOnClickListener(new View.OnClickListener() {
+        initRatingProcess();
+    }
+
+    private void setSnackbarEvent(View view, final String infoString) {
+        view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showSnackBar(imgTravelAndLocal, getString(R.string.travel_and_local_info));
-            }
-        });
-        imgSimilar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showSnackBar(imgSimilar, getString(R.string.similar_apps_info));
+                final Snackbar snackbar = Snackbar.make(findViewById(R.id.root), infoString, Snackbar.LENGTH_LONG);
+                snackbar.setAction(getString(R.string.common_str_ok), new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        snackbar.dismiss();
+                    }
+                });
+                snackbar.show();
             }
         });
     }
 
-    private void showSnackBar(View view, String infoString) {
-        final Snackbar snackbar = Snackbar.make(findViewById(R.id.root), infoString, Snackbar.LENGTH_LONG);
-        snackbar.setAction(getString(R.string.common_str_ok), new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                snackbar.dismiss();
-            }
-        });
-        snackbar.show();
-    }
-
-
-    private void getUiComponents() {
+    private void bindUiComponents() {
         btnUninstall = findViewById(R.id.btn_uninstall);
         btnOpen = findViewById(R.id.btn_open);
         imgTravelAndLocal = findViewById(R.id.img_travel);
