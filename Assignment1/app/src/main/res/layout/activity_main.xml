@@ -281,7 +281,7 @@
             android:id="@+id/layout_news"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:background="@color/light_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -328,13 +328,13 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
+        <ImageView
             android:id="@+id/img_watch"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginTop="16dp"
-            android:background="@drawable/icons8_watch_96"
-            android:backgroundTint="@color/gray"
+            android:src="@drawable/icons8_watch_96"
+            android:tint="@color/gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -359,6 +359,7 @@
             android:id="@+id/scroll_demo_images"
             android:layout_width="match_parent"
             android:layout_height="250dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -482,7 +483,10 @@
             android:id="@+id/txt_review_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
             android:text="@string/txt_review_info"
             android:textColor="@color/gray"
             android:textSize="15sp"
