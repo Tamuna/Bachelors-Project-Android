@@ -23,8 +23,8 @@
 
         <ImageView
             android:id="@+id/app_icon_img"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:scaleType="fitCenter"
@@ -109,11 +109,7 @@
             android:id="@+id/divider"
             android:layout_width="0dp"
             android:layout_height="1dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_margin="16dp"
             android:background="@color/light_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -121,8 +117,8 @@
 
         <TextView
             android:id="@+id/txt_download_rate"
-            android:layout_width="63dp"
-            android:layout_height="63dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/ic_billion"
             android:gravity="center"
@@ -136,8 +132,8 @@
 
         <ImageView
             android:id="@+id/txt_rating"
-            android:layout_width="63dp"
-            android:layout_height="63dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/ic_rating"
             android:scaleType="centerCrop"
@@ -171,8 +167,8 @@
 
         <ImageView
             android:id="@+id/img_travel"
-            android:layout_width="63dp"
-            android:layout_height="63dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_marginTop="16dp"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toStartOf="@+id/img_similar"
@@ -183,8 +179,8 @@
 
         <ImageView
             android:id="@+id/img_similar"
-            android:layout_width="63dp"
-            android:layout_height="63dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_marginTop="16dp"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
@@ -223,7 +219,6 @@
             android:layout_marginStart="4dp"
             android:src="@drawable/ic_person"
             app:layout_constraintBottom_toBottomOf="@+id/txt_num_raters"
-            app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="@+id/txt_rating"
             app:layout_constraintStart_toEndOf="@+id/txt_num_raters"
             app:layout_constraintTop_toTopOf="@id/txt_num_raters" />
@@ -254,11 +249,7 @@
             android:id="@+id/divider2"
             android:layout_width="0dp"
             android:layout_height="1dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_margin="16dp"
             android:background="@color/light_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -436,7 +427,7 @@
             <ImageView
                 android:id="@+id/img_profile"
                 android:layout_width="match_parent"
-                android:layout_height="64dp"
+                android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/profile_pic" />
 
