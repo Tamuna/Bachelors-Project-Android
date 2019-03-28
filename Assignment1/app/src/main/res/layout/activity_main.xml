@@ -419,6 +419,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="32dp"
             app:cardCornerRadius="32dp"
+            app:cardElevation="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
