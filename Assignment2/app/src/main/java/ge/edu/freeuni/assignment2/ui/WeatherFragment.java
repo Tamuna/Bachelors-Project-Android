@@ -5,29 +5,32 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import java.text.Format;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
-import androidx.core.widget.ContentLoadingProgressBar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import ge.edu.freeuni.assignment2.R;
 import ge.edu.freeuni.assignment2.model.weather.ForecastDay;
 import ge.edu.freeuni.assignment2.model.weather.Weather;
+import ge.edu.freeuni.assignment2.network.Api;
+import ge.edu.freeuni.assignment2.network.RetrofitInstance;
+import ge.edu.freeuni.assignment2.util.Helper;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class WeatherFragment extends Fragment {
     private RecyclerView recyclerForecast;
     private ForecastRecyclerAdapter adapter;
-    private Weather data;
+    private ProgressBar progressBar;
 
     private TextView txtLocation;
     private TextView txtDatetime;
@@ -52,7 +55,13 @@ public class WeatherFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_weather, container, false);
+        return view;
+    }
 
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         recyclerForecast = view.findViewById(R.id.recycler_forecast);
         adapter = new ForecastRecyclerAdapter();
         recyclerForecast.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -75,23 +84,44 @@ public class WeatherFragment extends Fragment {
         imgDrop2 = view.findViewById(R.id.img_drops_2);
         imgDrop3 = view.findViewById(R.id.img_drops_3);
         imgFlag = view.findViewById(R.id.img_flag);
-
-        return view;
+        progressBar = view.findViewById(R.id.loading);
+        getFragmentData(getArguments().getString("location"));
     }
 
-    public static WeatherFragment newInstance() {
-        return new WeatherFragment();
+    public static WeatherFragment newInstance(String location) {
+        Bundle bundle = new Bundle();
+        bundle.putString("location", location);
+        WeatherFragment fragment = new WeatherFragment();
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
-    public void setData(Weather data) {
+    public void getFragmentData(String location) {
+        showProgress();
+        Retrofit retrofit = RetrofitInstance.getInstance().getRetrofitWeathers();
+        Api api = retrofit.create(Api.class);
+        api.getCountryWeather(location, "10", "74357a82a546431595895929190604").enqueue(new Callback<Weather>() {
+            @Override
+            public void onResponse(Call<Weather> call, Response<Weather> response) {
+                displayInfo(response.body());
+                hideProgress();
+            }
+
+            @Override
+            public void onFailure(Call<Weather> call, Throwable t) {
+            }
+        });
+    }
+
+    private void displayInfo(Weather data) {
         if (data != null) {
             if (data.getForecast().getForecastDays().size() > 0) {
-                Format formatter = new SimpleDateFormat("EEEE dd MMM yyyy hh:mm");
-                String today = formatter.format(new Date());
+
                 ForecastDay current = data.getForecast().getForecastDays().get(0);
-                txtDatetime.setText(today);
+
+                txtDatetime.setText(Helper.convertTime(current.getDateEpoch(), true));
                 txtPerceived.setText(String.format("Perceived %s℃", current.getDay().getMaxTempCelsius().intValue()));
-                txtDayNight.setText(String.format("%s %s", current.getAstro().getSunrise().toLowerCase(), current.getAstro().getSunset().toLowerCase()));
+                txtDayNight.setText(String.format("%s %s", current.getAstro().getSunrise().toLowerCase().replaceAll(" ", ""), current.getAstro().getSunset().toLowerCase().replaceAll(" ", "")));
                 txtPrecipication.setText(String.format("%s%%", current.getDay().getAvgHumidity().intValue()));
                 txtHumidity.setText(String.format("%s%%", current.getDay().getAvgHumidity().intValue()));
             }
@@ -126,5 +156,13 @@ public class WeatherFragment extends Fragment {
                 img.getDrawable(),
                 ContextCompat.getColor(getContext(), color)
         );
+    }
+
+    private void showProgress() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    private void hideProgress() {
+        progressBar.setVisibility(View.INVISIBLE);
     }
 }

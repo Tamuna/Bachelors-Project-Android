@@ -8,7 +8,7 @@
     android:background="@color/dark_white"
     android:orientation="vertical">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -18,6 +18,10 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:background="@drawable/bg_gradient_day"
+            android:descendantFocusability="blocksDescendants"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
@@ -81,12 +85,18 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/weather_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/bg_white_smooth_corners"
             android:elevation="3dp"
-            android:padding="10dp">
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bg_layout">
 
             <ImageView
 
@@ -196,6 +206,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/black"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/txt_1"
                 app:layout_constraintStart_toStartOf="@+id/txt_1"
                 app:layout_constraintTop_toBottomOf="@+id/txt_1"
@@ -206,6 +217,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/txt2"
                 app:layout_constraintStart_toStartOf="@+id/txt2"
                 app:layout_constraintTop_toTopOf="@+id/txt_precipitation"
@@ -216,6 +228,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/txt3"
                 app:layout_constraintStart_toStartOf="@+id/txt3"
                 app:layout_constraintTop_toTopOf="@+id/txt_humidity"
@@ -226,10 +239,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/txt4"
                 app:layout_constraintStart_toStartOf="@+id/txt4"
                 app:layout_constraintTop_toTopOf="@+id/txt_wind_speed"
-                tools:text="5:40 am 6:30 pm" />
+                tools:text="5:40am 6:30pm" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -238,7 +252,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/bg_white_smooth_corners"
-            android:elevation="3dp" />
-    </LinearLayout>
+            android:elevation="3dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/weather_info" />
+
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:indeterminate="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

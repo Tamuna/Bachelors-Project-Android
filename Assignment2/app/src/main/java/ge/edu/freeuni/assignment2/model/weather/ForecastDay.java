@@ -1,9 +1,21 @@
 package ge.edu.freeuni.assignment2.model.weather;
 
+import com.google.gson.annotations.SerializedName;
+
 public class ForecastDay {
     private String date;
     private Day day;
     private Astro astro;
+    @SerializedName("date_epoch")
+    private long dateEpoch;
+
+    public long getDateEpoch() {
+        return dateEpoch;
+    }
+
+    public void setDateEpoch(long dateEpoch) {
+        this.dateEpoch = dateEpoch;
+    }
 
     public Astro getAstro() {
         return astro;

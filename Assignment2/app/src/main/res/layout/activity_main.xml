@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
-    <!--<ProgressBar-->
-        <!--android:id="@+id/progress_bar"-->
-        <!--style="?android:attr/progressBarStyleLarge"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="0dp"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="@+id/vp_locations"-->
-        <!--app:layout_constraintStart_toStartOf="@+id/vp_locations"-->
-        <!--app:layout_constraintTop_toTopOf="parent" />-->
-
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vp_locations"
         android:layout_width="0dp"
