@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark_white"
+    android:descendantFocusability="blocksDescendants"
     android:fillViewport="true"
     android:orientation="vertical">
 
@@ -19,7 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:background="@drawable/bg_gradient_day"
-            android:descendantFocusability="blocksDescendants"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent"
@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginBottom="5dp"
                 android:textColor="@color/white"
                 android:textSize="20sp"
@@ -266,9 +266,20 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:indeterminate="true"
+            android:translationZ="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/id_info_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="bg_layout,weather_info,recycler_forecast"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

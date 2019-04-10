@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.Group;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
@@ -31,7 +32,7 @@ public class WeatherFragment extends Fragment {
     private RecyclerView recyclerForecast;
     private ForecastRecyclerAdapter adapter;
     private ProgressBar progressBar;
-
+    private View infoGroup;
     private TextView txtLocation;
     private TextView txtDatetime;
     private TextView txtCelcius;
@@ -85,6 +86,7 @@ public class WeatherFragment extends Fragment {
         imgDrop3 = view.findViewById(R.id.img_drops_3);
         imgFlag = view.findViewById(R.id.img_flag);
         progressBar = view.findViewById(R.id.loading);
+        infoGroup = view.findViewById(R.id.id_info_group);
         getFragmentData(getArguments().getString("location"));
     }
 
@@ -160,9 +162,11 @@ public class WeatherFragment extends Fragment {
 
     private void showProgress() {
         progressBar.setVisibility(View.VISIBLE);
+        infoGroup.setVisibility(View.INVISIBLE);
     }
 
     private void hideProgress() {
         progressBar.setVisibility(View.INVISIBLE);
+        infoGroup.setVisibility(View.VISIBLE);
     }
 }

@@ -8,7 +8,7 @@ public class Helper {
 
     public static String convertTime(long time, boolean week) {
         Date date = new Date(time * 1000);
-        String formatString = "EEEE dd MMM yyyy";
+        String formatString = "EEEE dd MMM yyyy hh:mm";
         if (!week) {
             formatString = "dd MM yyyy";
         }
