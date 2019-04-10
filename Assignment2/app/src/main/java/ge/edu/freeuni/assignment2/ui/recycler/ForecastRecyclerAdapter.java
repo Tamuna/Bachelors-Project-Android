@@ -1,4 +1,4 @@
-package ge.edu.freeuni.assignment2.ui;
+package ge.edu.freeuni.assignment2.ui.recycler;
 
 import android.view.LayoutInflater;
 import android.view.View;

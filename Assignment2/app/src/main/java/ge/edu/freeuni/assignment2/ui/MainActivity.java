@@ -1,12 +1,11 @@
 package ge.edu.freeuni.assignment2.ui;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 import ge.edu.freeuni.assignment2.R;
+import ge.edu.freeuni.assignment2.ui.viewpager.ViewPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
@@ -19,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         viewPager = findViewById(R.id.vp_locations);
-        adapter = new ViewPagerAdapter(getSupportFragmentManager(), MainActivity.this);
+        adapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
     }
 }

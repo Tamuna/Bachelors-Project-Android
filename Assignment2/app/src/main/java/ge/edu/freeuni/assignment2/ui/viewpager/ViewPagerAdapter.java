@@ -1,4 +1,4 @@
-package ge.edu.freeuni.assignment2.ui;
+package ge.edu.freeuni.assignment2.ui.viewpager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,14 +18,14 @@ import retrofit2.Retrofit;
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     private List<Location> data = new ArrayList<>();
 
-    public ViewPagerAdapter(@NonNull FragmentManager fm, MainActivity context) {
+    public ViewPagerAdapter(@NonNull FragmentManager fm) {
         super(fm);
         Retrofit retrofit = RetrofitInstance.getInstance().getRetrofitCounties();
         Api api = retrofit.create(Api.class);
         api.getCountries("name").enqueue(new Callback<List<Location>>() {
             @Override
             public void onResponse(Call<List<Location>> call, Response<List<Location>> response) {
-                ViewPagerAdapter.this.setData(response.body());
+                setData(response.body());
             }
 
             @Override
@@ -38,8 +38,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        WeatherFragment fragment = WeatherFragment.newInstance(data.get(position).getName());
-        return fragment;
+        return WeatherFragment.newInstance(data.get(position).getName());
     }
 
     @Override
@@ -47,7 +46,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
         return data.size();
     }
 
-    public void setData(List<Location> data) {
+    private void setData(List<Location> data) {
         this.data.clear();
         this.data.addAll(data);
         notifyDataSetChanged();

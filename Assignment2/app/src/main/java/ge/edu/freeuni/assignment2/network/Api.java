@@ -13,5 +13,5 @@ public interface Api {
     Call<List<Location>> getCountries(@Query("fields") String fields);
 
     @GET("v1/forecast.json")
-    Call<Weather> getCountryWeather(@Query("q") String country, @Query("days") String days, @Query("key") String key);
+    Call<Weather> getCountryWeather(@Query("q") String country, @Query("days") Integer days, @Query("key") String key);
 }

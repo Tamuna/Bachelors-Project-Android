@@ -1,4 +1,4 @@
-package ge.edu.freeuni.assignment2.ui;
+package ge.edu.freeuni.assignment2.ui.recycler;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -24,12 +24,11 @@ public class ForecastViewHolder extends RecyclerView.ViewHolder {
         imgForecastIcon = itemView.findViewById(R.id.cell_img_forecast);
         txtForecastTemperature = itemView.findViewById(R.id.cell_txt_temperature);
         txtForecastHumidity = itemView.findViewById(R.id.cell_txt_avg_humidity);
-
     }
 
     public void setData(ForecastDay forecastDay) {
         Picasso.get().load("http://" + forecastDay.getDay().getCondition().getIcon().substring(2)).into(imgForecastIcon);
-        txtForecastDate.setText(Helper.convertTime(forecastDay.getDateEpoch(), false));
+        txtForecastDate.setText(Helper.getDatetime(forecastDay.getDateEpoch(), false));
         txtForecastTemperature.setText(String.format("%s℃", forecastDay.getDay().getAvgTempCelsius().intValue()));
         txtForecastHumidity.setText(String.format("%s%%", forecastDay.getDay().getAvgHumidity().intValue()));
     }
