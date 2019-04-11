@@ -27,7 +27,7 @@ public class ForecastViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void setData(ForecastDay forecastDay) {
-        Picasso.get().load("http://" + forecastDay.getDay().getCondition().getIcon().substring(2)).into(imgForecastIcon);
+        Picasso.get().load("http:" + forecastDay.getDay().getCondition().getIcon()).into(imgForecastIcon);
         txtForecastDate.setText(Helper.getDatetime(forecastDay.getDateEpoch(), false));
         txtForecastTemperature.setText(String.format("%s℃", forecastDay.getDay().getAvgTempCelsius().intValue()));
         txtForecastHumidity.setText(String.format("%s%%", forecastDay.getDay().getAvgHumidity().intValue()));
