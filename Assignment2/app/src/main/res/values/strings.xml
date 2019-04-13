@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Assignment2</string>
+    <string name="precipitation">Precipitation</string>
+    <string name="humidity">Humidity</string>
+    <string name="wind_speed">Wind speed</string>
+    <string name="day_and_night">Day and Night</string>
+    <string name="no_weather_info">No weather information for</string>
+    <string name="data_access_error">Data Access Error Occurred</string>
+    <string name="perceived">Perceived</string>
+    <string name="kmh">kmh</string>
 </resources>

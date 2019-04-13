@@ -40,10 +40,10 @@ public class WeatherFragment extends Fragment {
 
     private TextView txtLocation;
     private TextView txtDatetime;
-    private TextView txtCelcius;
+    private TextView txtCelsius;
     private TextView txtPerceived;
 
-    private TextView txtPrecipication;
+    private TextView txtPrecipitation;
     private TextView txtHumidity;
     private TextView txtWind;
     private TextView txtDayNight;
@@ -81,10 +81,10 @@ public class WeatherFragment extends Fragment {
         recyclerForecast.setAdapter(recyclerAdapter);
         txtLocation = view.findViewById(R.id.txt_city);
         txtDatetime = view.findViewById(R.id.txt_datetime);
-        txtCelcius = view.findViewById(R.id.txt_temperature);
+        txtCelsius = view.findViewById(R.id.txt_temperature);
         txtPerceived = view.findViewById(R.id.txt_perceived);
         imgSunMoon = view.findViewById(R.id.img_sum_moon);
-        txtPrecipication = view.findViewById(R.id.txt_precipitation);
+        txtPrecipitation = view.findViewById(R.id.txt_precipitation);
         txtHumidity = view.findViewById(R.id.txt_humidity);
         txtWind = view.findViewById(R.id.txt_wind_speed);
         txtDayNight = view.findViewById(R.id.txt_day_and_night);
@@ -119,14 +119,14 @@ public class WeatherFragment extends Fragment {
                 if (response.body() != null) {
                     displayInfo(response.body());
                 } else {
-                    displayErrorMessage("No weather information for " + getArguments().getString("location"));
+                    displayErrorMessage(getString(R.string.no_weather_info) + " " + getArguments().getString("location"));
                 }
                 hideProgress();
             }
 
             @Override
             public void onFailure(Call<Weather> call, Throwable t) {
-                displayErrorMessage("Data Access Error Occurred");
+                displayErrorMessage(getString(R.string.data_access_error));
                 hideProgress();
             }
         });
@@ -138,14 +138,14 @@ public class WeatherFragment extends Fragment {
         if (data.getForecast().getForecastDays().size() > 0) {
             ForecastDay current = data.getForecast().getForecastDays().get(0);
             txtDatetime.setText(Helper.getDatetime(current.getDateEpoch(), true));
-            txtPerceived.setText(String.format("Perceived %s℃", current.getDay().getMaxTempCelsius().intValue()));
+            txtPerceived.setText(String.format(getString(R.string.perceived) + " %s℃", current.getDay().getMaxTempCelsius().intValue()));
             txtDayNight.setText(String.format("%s %s", current.getAstro().getSunrise().toLowerCase().replaceAll(" ", ""), current.getAstro().getSunset().toLowerCase().replaceAll(" ", "")));
-            txtPrecipication.setText(String.format("%s%%", current.getDay().getAvgHumidity().intValue()));
+            txtPrecipitation.setText(String.format("%s%%", current.getDay().getAvgHumidity().intValue()));
             txtHumidity.setText(String.format("%s%%", current.getDay().getAvgHumidity().intValue()));
         }
         txtLocation.setText(data.getLocation().getName());
-        txtCelcius.setText(String.format("%s℃", data.getCurrent().getTempCelsius().intValue()));
-        txtWind.setText(String.format("%s kmh", data.getCurrent().getWindKph().intValue()));
+        txtCelsius.setText(String.format("%s℃", data.getCurrent().getTempCelsius().intValue()));
+        txtWind.setText(String.format("%s" + getString(R.string.kmh), data.getCurrent().getWindKph().intValue()));
         recyclerAdapter.setData(data.getForecast().getForecastDays());
         setDayNightTheme(data.getCurrent().getIsDay());
     }
