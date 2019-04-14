@@ -1,4 +1,4 @@
-package ge.edu.freeuni.assignment2.ui.viewpager;
+package ge.edu.freeuni.assignment2.ui.weather;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,12 +17,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import ge.edu.freeuni.assignment2.R;
-import ge.edu.freeuni.assignment2.model.weather.ForecastDay;
-import ge.edu.freeuni.assignment2.model.weather.Weather;
-import ge.edu.freeuni.assignment2.network.Api;
+import ge.edu.freeuni.assignment2.model.ForecastDay;
+import ge.edu.freeuni.assignment2.model.Weather;
 import ge.edu.freeuni.assignment2.network.RetrofitInstance;
-import ge.edu.freeuni.assignment2.ui.recycler.ForecastRecyclerAdapter;
-import ge.edu.freeuni.assignment2.util.Helper;
+import ge.edu.freeuni.assignment2.network.WeatherApi;
+import ge.edu.freeuni.assignment2.ui.forecast.ForecastRecyclerAdapter;
+import ge.edu.freeuni.assignment2.util.DateHelper;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -57,7 +57,6 @@ public class WeatherFragment extends Fragment {
     private ImageView imgDrop3;
 
     private TextView txtError;
-    private ImageView imgError;
 
 
     @Nullable
@@ -97,7 +96,6 @@ public class WeatherFragment extends Fragment {
         progressBar = view.findViewById(R.id.loading);
         infoGroup = view.findViewById(R.id.id_info_group);
         txtError = view.findViewById(R.id.txt_error);
-        imgError = view.findViewById(R.id.img_error);
 
     }
 
@@ -112,7 +110,7 @@ public class WeatherFragment extends Fragment {
     public void getFragmentData(String location) {
         showProgress();
         Retrofit retrofit = RetrofitInstance.getInstance().getRetrofitWeathers();
-        Api api = retrofit.create(Api.class);
+        WeatherApi api = retrofit.create(WeatherApi.class);
         api.getCountryWeather(location, NUM_FORECAST_DAYS, API_ACCESS_KEY).enqueue(new Callback<Weather>() {
             @Override
             public void onResponse(Call<Weather> call, Response<Weather> response) {
@@ -137,7 +135,7 @@ public class WeatherFragment extends Fragment {
         infoGroup.setVisibility(View.VISIBLE);
         if (data.getForecast().getForecastDays().size() > 0) {
             ForecastDay current = data.getForecast().getForecastDays().get(0);
-            txtDatetime.setText(Helper.getDatetime(current.getDateEpoch(), true));
+            txtDatetime.setText(DateHelper.getDatetime(current.getDateEpoch(), true));
             txtPerceived.setText(String.format(getString(R.string.perceived) + " %s℃", current.getDay().getMaxTempCelsius().intValue()));
             txtDayNight.setText(String.format("%s %s", current.getAstro().getSunrise().toLowerCase().replaceAll(" ", ""), current.getAstro().getSunset().toLowerCase().replaceAll(" ", "")));
             txtPrecipitation.setText(String.format("%s%%", current.getDay().getAvgHumidity().intValue()));
@@ -189,6 +187,5 @@ public class WeatherFragment extends Fragment {
     private void displayErrorMessage(String error) {
         txtError.setText(error);
         txtError.setVisibility(View.VISIBLE);
-        imgError.setVisibility(View.VISIBLE);
     }
 }

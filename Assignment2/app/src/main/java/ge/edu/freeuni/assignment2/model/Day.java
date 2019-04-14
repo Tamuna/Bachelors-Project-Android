@@ -1,4 +1,4 @@
-package ge.edu.freeuni.assignment2.model.weather;
+package ge.edu.freeuni.assignment2.model;
 
 import com.google.gson.annotations.SerializedName;
 

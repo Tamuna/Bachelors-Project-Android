@@ -1,6 +1,4 @@
-package ge.edu.freeuni.assignment2.model.weather;
-
-import ge.edu.freeuni.assignment2.model.location.Location;
+package ge.edu.freeuni.assignment2.model;
 
 public class Weather {
     private Location location;

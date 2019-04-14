@@ -1,4 +1,4 @@
-package ge.edu.freeuni.assignment2.model.location;
+package ge.edu.freeuni.assignment2.model;
 
 public class Location {
     private String name;

@@ -1,4 +1,4 @@
-package ge.edu.freeuni.assignment2.ui.recycler;
+package ge.edu.freeuni.assignment2.ui.forecast;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -9,8 +9,8 @@ import com.squareup.picasso.Picasso;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import ge.edu.freeuni.assignment2.R;
-import ge.edu.freeuni.assignment2.model.weather.ForecastDay;
-import ge.edu.freeuni.assignment2.util.Helper;
+import ge.edu.freeuni.assignment2.model.ForecastDay;
+import ge.edu.freeuni.assignment2.util.DateHelper;
 
 public class ForecastViewHolder extends RecyclerView.ViewHolder {
     private TextView txtForecastDate;
@@ -28,7 +28,7 @@ public class ForecastViewHolder extends RecyclerView.ViewHolder {
 
     public void setData(ForecastDay forecastDay) {
         Picasso.get().load("http:" + forecastDay.getDay().getCondition().getIcon()).into(imgForecastIcon);
-        txtForecastDate.setText(Helper.getDatetime(forecastDay.getDateEpoch(), false));
+        txtForecastDate.setText(DateHelper.getDatetime(forecastDay.getDateEpoch(), false));
         txtForecastTemperature.setText(String.format("%s℃", forecastDay.getDay().getAvgTempCelsius().intValue()));
         txtForecastHumidity.setText(String.format("%s%%", forecastDay.getDay().getAvgHumidity().intValue()));
     }

@@ -1,4 +1,4 @@
-package ge.edu.freeuni.assignment2.ui.recycler;
+package ge.edu.freeuni.assignment2.ui.forecast;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +10,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import ge.edu.freeuni.assignment2.R;
-import ge.edu.freeuni.assignment2.model.weather.ForecastDay;
+import ge.edu.freeuni.assignment2.model.ForecastDay;
 
 
 public class ForecastRecyclerAdapter extends RecyclerView.Adapter<ForecastViewHolder> {

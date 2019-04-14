@@ -1,4 +1,4 @@
-package ge.edu.freeuni.assignment2.ui.viewpager;
+package ge.edu.freeuni.assignment2.ui.weather;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import ge.edu.freeuni.assignment2.model.location.Location;
+import ge.edu.freeuni.assignment2.model.Location;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     private List<Location> data = new ArrayList<>();

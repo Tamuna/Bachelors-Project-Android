@@ -13,7 +13,7 @@ public class RetrofitInstance {
     private static Retrofit retrofitWeathers;
 
     private static String BASE_URL_COUNTRIES = "https://restcountries.eu/";
-    private static String BASE_URL_WEATHERS = "http://api.apixu.com/";
+    private static String BASE_URL_WEATHERS = "https://api.apixu.com/";
 
     public static RetrofitInstance getInstance() {
         if (retrofitInstance == null) {

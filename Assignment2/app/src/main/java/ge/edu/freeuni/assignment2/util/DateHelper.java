@@ -4,7 +4,7 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Helper {
+public class DateHelper {
 
     public static String getDatetime(long time, boolean week) {
         Date date = new Date(time * 1000);
