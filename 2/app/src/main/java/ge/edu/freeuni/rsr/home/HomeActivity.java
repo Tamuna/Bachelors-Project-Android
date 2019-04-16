@@ -10,9 +10,10 @@ import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import ge.edu.freeuni.rsr.R;
-import ge.edu.freeuni.rsr.home.GameTypeCardModel;
-import ge.edu.freeuni.rsr.home.GameTypesPagerAdapter;
+import ge.edu.freeuni.rsr.individual.IndividualGameConfigActivity;
 import ge.edu.freeuni.rsr.utils.animation.ZoomOutPageTransformer;
 
 public class HomeActivity extends AppCompatActivity {
@@ -23,17 +24,13 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
-
+        ButterKnife.bind(this);
 
         final PageIndicatorView pageIndicatorView = findViewById(R.id.indicator);
         pageIndicatorView.setCount(3);
         pageIndicatorView.setSelection(1);
-
 
         models = new ArrayList<>();
         models.add(new GameTypeCardModel(R.drawable.header_owl, getString(R.string.individual_practice), getString(R.string.game_desc_individual)));
@@ -43,12 +40,9 @@ public class HomeActivity extends AppCompatActivity {
         adapter = new GameTypesPagerAdapter(models, this);
 
         pager = findViewById(R.id.vp_game_type);
-
         pager.setAdapter(adapter);
-
         pager.setPadding(60, 0, 60, 0);
         pager.setCurrentItem(1);
-
         pager.setPageTransformer(true, new ZoomOutPageTransformer());
         pager.setClipToPadding(false);
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

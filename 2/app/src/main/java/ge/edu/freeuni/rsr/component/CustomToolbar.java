@@ -5,13 +5,12 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import androidx.appcompat.widget.Toolbar;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ge.edu.freeuni.rsr.R;
 import ge.edu.freeuni.rsr.login.LoginActivity;
 
 public class CustomToolbar extends Toolbar {
-
-    private View.OnClickListener onClickListener;
 
     public CustomToolbar(Context context) {
         super(context);
@@ -25,6 +24,7 @@ public class CustomToolbar extends Toolbar {
 
     private void init(AttributeSet attrs) {
         inflate(getContext(), R.layout.toolbar_custom, this);
+        ButterKnife.bind(this);
     }
 
     @OnClick(R.id.img_toolbar_profile)

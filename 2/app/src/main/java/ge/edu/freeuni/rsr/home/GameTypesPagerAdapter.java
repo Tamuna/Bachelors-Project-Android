@@ -12,6 +12,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 import ge.edu.freeuni.rsr.R;
+import ge.edu.freeuni.rsr.individual.IndividualGameConfigActivity;
 
 public class GameTypesPagerAdapter extends PagerAdapter {
 
@@ -24,6 +25,7 @@ public class GameTypesPagerAdapter extends PagerAdapter {
     public GameTypesPagerAdapter(List<GameTypeCardModel> models, Context context) {
         this.models = models;
         this.context = context;
+
     }
 
     @Override
@@ -38,7 +40,7 @@ public class GameTypesPagerAdapter extends PagerAdapter {
 
     @NonNull
     @Override
-    public Object instantiateItem(@NonNull ViewGroup container, int position) {
+    public Object instantiateItem(@NonNull ViewGroup container, final int position) {
         inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.card_game_type, container, false);
 
@@ -52,6 +54,12 @@ public class GameTypesPagerAdapter extends PagerAdapter {
         description.setText(models.get(position).getDescription());
 
         container.addView(view, 0);
+
+        view.findViewById(R.id.btn_start_game).setOnClickListener(v -> {
+            if (position == 0) {
+                IndividualGameConfigActivity.start(view.getContext());
+            }
+        });
         return view;
     }
 
@@ -59,4 +67,5 @@ public class GameTypesPagerAdapter extends PagerAdapter {
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         container.removeView((View) object);
     }
+
 }
