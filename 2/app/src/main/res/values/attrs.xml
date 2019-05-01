@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="QuestionCountCard">
+        <attr name="question_count" />
+        <attr name="description" />
+    </declare-styleable>
+
+    <attr name="question_count" format="integer" />
+    <attr name="description" format="string" />
+
+</resources>

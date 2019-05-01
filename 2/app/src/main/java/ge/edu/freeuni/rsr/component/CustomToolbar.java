@@ -25,6 +25,7 @@ public class CustomToolbar extends Toolbar {
     private void init(AttributeSet attrs) {
         inflate(getContext(), R.layout.toolbar_custom, this);
         ButterKnife.bind(this);
+        setContentInsetsAbsolute(0, 0);
     }
 
     @OnClick(R.id.img_toolbar_profile)

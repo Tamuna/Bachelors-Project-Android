@@ -11,9 +11,7 @@ import java.util.List;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import ge.edu.freeuni.rsr.R;
-import ge.edu.freeuni.rsr.individual.IndividualGameConfigActivity;
 import ge.edu.freeuni.rsr.utils.animation.ZoomOutPageTransformer;
 
 public class HomeActivity extends AppCompatActivity {
@@ -41,7 +39,7 @@ public class HomeActivity extends AppCompatActivity {
 
         pager = findViewById(R.id.vp_game_type);
         pager.setAdapter(adapter);
-        pager.setPadding(60, 0, 60, 0);
+        pager.setPadding(80, 0, 80, 0);
         pager.setCurrentItem(1);
         pager.setPageTransformer(true, new ZoomOutPageTransformer());
         pager.setClipToPadding(false);

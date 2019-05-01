@@ -4,29 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/middle_blue"
     tools:context=".individual.IndividualGameConfigActivity">
 
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/customToolbar3"
-        app:srcCompat="@drawable/header_owl" />
+    <!--<ImageView-->
+        <!--android:id="@+id/imageView2"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:adjustViewBounds="true"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.0"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/customToolbar"-->
+        <!--app:srcCompat="@drawable/header_individual" />-->
 
     <ge.edu.freeuni.rsr.component.CustomToolbar
-        android:id="@+id/customToolbar3"
+        android:id="@+id/customToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
+    <ge.edu.freeuni.rsr.individual.QuestionCountCard
         android:id="@+id/view"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -34,18 +35,15 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="4dp"
-        android:background="@drawable/bg_gradient"
-        android:elevation="10dp"
-        android:textColor="@color/gold"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        app:description="კითხვების რაოდენობა"
         app:layout_constraintBottom_toTopOf="@+id/view3"
         app:layout_constraintEnd_toStartOf="@+id/view4"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/customToolbar"
+        app:question_count="5" />
 
-    <View
+    <ge.edu.freeuni.rsr.individual.QuestionCountCard
         android:id="@+id/view2"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -53,17 +51,14 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/bg_gradient"
-        android:elevation="10dp"
-        android:textColor="@color/gold"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        app:description="კითხვების რაოდენობა"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/view3"
-        app:layout_constraintTop_toBottomOf="@+id/view4" />
+        app:layout_constraintTop_toBottomOf="@+id/view4"
+        app:question_count="20" />
 
-    <View
+    <ge.edu.freeuni.rsr.individual.QuestionCountCard
         android:id="@+id/view3"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -71,18 +66,15 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="30dp"
-        android:background="@drawable/bg_gradient"
-        android:elevation="10dp"
-        android:textColor="@color/gold"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        app:description="კითხვების რაოდენობა"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/view2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:question_count="15" />
 
-    <View
+    <ge.edu.freeuni.rsr.individual.QuestionCountCard
         android:id="@+id/view4"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -90,15 +82,11 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="4dp"
-        android:background="@drawable/bg_gradient"
-        android:elevation="10dp"
-        android:padding="10dp"
-        android:textColor="@color/gold"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        app:description="კითხვების რაოდენობა"
         app:layout_constraintBottom_toTopOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/view"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/customToolbar"
+        app:question_count="10" />
 </androidx.constraintlayout.widget.ConstraintLayout>
