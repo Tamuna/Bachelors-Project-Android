@@ -47,12 +47,9 @@ public class QuestionCountCard extends ConstraintLayout {
         }
 
 
-        setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(individualGameItemListener!=null){
-                    individualGameItemListener.onIndividualGameItemClicked(questionCount);
-                }
+        setOnClickListener(v -> {
+            if(individualGameItemListener!=null){
+                individualGameItemListener.onIndividualGameItemClicked(questionCount);
             }
         });
 

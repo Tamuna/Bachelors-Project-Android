@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import ge.edu.freeuni.rsr.R;
@@ -25,7 +24,7 @@ public class IndividualGameConfigActivity extends AppCompatActivity implements Q
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_individual_game_config);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,  WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         item1 = findViewById(R.id.view);
         item2 = findViewById(R.id.view2);
@@ -39,6 +38,7 @@ public class IndividualGameConfigActivity extends AppCompatActivity implements Q
 
     @Override
     public void onIndividualGameItemClicked(int questionCount) {
-        Toast.makeText(this, "Question count = : "+questionCount, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "Question count = : "+questionCount, Toast.LENGTH_SHORT).show();
+        IndividualGameActivity.start(this);
     }
 }

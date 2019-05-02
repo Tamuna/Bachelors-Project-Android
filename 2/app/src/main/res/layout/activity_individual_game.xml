@@ -8,15 +8,17 @@
 
     <ticker.views.com.ticker.widgets.circular.timer.view.CircularView
         android:id="@+id/circular_view_with_timer"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:m_arc_stroke_color="@android:color/white"
-        app:m_cicle_stroke_width="14"
-        app:m_circle_radius="25"
+        app:m_cicle_stroke_width="20"
+        app:m_circle_radius="40"
         app:m_circle_stroke_color="@color/colorPrimary" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
