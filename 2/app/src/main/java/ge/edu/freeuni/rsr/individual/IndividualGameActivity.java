@@ -3,16 +3,23 @@ package ge.edu.freeuni.rsr.individual;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import ge.edu.freeuni.rsr.R;
-import ticker.views.com.ticker.widgets.circular.timer.callbacks.CircularViewCallback;
-import ticker.views.com.ticker.widgets.circular.timer.view.CircularView;
 
 public class IndividualGameActivity extends AppCompatActivity {
 
-    CircularView circularViewWithTimer;
+    private long mTimeLeftInMillis = 10000;
+
+    @BindView(R.id.tvTime)
+    TextView tvTime;
+
 
     public static void start(Context previous) {
         Intent intent = new Intent(previous, IndividualGameActivity.class);
@@ -23,23 +30,21 @@ public class IndividualGameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_individual_game);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        circularViewWithTimer = findViewById(R.id.circular_view_with_timer);
-        circularViewWithTimer.startTimer();
-        CircularView.OptionsBuilder builderWithTimer =
-                new CircularView.OptionsBuilder()
-                        .setCounterInSeconds(60)
-                        .setCircularViewCallback(new CircularViewCallback() {
-                            @Override
-                            public void onTimerFinish() {
-                                Toast.makeText(IndividualGameActivity.this, "CircularCallback: Timer Finished ", Toast.LENGTH_SHORT).show();
-                            }
+        ButterKnife.bind(this);
+        CountDownTimer mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                mTimeLeftInMillis = millisUntilFinished;
+                tvTime.setText(String.format("%d", mTimeLeftInMillis / 1000));
+            }
 
-                            @Override
-                            public void onTimerCancelled() {}
-                        });
-
-        circularViewWithTimer.setOptions(builderWithTimer);
+            @Override
+            public void onFinish() {
+                Toast.makeText(IndividualGameActivity.this, "ended", Toast.LENGTH_SHORT).show();
+            }
+        }.start();
 
     }
 }

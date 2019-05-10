@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import ge.edu.freeuni.rsr.R;
 
 public class IndividualGameConfigActivity extends AppCompatActivity implements QuestionCountCard.IndividualGameItemListener {
@@ -38,7 +39,6 @@ public class IndividualGameConfigActivity extends AppCompatActivity implements Q
 
     @Override
     public void onIndividualGameItemClicked(int questionCount) {
-//        Toast.makeText(this, "Question count = : "+questionCount, Toast.LENGTH_SHORT).show();
         IndividualGameActivity.start(this);
     }
 }
