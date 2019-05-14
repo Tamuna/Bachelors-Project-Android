@@ -1,4 +1,4 @@
-package ge.edu.freeuni.rsr.individual;
+package ge.edu.freeuni.rsr.individual.configuration;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,7 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import ge.edu.freeuni.rsr.R;
+import ge.edu.freeuni.rsr.individual.game.IndividualGameActivity;
 
 public class IndividualGameConfigActivity extends AppCompatActivity implements QuestionCountCard.IndividualGameItemListener {
 

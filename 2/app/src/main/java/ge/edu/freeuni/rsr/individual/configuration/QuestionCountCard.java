@@ -1,4 +1,4 @@
-package ge.edu.freeuni.rsr.individual;
+package ge.edu.freeuni.rsr.individual.configuration;
 
 import android.content.Context;
 import android.content.res.TypedArray;

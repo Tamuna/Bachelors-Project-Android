@@ -12,7 +12,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 import ge.edu.freeuni.rsr.R;
-import ge.edu.freeuni.rsr.individual.IndividualGameConfigActivity;
+import ge.edu.freeuni.rsr.individual.configuration.IndividualGameConfigActivity;
 
 public class GameTypesPagerAdapter extends PagerAdapter {
 

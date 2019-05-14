@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/middle_blue"
-    tools:context=".individual.IndividualGameConfigActivity">
+    tools:context=".individual.configuration.IndividualGameConfigActivity">
 
 
     <!--<ImageView-->
@@ -27,7 +27,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ge.edu.freeuni.rsr.individual.QuestionCountCard
+    <ge.edu.freeuni.rsr.individual.configuration.QuestionCountCard
         android:id="@+id/view"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -43,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/customToolbar"
         app:question_count="5" />
 
-    <ge.edu.freeuni.rsr.individual.QuestionCountCard
+    <ge.edu.freeuni.rsr.individual.configuration.QuestionCountCard
         android:id="@+id/view2"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -58,7 +58,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view4"
         app:question_count="20" />
 
-    <ge.edu.freeuni.rsr.individual.QuestionCountCard
+    <ge.edu.freeuni.rsr.individual.configuration.QuestionCountCard
         android:id="@+id/view3"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -74,7 +74,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view"
         app:question_count="15" />
 
-    <ge.edu.freeuni.rsr.individual.QuestionCountCard
+    <ge.edu.freeuni.rsr.individual.configuration.QuestionCountCard
         android:id="@+id/view4"
         android:layout_width="0dp"
         android:layout_height="0dp"
