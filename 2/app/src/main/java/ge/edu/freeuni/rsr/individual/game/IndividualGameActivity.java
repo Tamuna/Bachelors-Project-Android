@@ -24,13 +24,13 @@ public class IndividualGameActivity extends AppCompatActivity implements Individ
     private CountDownTimer timer;
 
     @BindView(R.id.tvTime)
-    private TextView tvTime;
+    TextView tvTime;
 
     @BindView(R.id.tvQuestionContent)
-    private TextView tvQuestionContent;
+    TextView tvQuestionContent;
 
     @BindView(R.id.tvNumberOutOf)
-    private TextView tvNumberOutOf;
+    TextView tvNumberOutOf;
 
 
     public static void start(Context previous) {
