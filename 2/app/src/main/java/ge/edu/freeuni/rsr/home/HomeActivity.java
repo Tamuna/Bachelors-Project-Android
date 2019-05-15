@@ -1,6 +1,7 @@
 package ge.edu.freeuni.rsr.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.WindowManager;
 
 import com.rd.PageIndicatorView;
@@ -31,21 +32,23 @@ public class HomeActivity extends AppCompatActivity {
         pageIndicatorView.setSelection(1);
 
         models = new ArrayList<>();
-        models.add(new GameTypeCardModel(R.drawable.header_owl, getString(R.string.individual_practice), getString(R.string.game_desc_individual)));
-        models.add(new GameTypeCardModel(R.drawable.header_tournament, getString(R.string.tournir), getString(R.string.game_desc_tournir)));
-        models.add(new GameTypeCardModel(R.drawable.header_owls, getString(R.string.group_practice), getString(R.string.game_desc_group)));
+        models.add(new GameTypeCardModel(R.drawable.header_individual, getString(R.string.individual_practice), getString(R.string.game_desc_individual)));
+        models.add(new GameTypeCardModel(R.drawable.header_chempionship, getString(R.string.tournir), getString(R.string.game_desc_tournir)));
+        models.add(new GameTypeCardModel(R.drawable.header_group, getString(R.string.group_practice), getString(R.string.game_desc_group)));
 
         adapter = new GameTypesPagerAdapter(models, this);
 
         pager = findViewById(R.id.vp_game_type);
         pager.setAdapter(adapter);
-        pager.setPadding(80, 0, 80, 0);
+        pager.setPadding(70, 0, 70, 0);
         pager.setCurrentItem(1);
         pager.setPageTransformer(true, new ZoomOutPageTransformer());
         pager.setClipToPadding(false);
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                Log.d("a","a");
+            }
 
             @Override
             public void onPageSelected(int position) {

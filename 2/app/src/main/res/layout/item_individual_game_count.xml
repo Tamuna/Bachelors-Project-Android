@@ -11,18 +11,20 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/bg_gradient">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/imageView3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 android:adjustViewBounds="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/header_owl" />
+                app:srcCompat="@drawable/header_individual" />
 
             <TextView
                 android:id="@+id/txt_question_count"
@@ -31,7 +33,7 @@
                 android:layout_marginEnd="10dp"
                 android:gravity="center"
                 android:text="5"
-                android:textColor="@color/gold"
+                android:textColor="@color/text_color"
                 android:textSize="40sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -43,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="კითხვების რაოდენობა:"
-                android:textColor="@color/gold"
+                android:textColor="@color/text_color"
                 app:layout_constraintBottom_toBottomOf="@+id/txt_question_count"
                 app:layout_constraintEnd_toStartOf="@+id/txt_question_count"
                 app:layout_constraintStart_toStartOf="parent"

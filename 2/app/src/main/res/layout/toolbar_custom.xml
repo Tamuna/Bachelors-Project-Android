@@ -12,8 +12,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="რა? სად? როდის?"
-                android:textColor="@color/gold"
-                android:textStyle="bold"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/img_toolbar_notifications"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -32,9 +31,11 @@
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_profile" />
+                app:srcCompat="@drawable/ic_profile"
+                android:tint="@color/white"/>
 
             <ImageView
+                android:tint="@color/white"
                 android:id="@+id/img_toolbar_notifications"
                 android:layout_width="30dp"
                 android:layout_height="30dp"

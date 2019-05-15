@@ -16,39 +16,20 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvNumberOutOf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="2/10"
-        android:textColor="@color/light_gray"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/tvTime"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/customToolbar2" />
-
-    <TextView
         android:id="@+id/tvTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
         android:text="2:00"
         android:textColor="@color/light_gray"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tvNumberOutOf"
-        app:layout_constraintTop_toTopOf="@+id/tvNumberOutOf" />
+        tools:layout_editor_absoluteX="185dp"
+        tools:layout_editor_absoluteY="560dp" />
 
     <EditText
         android:id="@+id/etAnswerInput"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="50dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="8dp"
@@ -63,9 +44,8 @@
 
     <ImageView
         android:id="@+id/imgSendAnswer"
-        android:layout_width="50dp"
+        android:layout_width="100dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/etAnswerInput"
         app:layout_constraintEnd_toEndOf="@+id/etAnswerInput"
         app:layout_constraintTop_toTopOf="@+id/etAnswerInput"
@@ -76,28 +56,31 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="8dp"
         app:cardCornerRadius="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/etAnswerInput"
+        app:layout_constraintBottom_toTopOf="@id/etAnswerInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvNumberOutOf">
+        app:layout_constraintTop_toBottomOf="@+id/customToolbar2">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/middle_blue">
 
             <View
                 android:id="@+id/view5"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:background="@color/dark_blue"
+                android:background="@color/white"
                 app:layout_constraintBottom_toTopOf="@id/imgWavy"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                tools:layout_editor_absoluteX="0dp" />
 
             <ImageView
+                android:tint="@color/white"
                 android:id="@+id/imgWavy"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -106,10 +89,30 @@
                 app:srcCompat="@drawable/bg_wave" />
             />
 
-            <EditText
+            <TextView
+                android:id="@+id/tvNumberOutOf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="2/10"
+                android:textColor="@color/text_color"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/view5"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/view5"
+                app:layout_constraintTop_toTopOf="@+id/view5" />
+
+            <TextView
                 android:id="@+id/tvQuestionContent"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="100dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNumberOutOf"
+                app:layout_constraintVertical_bias="1.0"
+                tools:layout_editor_absoluteX="16dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
