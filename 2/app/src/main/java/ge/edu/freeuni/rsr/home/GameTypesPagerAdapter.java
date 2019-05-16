@@ -56,7 +56,7 @@ public class GameTypesPagerAdapter extends PagerAdapter {
         container.addView(view, 0);
 
         view.findViewById(R.id.btn_start_game).setOnClickListener(v -> {
-            if (position == 0) {
+            if (position == 1) {
                 IndividualGameConfigActivity.start(view.getContext());
             }
         });

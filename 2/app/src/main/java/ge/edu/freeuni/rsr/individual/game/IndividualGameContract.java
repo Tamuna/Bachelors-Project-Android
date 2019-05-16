@@ -22,7 +22,7 @@ public interface IndividualGameContract {
 
         void loadNextQuestion();
 
-        void checkAnswer(String answer);
+        void checkAnswer(int questionId, String answer);
 
         void finishGame(int correctAnswers);
     }
@@ -38,10 +38,10 @@ public interface IndividualGameContract {
             void onGameFinishSaved();
         }
 
-        void loadNextQuestion();
+        void loadNextQuestion(OnFinishListener listener);
 
-        void checkAnswer(int questionId, String answer);
+        void checkAnswer(OnFinishListener listener, int questionId, String answer);
 
-        void finishIndividualGame(int correctAnswers);
+        void finishIndividualGame(OnFinishListener listener, int correctAnswers);
     }
 }

@@ -4,13 +4,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
 import com.rd.PageIndicatorView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
 import butterknife.ButterKnife;
 import ge.edu.freeuni.rsr.R;
 import ge.edu.freeuni.rsr.utils.animation.ZoomOutPageTransformer;
@@ -32,8 +33,9 @@ public class HomeActivity extends AppCompatActivity {
         pageIndicatorView.setSelection(1);
 
         models = new ArrayList<>();
-        models.add(new GameTypeCardModel(R.drawable.header_individual, getString(R.string.individual_practice), getString(R.string.game_desc_individual)));
+
         models.add(new GameTypeCardModel(R.drawable.header_chempionship, getString(R.string.tournir), getString(R.string.game_desc_tournir)));
+        models.add(new GameTypeCardModel(R.drawable.header_individual, getString(R.string.individual_practice), getString(R.string.game_desc_individual)));
         models.add(new GameTypeCardModel(R.drawable.header_group, getString(R.string.group_practice), getString(R.string.game_desc_group)));
 
         adapter = new GameTypesPagerAdapter(models, this);
@@ -47,7 +49,7 @@ public class HomeActivity extends AppCompatActivity {
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                Log.d("a","a");
+                Log.d("a", "a");
             }
 
             @Override

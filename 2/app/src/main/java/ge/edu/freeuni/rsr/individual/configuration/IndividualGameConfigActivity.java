@@ -40,6 +40,6 @@ public class IndividualGameConfigActivity extends AppCompatActivity implements Q
 
     @Override
     public void onIndividualGameItemClicked(int questionCount) {
-        IndividualGameActivity.start(this);
+        IndividualGameActivity.start(this, questionCount);
     }
 }
