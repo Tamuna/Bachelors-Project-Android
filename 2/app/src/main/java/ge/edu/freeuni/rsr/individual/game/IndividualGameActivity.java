@@ -15,6 +15,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import ge.edu.freeuni.rsr.FinishActivity;
 import ge.edu.freeuni.rsr.R;
 import ge.edu.freeuni.rsr.individual.game.entity.Answer;
 import ge.edu.freeuni.rsr.individual.game.entity.Question;
@@ -95,6 +96,6 @@ public class IndividualGameActivity extends AppCompatActivity implements Individ
 
     @Override
     public void loadFinishScreen(int correctAnswers) {
-
+        FinishActivity.start(this, correctAnswers);
     }
 }
