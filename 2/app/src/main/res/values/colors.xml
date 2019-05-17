@@ -5,13 +5,12 @@
     <color name="colorAccent">#D81B60</color>
     <color name="text_color">#6058E4</color>
     <color name="dark_blue">#110840</color>
-    <color name="light_blue">#0091B9</color>
-    <color name="blue">#002880</color>
-    <color name="middle_blue">#35335D</color>
+    <color name="dark_blue_2">#AD110840</color>
     <color name="light_gray">#DDDDDD</color>
     <color name="violet">#A273FD</color>
     <color name="gold">#FDF301</color>
-    <color name="pink">#FD0098</color>
     <color name="transparent">#008D9CBE</color>
     <color name="white">#ffffff</color>
+    <color name="green">#30E2B2</color>
+    <color name="light_red">#F98686</color>
 </resources>

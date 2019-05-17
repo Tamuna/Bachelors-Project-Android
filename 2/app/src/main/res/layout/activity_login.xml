@@ -65,7 +65,7 @@
         android:layout_marginEnd="20dp"
         android:background="@drawable/bg_oval_blue"
         android:text="შესვლა"
-        android:textColor="@color/text_color"
+        android:textColor="@color/light_gray"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
