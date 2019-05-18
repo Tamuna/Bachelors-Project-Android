@@ -10,6 +10,7 @@ public class IndividualGamePresenterImpl implements IndividualGameContract.Indiv
     private int totalQuestions;
     private int numQuestion = 0;
     private int numCorrect = 0;
+    private int curQuestionId;
 
     public IndividualGamePresenterImpl(IndividualGameContract.IndividualGameInteractor interactor, IndividualGameContract.IndividualGameView view, int totalQuestions) {
         this.interactor = interactor;
@@ -20,12 +21,16 @@ public class IndividualGamePresenterImpl implements IndividualGameContract.Indiv
     @Override
     public void loadNextQuestion() {
         numQuestion++;
-        interactor.loadNextQuestion(new OnFinishListenerImpl());
+        if (numQuestion > totalQuestions) {
+            view.loadFinishScreen(numCorrect);
+        } else {
+            interactor.loadNextQuestion(new OnFinishListenerImpl());
+        }
     }
 
     @Override
-    public void checkAnswer(int questionId, String answer) {
-        interactor.checkAnswer(new OnFinishListenerImpl(), questionId, answer);
+    public void checkAnswer(String answer) {
+        interactor.checkAnswer(new OnFinishListenerImpl(), curQuestionId, answer);
     }
 
     @Override
@@ -37,7 +42,8 @@ public class IndividualGamePresenterImpl implements IndividualGameContract.Indiv
 
         @Override
         public void onNextQuestionLoaded(Question question) {
-            view.loadNextQuestion(question, numQuestion + "/" + totalQuestions);
+            curQuestionId = question.getId();
+            view.displayQuestion(question, numQuestion + "/" + totalQuestions);
         }
 
         @Override

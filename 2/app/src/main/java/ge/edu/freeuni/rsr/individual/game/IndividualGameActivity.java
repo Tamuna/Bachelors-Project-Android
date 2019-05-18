@@ -5,22 +5,27 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.method.ScrollingMovementMethod;
+import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import ge.edu.freeuni.rsr.FinishActivity;
 import ge.edu.freeuni.rsr.R;
+import ge.edu.freeuni.rsr.component.AfterAnswerSubmissionDialog;
 import ge.edu.freeuni.rsr.individual.game.entity.Answer;
 import ge.edu.freeuni.rsr.individual.game.entity.Question;
 
-public class IndividualGameActivity extends AppCompatActivity implements IndividualGameContract.IndividualGameView {
+public class IndividualGameActivity extends AppCompatActivity implements IndividualGameContract.IndividualGameView, AfterAnswerSubmissionDialog.AnswerSubmissionDialogListener {
 
     private long timeOnSingleQuestion = 120000;
     private CountDownTimer timer;
@@ -39,6 +44,13 @@ public class IndividualGameActivity extends AppCompatActivity implements Individ
 
     @BindView(R.id.etAnswerInput)
     EditText etAnswerInput;
+
+    @OnClick(R.id.imgSendAnswer)
+    void onSendAnswerClick() {
+        hideKeyboard();
+        presenter.checkAnswer(etAnswerInput.getText().toString());
+        etAnswerInput.setText("");
+    }
 
 
     public static void start(Context previous, int totalQuestions) {
@@ -59,7 +71,7 @@ public class IndividualGameActivity extends AppCompatActivity implements Individ
         createTimer();
 
         presenter = new IndividualGamePresenterImpl(new IndividualGameInteractorImpl(), this, getIntent().getIntExtra(TOTAL_QUESTIONS, 0));
-
+        presenter.loadNextQuestion();
     }
 
     private void createTimer() {
@@ -72,30 +84,46 @@ public class IndividualGameActivity extends AppCompatActivity implements Individ
 
             @Override
             public void onFinish() {
-                presenter.checkAnswer(1, String.valueOf(etAnswerInput.getText()));
+                presenter.checkAnswer(String.valueOf(etAnswerInput.getText()));
             }
         };
     }
 
     @Override
-    public void loadNextQuestion(Question question, String numberOutOf) {
-        timer.start();
+    public void displayQuestion(Question question, String numberOutOf) {
         tvQuestionContent.setText(question.getQuestionContent());
         tvNumberOutOf.setText(numberOutOf);
+        timer.start();
+
     }
 
     @Override
     public void renderCorrectAnswerScreen() {
-        presenter.loadNextQuestion();
+        AfterAnswerSubmissionDialog.newInstance(true).show(getSupportFragmentManager(), "");
     }
 
     @Override
     public void renderWrongAnswerScreen(List<Answer> correctAnswers) {
-        presenter.loadNextQuestion();
+        AfterAnswerSubmissionDialog.newInstance(false).show(getSupportFragmentManager(), "");
     }
 
     @Override
     public void loadFinishScreen(int correctAnswers) {
+        finish();
         FinishActivity.start(this, correctAnswers);
+    }
+
+    @Override
+    public void OnNextQuestionClicked(DialogFragment dialog) {
+        dialog.dismiss();
+        presenter.loadNextQuestion();
+    }
+
+    private void hideKeyboard() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 }

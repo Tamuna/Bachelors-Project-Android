@@ -9,7 +9,7 @@ import ge.edu.freeuni.rsr.individual.game.entity.Question;
 public interface IndividualGameContract {
     interface IndividualGameView {
 
-        void loadNextQuestion(Question question, String numberOutOf);
+        void displayQuestion(Question question, String numberOutOf);
 
         void renderCorrectAnswerScreen();
 
@@ -22,7 +22,7 @@ public interface IndividualGameContract {
 
         void loadNextQuestion();
 
-        void checkAnswer(int questionId, String answer);
+        void checkAnswer(String answer);
 
         void finishGame(int correctAnswers);
     }

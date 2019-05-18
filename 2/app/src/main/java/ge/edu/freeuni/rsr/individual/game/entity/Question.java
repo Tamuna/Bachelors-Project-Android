@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Question {
     @SerializedName("id")
-    int id;
+    private int id;
     @SerializedName("question_content")
-    String questionContent;
+    private String questionContent;
 
     public int getId() {
         return id;
