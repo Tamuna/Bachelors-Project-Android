@@ -52,7 +52,7 @@ public class IndividualGamePresenterImpl implements IndividualGameContract.Indiv
                 numCorrect++;
                 view.renderCorrectAnswerScreen();
             } else {
-                view.renderWrongAnswerScreen(answers.getAnswers());
+                view.renderWrongAnswerScreen(answers.getAnswers().get(0));
             }
 
         }

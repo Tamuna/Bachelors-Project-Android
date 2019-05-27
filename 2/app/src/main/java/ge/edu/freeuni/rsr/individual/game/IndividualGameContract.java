@@ -1,7 +1,5 @@
 package ge.edu.freeuni.rsr.individual.game;
 
-import java.util.List;
-
 import ge.edu.freeuni.rsr.individual.game.entity.Answer;
 import ge.edu.freeuni.rsr.individual.game.entity.CorrectAnswers;
 import ge.edu.freeuni.rsr.individual.game.entity.Question;
@@ -13,7 +11,7 @@ public interface IndividualGameContract {
 
         void renderCorrectAnswerScreen();
 
-        void renderWrongAnswerScreen(List<Answer> correctAnswers);
+        void renderWrongAnswerScreen(Answer correctAnswer);
 
         void loadFinishScreen(int correctAnswers);
     }

@@ -14,8 +14,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -99,12 +97,12 @@ public class IndividualGameActivity extends AppCompatActivity implements Individ
 
     @Override
     public void renderCorrectAnswerScreen() {
-        AfterAnswerSubmissionDialog.newInstance(true).show(getSupportFragmentManager(), "");
+        AfterAnswerSubmissionDialog.newInstance(true, "").show(getSupportFragmentManager(), "");
     }
 
     @Override
-    public void renderWrongAnswerScreen(List<Answer> correctAnswers) {
-        AfterAnswerSubmissionDialog.newInstance(false).show(getSupportFragmentManager(), "");
+    public void renderWrongAnswerScreen(Answer correctAnswer) {
+        AfterAnswerSubmissionDialog.newInstance(false, correctAnswer.getAnswer()).show(getSupportFragmentManager(), "");
     }
 
     @Override

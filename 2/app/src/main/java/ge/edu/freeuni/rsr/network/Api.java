@@ -10,7 +10,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface Api {
-    @GET("api/individual/displayQuestion/{userId}")
+    @GET("api/individual/getRandomQuestion/{userId}")
     Call<List<Question>> loadNextQuestion(@Path("userId") int userId);
 
     @GET("api/individual/answer/{questionId}/{currentAnswer}")
