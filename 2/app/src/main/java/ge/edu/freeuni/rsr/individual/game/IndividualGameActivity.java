@@ -72,12 +72,16 @@ public class IndividualGameActivity extends AppCompatActivity implements Individ
         presenter.loadNextQuestion();
     }
 
+    private String toTime(long seconds) {
+        return "" + seconds / 60 + ":" + seconds % 60;
+    }
+
     private void createTimer() {
         timer = new CountDownTimer(timeOnSingleQuestion, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 timeOnSingleQuestion = millisUntilFinished;
-                tvTime.setText(String.format("%d", timeOnSingleQuestion / 1000));
+                tvTime.setText(toTime(timeOnSingleQuestion / 1000));
             }
 
             @Override
