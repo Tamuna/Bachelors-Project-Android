@@ -33,25 +33,38 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_starts" />
+
+            <ImageView
                 android:id="@+id/imgTrophy"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_marginTop="100dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                app:layout_constraintBottom_toTopOf="@+id/textView4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
                 app:srcCompat="@drawable/ic_trophy" />
 
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="50dp"
                 android:text="გილოცავთ!"
                 android:textColor="@color/text_color"
-                android:textSize="30sp"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/tvNumCorrectlabel"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imgTrophy" />
 
@@ -59,27 +72,31 @@
                 android:id="@+id/tvNumCorrectlabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="8dp"
                 android:text="სწორი პასუხი"
                 android:textColor="@color/text_color"
-                android:textSize="20sp"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/tvNumCorrect"
-                app:layout_constraintTop_toTopOf="@+id/tvNumCorrect" />
+                app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
             <TextView
                 android:id="@+id/tvNumCorrect"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginEnd="10dp"
                 android:text="+10 "
                 android:textColor="@color/text_color"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 app:layout_constraintEnd_toStartOf="@+id/tvNumCorrectlabel"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                app:layout_constraintTop_toTopOf="@+id/tvNumCorrectlabel" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
