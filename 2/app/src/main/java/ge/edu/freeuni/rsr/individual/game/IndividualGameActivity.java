@@ -48,6 +48,7 @@ public class IndividualGameActivity extends AppCompatActivity implements Individ
         hideKeyboard();
         presenter.checkAnswer(etAnswerInput.getText().toString());
         etAnswerInput.setText("");
+        timer.cancel();
     }
 
 
@@ -55,7 +56,6 @@ public class IndividualGameActivity extends AppCompatActivity implements Individ
         Intent intent = new Intent(previous, IndividualGameActivity.class);
         intent.putExtra(TOTAL_QUESTIONS, totalQuestions);
         previous.startActivity(intent);
-
     }
 
     @Override
@@ -87,6 +87,7 @@ public class IndividualGameActivity extends AppCompatActivity implements Individ
             @Override
             public void onFinish() {
                 presenter.checkAnswer(String.valueOf(etAnswerInput.getText()));
+                timer.cancel();
             }
         };
     }
@@ -96,7 +97,6 @@ public class IndividualGameActivity extends AppCompatActivity implements Individ
         tvQuestionContent.setText(question.getQuestionContent());
         tvNumberOutOf.setText(numberOutOf);
         timer.start();
-
     }
 
     @Override
