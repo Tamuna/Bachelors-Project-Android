@@ -24,7 +24,7 @@ public class IndividualGameInteractorImpl implements IndividualGameContract.Indi
     @Override
     public void loadNextQuestion(OnFinishListener listener) {
 
-        api.loadNextQuestion(11).enqueue(new Callback<List<Question>>() {
+        api.loadNextQuestion(13).enqueue(new Callback<List<Question>>() {
             @Override
             public void onResponse(Call<List<Question>> call, Response<List<Question>> response) {
                 listener.onNextQuestionLoaded(response.body().get(0));

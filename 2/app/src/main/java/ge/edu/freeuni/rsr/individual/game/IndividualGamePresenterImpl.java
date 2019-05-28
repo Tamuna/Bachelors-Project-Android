@@ -30,6 +30,7 @@ public class IndividualGamePresenterImpl implements IndividualGameContract.Indiv
 
     @Override
     public void checkAnswer(String answer) {
+        if(answer.length() == 0) answer = "~";
         interactor.checkAnswer(new OnFinishListenerImpl(), curQuestionId, answer);
     }
 
@@ -48,7 +49,7 @@ public class IndividualGamePresenterImpl implements IndividualGameContract.Indiv
 
         @Override
         public void onCorrectAnswerLoaded(CorrectAnswers answers) {
-            if (answers.isCorrect()) {
+            if (answers != null && answers.isCorrect()) {
                 numCorrect++;
                 view.renderCorrectAnswerScreen();
             } else {
