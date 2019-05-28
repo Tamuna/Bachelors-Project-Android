@@ -5,26 +5,15 @@
     android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
+        app:cardCornerRadius="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardCornerRadius="10dp">
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:adjustViewBounds="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/header_individual" />
+            android:layout_height="match_parent"
+            android:background="@color/text_color">
 
             <TextView
                 android:id="@+id/txt_question_count"
@@ -33,7 +22,7 @@
                 android:layout_marginEnd="10dp"
                 android:gravity="center"
                 android:text="5"
-                android:textColor="@color/text_color"
+                android:textColor="@color/light_gray"
                 android:textSize="40sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -45,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="კითხვების რაოდენობა:"
-                android:textColor="@color/text_color"
+                android:textColor="@color/light_gray"
                 app:layout_constraintBottom_toBottomOf="@+id/txt_question_count"
                 app:layout_constraintEnd_toStartOf="@+id/txt_question_count"
                 app:layout_constraintStart_toStartOf="parent"
