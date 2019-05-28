@@ -32,6 +32,7 @@ public class IndividualGameInteractorImpl implements IndividualGameContract.Indi
 
             @Override
             public void onFailure(Call<List<Question>> call, Throwable t) {
+                System.out.println("here");
             }
         });
     }
