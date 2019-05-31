@@ -8,13 +8,14 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
         android:adjustViewBounds="true"
+        android:tint="@color/text_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/header_owl" />
+        app:srcCompat="@drawable/bg_wave" />
 
     <EditText
         android:id="@+id/editText"
@@ -26,6 +27,7 @@
         android:background="@drawable/bg_oval"
         android:drawableLeft="@drawable/ic_user"
         android:drawablePadding="15dp"
+        android:drawableTint="@color/text_color"
         android:hint="მომხმარებლის სახელი"
         android:maxLines="1"
         android:padding="10dp"
@@ -46,6 +48,7 @@
         android:background="@drawable/bg_oval"
         android:drawableLeft="@drawable/ic_key"
         android:drawablePadding="15dp"
+        android:drawableTint="@color/text_color"
         android:hint="პაროლი"
         android:maxLines="1"
         android:padding="10dp"

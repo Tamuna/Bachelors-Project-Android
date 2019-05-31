@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/text_color"
+    android:layout_margin="5dp"
+    android:background="@drawable/bg_oval"
     android:orientation="vertical"
     android:padding="5dp">
 
@@ -12,35 +13,38 @@
         android:id="@+id/img_profile_pic"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_correct"
-        />
+        app:srcCompat="@drawable/logo_owl" />
 
     <TextView
         android:id="@+id/txt_full_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
         android:text="თამუნა გელდიაშვილი"
-        android:textColor="@color/light_gray"
+        android:textColor="@color/text_color"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/img_add_icon"
-        app:layout_constraintStart_toEndOf="@+id/img_profile_pic"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_profile_pic" />
 
     <ImageView
         android:id="@+id/img_add_icon"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_full_name"
         app:srcCompat="@drawable/ic_add_friend" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

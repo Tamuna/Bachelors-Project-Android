@@ -12,6 +12,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 import ge.edu.freeuni.rsr.R;
+import ge.edu.freeuni.rsr.groupchat.configuration.GroupPracticeConfigActivity;
 import ge.edu.freeuni.rsr.individual.configuration.IndividualGameConfigActivity;
 
 public class GameTypesPagerAdapter extends PagerAdapter {
@@ -58,6 +59,9 @@ public class GameTypesPagerAdapter extends PagerAdapter {
         view.findViewById(R.id.btn_start_game).setOnClickListener(v -> {
             if (position == 1) {
                 IndividualGameConfigActivity.start(view.getContext());
+            }
+            if(position == 2){
+                GroupPracticeConfigActivity.start(view.getContext());
             }
         });
         return view;

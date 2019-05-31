@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".groupchat.GroupPracticeConfigActivity"></activity>
+        <activity android:name=".groupchat.configuration.GroupPracticeConfigActivity"></activity>
         <activity
             android:name=".FinishActivity"
             android:screenOrientation="portrait" />
