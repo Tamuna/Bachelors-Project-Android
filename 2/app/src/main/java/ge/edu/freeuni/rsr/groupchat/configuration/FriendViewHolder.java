@@ -12,6 +12,7 @@ import ge.edu.freeuni.rsr.R;
 import ge.edu.freeuni.rsr.groupchat.configuration.entity.User;
 
 
+
 /*
  * created by tgeldiashvili on 5/31/2019
  */
@@ -25,7 +26,20 @@ public class FriendViewHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-    public void setData(User friend){
+    public void setData(User friend, FriendsRecyclerAdapter.OnItemClickListener onItemClickListener, boolean highlighted) {
+        if (highlighted) {
+            itemView.setBackgroundResource(R.drawable.bg_oval_blue);
+        } else {
+            itemView.setBackgroundResource(R.drawable.bg_oval);
+        }
         txtFullName.setText(friend.getName());
+
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClickListener.onFriendSelected(friend, getAdapterPosition());
+            }
+        });
+
     }
 }

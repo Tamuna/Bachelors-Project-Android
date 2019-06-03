@@ -49,7 +49,6 @@ public class HomeActivity extends AppCompatActivity {
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                Log.d("a", "a");
             }
 
             @Override

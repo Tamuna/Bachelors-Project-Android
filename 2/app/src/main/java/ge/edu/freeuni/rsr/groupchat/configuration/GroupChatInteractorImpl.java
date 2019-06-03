@@ -9,7 +9,7 @@ import java.util.List;
 
 import ge.edu.freeuni.rsr.groupchat.configuration.entity.User;
 
-public class GroupChatInteractorImpl implements GroupChatContract.GroupChatInteractor {
+public class GroupChatInteractorImpl implements GroupChatConfigurationContract.GroupChatInteractor {
     @Override
     public void getFriends(OnFinishListener onFinishListener, int userId) {
         //TODO: api call

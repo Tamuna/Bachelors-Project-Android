@@ -4,16 +4,18 @@ package ge.edu.freeuni.rsr.groupchat.configuration;
  * created by tgeldiashvili on 5/31/2019
  */
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ge.edu.freeuni.rsr.groupchat.configuration.entity.User;
 
-public class GroupChatPresenterImpl implements GroupChatContract.GroupChatPresenter {
-    private GroupChatContract.GroupChatView view;
-    private GroupChatContract.GroupChatInteractor interactor;
+public class GroupChatPresenterImpl implements GroupChatConfigurationContract.GroupChatPresenter {
+    private GroupChatConfigurationContract.GroupChatView view;
+    private GroupChatConfigurationContract.GroupChatInteractor interactor;
+    private List<User> highlightedFriends = new ArrayList<>();
     private int id = 5;
 
-    public GroupChatPresenterImpl(GroupChatContract.GroupChatView view, GroupChatContract.GroupChatInteractor interactor) {
+    public GroupChatPresenterImpl(GroupChatConfigurationContract.GroupChatView view, GroupChatConfigurationContract.GroupChatInteractor interactor) {
         this.view = view;
         this.interactor = interactor;
     }
@@ -23,7 +25,18 @@ public class GroupChatPresenterImpl implements GroupChatContract.GroupChatPresen
         interactor.getFriends(new OnFinishListenerImpl(), id);
     }
 
-    class OnFinishListenerImpl implements GroupChatContract.GroupChatInteractor.OnFinishListener {
+    @Override
+    public void selectFriend(User friend, int position) {
+        if (highlightedFriends.contains(friend)) {
+            highlightedFriends.remove(friend);
+            view.unhighlight(position);
+        } else {
+            highlightedFriends.add(friend);
+            view.highlight(position);
+        }
+    }
+
+    class OnFinishListenerImpl implements GroupChatConfigurationContract.GroupChatInteractor.OnFinishListener {
 
         @Override
         public void onFriendsLoaded(List<User> friends) {

@@ -21,6 +21,16 @@ import ge.edu.freeuni.rsr.groupchat.configuration.entity.User;
 public class FriendsRecyclerAdapter extends RecyclerView.Adapter<FriendViewHolder> {
 
     private List<User> data = new ArrayList<>();
+    private OnItemClickListener onItemClickListener;
+    private List<Integer> highlights = new ArrayList<>();
+
+    public FriendsRecyclerAdapter(GroupPracticeConfigActivity.OnItemClickListenerImpl onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    public interface OnItemClickListener {
+        void onFriendSelected(User friend, int position);
+    }
 
     @NonNull
     @Override
@@ -31,7 +41,7 @@ public class FriendsRecyclerAdapter extends RecyclerView.Adapter<FriendViewHolde
 
     @Override
     public void onBindViewHolder(@NonNull FriendViewHolder holder, int position) {
-        holder.setData(data.get(position));
+        holder.setData(data.get(position), onItemClickListener, highlights.contains(position));
     }
 
     @Override
@@ -43,5 +53,15 @@ public class FriendsRecyclerAdapter extends RecyclerView.Adapter<FriendViewHolde
         this.data.clear();
         this.data.addAll(data);
         notifyDataSetChanged();
+    }
+
+    public void highlight(int position) {
+        highlights.add(position);
+        notifyItemChanged(position);
+    }
+
+    public void unhighlight(int position) {
+        highlights.remove((Integer) position);
+        notifyItemChanged(position);
     }
 }
