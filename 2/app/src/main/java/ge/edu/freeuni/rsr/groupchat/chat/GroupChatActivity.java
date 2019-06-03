@@ -87,15 +87,29 @@ public class GroupChatActivity extends AppCompatActivity implements GroupChatCon
 
         ConnectycubeChatService chatService = ConnectycubeChatService.getInstance();
 
+
+
         chatService.login(user, new EntityCallback() {
 
             @Override
             public void onSuccess(Object o, Bundle bundle) {
-                createDialog();
+
             }
 
             @Override
             public void onError(ResponseException errors) {
+
+            }
+        });
+
+        ConnectycubeUsers.signIn(user).performAsync(new EntityCallback<ConnectycubeUser>() {
+            @Override
+            public void onSuccess(ConnectycubeUser user, Bundle args) {
+                createDialog();
+            }
+
+            @Override
+            public void onError(ResponseException error) {
                 createDialog();
             }
         });
