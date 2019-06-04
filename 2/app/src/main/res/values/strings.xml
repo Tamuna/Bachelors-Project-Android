@@ -3,10 +3,11 @@
     <string name="group_practice">გუნდური პრაქტიკა</string>
     <string name="tournir">ტურნირი</string>
     <string name="individual_practice">ინდივიდუალური პრაქტიკა</string>
-    <string name="game_desc_individual">აღწერა</string>
+    <string name="game_desc_individual">შეარჩიეთ სასურველი კითხვების რაოდენობა და ითამაშეთ \"რა? სად? როდის?\" ინდივიდუალურად</string>
     <string name="game_desc_tournir">აღწერა</string>
     <string name="game_desc_group">აღწერა</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="question">კითხვა</string>
     <string name="next">შემდეგი</string>
+    <string name="some_interesting_activity">თქვენ რამდენიმე საინტერესო კითხვას გაეცანით</string>
 </resources>

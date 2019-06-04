@@ -11,21 +11,23 @@ import android.view.WindowManager;
 import com.connectycube.auth.session.ConnectycubeSettings;
 import com.connectycube.chat.ConnectycubeChatService;
 import com.connectycube.chat.ConnectycubeRestChatService;
+import com.connectycube.chat.IncomingMessagesManager;
+import com.connectycube.chat.exception.ChatException;
+import com.connectycube.chat.listeners.ChatDialogMessageListener;
 import com.connectycube.chat.model.ConnectycubeChatDialog;
 import com.connectycube.chat.model.ConnectycubeChatMessage;
 import com.connectycube.chat.model.ConnectycubeDialogType;
-import com.connectycube.chat.utils.DialogUtils;
 import com.connectycube.core.EntityCallback;
 import com.connectycube.core.exception.ResponseException;
-import com.connectycube.core.helper.StringifyArrayList;
 import com.connectycube.users.ConnectycubeUsers;
 import com.connectycube.users.model.ConnectycubeUser;
+
+import org.jivesoftware.smack.SmackException;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import ge.edu.freeuni.rsr.R;
-import ge.edu.freeuni.rsr.groupchat.configuration.GroupPracticeConfigActivity;
 
 public class GroupChatActivity extends AppCompatActivity implements GroupChatContract.GroupChatView {
     private static final String APP_ID = "769";
@@ -88,7 +90,6 @@ public class GroupChatActivity extends AppCompatActivity implements GroupChatCon
         ConnectycubeChatService chatService = ConnectycubeChatService.getInstance();
 
 
-
         chatService.login(user, new EntityCallback() {
 
             @Override
@@ -114,27 +115,19 @@ public class GroupChatActivity extends AppCompatActivity implements GroupChatCon
             }
         });
 
+        IncomingMessagesManager incomingMessagesManager = chatService.getIncomingMessagesManager();
 
-//        ArrayList<ConnectycubeUser> selectedUsers = new ArrayList<>();
-//        selectedUsers.add(new ConnectycubeUser(1));
-//        selectedUsers.add(new ConnectycubeUser(2));
-//
-//        ConnectycubeChatDialog dialog = DialogUtils.buildDialog(DialogUtils.createChatNameFromUserList(selectedUsers.toArray(new ConnectycubeUser[0])),
-//                ConnectycubeDialogType.GROUP, DialogUtils.getUserIds(selectedUsers));
-//
-//        ConnectycubeRestChatService.createChatDialog(dialog).performAsync(new EntityCallback<ConnectycubeChatDialog>() {
-//            @Override
-//            public void onSuccess(ConnectycubeChatDialog createdDialog, Bundle params) {
-//                Log.d("123", "123");
-//            }
-//
-//            @Override
-//            public void onError(ResponseException exception) {
-//                Log.d("123", "123");
-//            }
-//        });
+        incomingMessagesManager.addDialogMessageListener(new ChatDialogMessageListener() {
+            @Override
+            public void processMessage(String dialogId, ConnectycubeChatMessage message, Integer senderId) {
+                Log.d("tamuna_inoming", message.getBody());
+            }
 
+            @Override
+            public void processError(String dialogId, ChatException exception, ConnectycubeChatMessage message, Integer senderId) {
 
+            }
+        });
     }
 
     private void createDialog() {
@@ -151,7 +144,26 @@ public class GroupChatActivity extends AppCompatActivity implements GroupChatCon
         ConnectycubeRestChatService.createChatDialog(dialog).performAsync(new EntityCallback<ConnectycubeChatDialog>() {
             @Override
             public void onSuccess(ConnectycubeChatDialog createdDialog, Bundle params) {
-                Log.d("tamuna", "succ");
+                createdDialog.join(new EntityCallback() {
+                    @Override
+                    public void onSuccess(Object o, Bundle bundle) {
+                        Log.d("tamuna", "joining_succ");
+                    }
+
+                    @Override
+                    public void onError(ResponseException e) {
+                        Log.d("tamuna", "joining_err");
+                    }
+                });
+
+                try {
+                    ConnectycubeChatMessage chatMessage = new ConnectycubeChatMessage();
+                    chatMessage.setBody("How are you today?");
+                    chatMessage.setSaveToHistory(true);
+                    createdDialog.sendMessage(chatMessage);
+                } catch (Exception e) {
+                    Log.d("tamuna_excepton", e.getMessage());
+                }
             }
 
             @Override
@@ -159,7 +171,7 @@ public class GroupChatActivity extends AppCompatActivity implements GroupChatCon
                 Log.d("tamuna", exception.getMessage());
             }
         });
+
+
     }
-
-
 }

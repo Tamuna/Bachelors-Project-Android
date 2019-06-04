@@ -6,6 +6,7 @@ package ge.edu.freeuni.rsr.component;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -39,6 +40,7 @@ public class AfterAnswerSubmissionDialog extends DialogFragment {
         args.putString(CORRECT_ANSWER, answer);
         AfterAnswerSubmissionDialog fragment = new AfterAnswerSubmissionDialog();
         fragment.setArguments(args);
+        fragment.setCancelable(false);
         return fragment;
     }
 
@@ -49,6 +51,7 @@ public class AfterAnswerSubmissionDialog extends DialogFragment {
         correctAnswer = getArguments().getString(CORRECT_ANSWER);
         listener = (AnswerSubmissionDialogListener) getContext();
     }
+
 
     @NonNull
     @Override
@@ -74,10 +77,10 @@ public class AfterAnswerSubmissionDialog extends DialogFragment {
         }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
         builder.setView(view);
         btnNext.setOnClickListener(v -> listener.OnNextQuestionClicked(AfterAnswerSubmissionDialog.this));
-        Dialog dialog = builder.create();
-        dialog.setCanceledOnTouchOutside(false);
-        return dialog;
+
+        return builder.create();
     }
 }

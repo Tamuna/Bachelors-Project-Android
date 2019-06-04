@@ -24,7 +24,7 @@ public class FriendsRecyclerAdapter extends RecyclerView.Adapter<FriendViewHolde
     private OnItemClickListener onItemClickListener;
     private List<Integer> highlights = new ArrayList<>();
 
-    public FriendsRecyclerAdapter(GroupPracticeConfigActivity.OnItemClickListenerImpl onItemClickListener) {
+    public FriendsRecyclerAdapter(GroupChatConfigActivity.OnItemClickListenerImpl onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 

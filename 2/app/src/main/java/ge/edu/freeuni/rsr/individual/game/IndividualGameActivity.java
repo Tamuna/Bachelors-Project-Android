@@ -8,7 +8,9 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,12 +45,17 @@ public class IndividualGameActivity extends AppCompatActivity implements Individ
     @BindView(R.id.etAnswerInput)
     EditText etAnswerInput;
 
+
+    @BindView(R.id.imgSendAnswer)
+    ImageView imgSendAnswer;
+
     @OnClick(R.id.imgSendAnswer)
-    void onSendAnswerClick() {
+    void onSendAnswerClick(View view) {
         hideKeyboard();
         presenter.checkAnswer(etAnswerInput.getText().toString());
         etAnswerInput.setText("");
         timer.cancel();
+        view.setEnabled(false);
     }
 
 
@@ -119,6 +126,7 @@ public class IndividualGameActivity extends AppCompatActivity implements Individ
     public void OnNextQuestionClicked(DialogFragment dialog) {
         dialog.dismiss();
         presenter.loadNextQuestion();
+        imgSendAnswer.setEnabled(true);
     }
 
     private void hideKeyboard() {

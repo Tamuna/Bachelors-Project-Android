@@ -18,7 +18,7 @@ import ge.edu.freeuni.rsr.R;
 import ge.edu.freeuni.rsr.groupchat.chat.GroupChatActivity;
 import ge.edu.freeuni.rsr.groupchat.configuration.entity.User;
 
-public class GroupPracticeConfigActivity extends AppCompatActivity implements GroupChatConfigurationContract.GroupChatView {
+public class GroupChatConfigActivity extends AppCompatActivity implements GroupChatConfigurationContract.GroupChatView {
 
     @BindView(R.id.rv_friends)
     RecyclerView rvFriends;
@@ -33,7 +33,7 @@ public class GroupPracticeConfigActivity extends AppCompatActivity implements Gr
     }
 
     public static void start(Context previous) {
-        Intent intent = new Intent(previous, GroupPracticeConfigActivity.class);
+        Intent intent = new Intent(previous, GroupChatConfigActivity.class);
         previous.startActivity(intent);
     }
 
@@ -44,12 +44,11 @@ public class GroupPracticeConfigActivity extends AppCompatActivity implements Gr
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         ButterKnife.bind(this);
 
+        rvFriends.setNestedScrollingEnabled(false);
         onItemClickListener = new OnItemClickListenerImpl();
         presenter = new GroupChatPresenterImpl(this, new GroupChatInteractorImpl());
         adapter = new FriendsRecyclerAdapter(onItemClickListener);
         presenter.getFriends();
-
-
     }
 
     @Override

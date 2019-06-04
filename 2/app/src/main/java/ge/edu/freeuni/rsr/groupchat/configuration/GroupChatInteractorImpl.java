@@ -19,6 +19,21 @@ public class GroupChatInteractorImpl implements GroupChatConfigurationContract.G
         users.add(new User("ანდროი"));
         users.add(new User("ვიღაც კაცი"));
         users.add(new User("ვიღაც ქალი"));
+        users.add(new User("თამუნა"));
+        users.add(new User("ლევანი"));
+        users.add(new User("ანდროი"));
+        users.add(new User("ვიღაც კაცი"));
+        users.add(new User("ვიღაც ქალი"));
+        users.add(new User("თამუნა"));
+        users.add(new User("ლევანი"));
+        users.add(new User("ანდროი"));
+        users.add(new User("ვიღაც კაცი"));
+        users.add(new User("ვიღაც ქალი"));
+        users.add(new User("თამუნა"));
+        users.add(new User("ლევანი"));
+        users.add(new User("ანდროი"));
+        users.add(new User("ვიღაც კაცი"));
+        users.add(new User("ვიღაც ქალი"));
         onFinishListener.onFriendsLoaded(users);
     }
 }

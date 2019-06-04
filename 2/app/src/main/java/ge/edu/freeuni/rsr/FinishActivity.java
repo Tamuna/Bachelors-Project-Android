@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
@@ -17,6 +18,9 @@ public class FinishActivity extends AppCompatActivity {
     @BindView(R.id.tvNumCorrect)
     TextView tvNumCorrect;
 
+    @BindView(R.id.tvNumCorrectlabel)
+    TextView tvNumCorrectLabel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +29,12 @@ public class FinishActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         int numCorrect = getIntent().getIntExtra(NUM_POINTS, 0);
-        tvNumCorrect.setText("+" + numCorrect + " ");
+        if (numCorrect > 0) {
+            tvNumCorrect.setText("+" + numCorrect + " ");
+        } else {
+            tvNumCorrect.setText(getResources().getString(R.string.some_interesting_activity));
+            tvNumCorrectLabel.setVisibility(View.GONE);
+        }
     }
 
     public static void start(Context previuous, int numPoints) {
