@@ -10,4 +10,6 @@
     <string name="question">კითხვა</string>
     <string name="next">შემდეგი</string>
     <string name="some_interesting_activity">თქვენ რამდენიმე საინტერესო კითხვას გაეცანით</string>
+    <string name="captain">კაპიტანი</string>
+    <string name="host">წამყვანი</string>
 </resources>
