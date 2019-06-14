@@ -49,7 +49,6 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/et_message"
@@ -60,15 +59,15 @@
             <EditText
                 android:id="@+id/et_message"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/bg_oval"
-                android:gravity="center"
-                android:hint="პასუხი"
-                android:padding="5dp"
-
+                android:gravity="left"
+                android:hint="@string/write_message"
+                android:padding="10dp"
+                android:textSize="15sp"
                 android:textColor="@color/text_color"
                 android:textColorHint="@color/light_gray"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -78,7 +77,7 @@
             <ImageView
                 android:id="@+id/imgSend"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="40dp"
                 android:layout_marginEnd="10dp"
                 android:adjustViewBounds="true"
                 app:layout_constraintBottom_toBottomOf="@+id/et_message"
@@ -127,6 +126,20 @@
                 app:layout_constraintBottom_toTopOf="@+id/view5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/loader_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:gravity="center">
+
+                <com.tuyenmonkey.mkloader.MKLoader
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:mk_color="@color/text_color"
+                    app:mk_type="Whirlpool" />
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

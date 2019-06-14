@@ -20,13 +20,7 @@ import ge.edu.freeuni.rsr.groupchat.chat.entity.Message;
 
 public class MessagesRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<Message> data = new ArrayList<Message>(){
-        {
-            add(new Message(null, "mesage", false, false));
-            add(new Message(null, "mesage", false, false));
-            add(new Message(null, "mesage", false, false));
-        }
-    };
+    private List<Message> data = new ArrayList<Message>();
 
     @Override
     public int getItemViewType(int position) {

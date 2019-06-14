@@ -10,7 +10,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ge.edu.freeuni.rsr.R;
 import ge.edu.freeuni.rsr.groupchat.chat.entity.Message;
-import ge.edu.freeuni.rsr.groupchat.configuration.entity.User;
 
 
 /*
@@ -28,6 +27,7 @@ public class SentMessageViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void setData(Message message) {
+        //if sender is currently logged in send
         tvMessage.setText(message.getMessage());
     }
 }

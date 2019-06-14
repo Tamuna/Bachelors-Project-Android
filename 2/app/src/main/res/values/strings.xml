@@ -5,11 +5,13 @@
     <string name="individual_practice">ინდივიდუალური პრაქტიკა</string>
     <string name="game_desc_individual">შეარჩიეთ სასურველი კითხვების რაოდენობა და ითამაშეთ \"რა? სად? როდის?\" ინდივიდუალურად</string>
     <string name="game_desc_tournir">აღწერა</string>
-    <string name="game_desc_group">აღწერა</string>
+    <string name="game_desc_group">მოიწვიე მეგობრები ინტელექტუალურ ჩატში, გაუზიარეთ ერთმანეთს საინტერესო კითხვები და იმსჯელეთ ერთად</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="question">კითხვა</string>
     <string name="next">შემდეგი</string>
     <string name="some_interesting_activity">თქვენ რამდენიმე საინტერესო კითხვას გაეცანით</string>
     <string name="captain">კაპიტანი</string>
     <string name="host">წამყვანი</string>
+    <string name="cannot_send_message">მესიჯის გაგზავნა ვერ მოხერხდა</string>
+    <string name="write_message">დაწერე შეტყობინება...</string>
 </resources>
