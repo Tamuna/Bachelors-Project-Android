@@ -2,13 +2,12 @@ package ge.edu.freeuni.rsr.component;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
 
 import androidx.appcompat.widget.Toolbar;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ge.edu.freeuni.rsr.R;
-import ge.edu.freeuni.rsr.login.LoginActivity;
+import ge.edu.freeuni.rsr.auth.login.LoginActivity;
 
 public class CustomToolbar extends Toolbar {
 
