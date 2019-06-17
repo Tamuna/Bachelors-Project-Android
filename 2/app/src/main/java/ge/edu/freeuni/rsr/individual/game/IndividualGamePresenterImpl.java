@@ -20,6 +20,7 @@ public class IndividualGamePresenterImpl implements IndividualGameContract.Indiv
 
     @Override
     public void loadNextQuestion() {
+        view.showLoader(true);
         numQuestion++;
         if (numQuestion > totalQuestions) {
             view.loadFinishScreen(numCorrect);
@@ -44,6 +45,7 @@ public class IndividualGamePresenterImpl implements IndividualGameContract.Indiv
         @Override
         public void onNextQuestionLoaded(Question question) {
             curQuestionId = question.getId();
+            view.showLoader(false);
             view.displayQuestion(question, numQuestion + "/" + totalQuestions);
         }
 

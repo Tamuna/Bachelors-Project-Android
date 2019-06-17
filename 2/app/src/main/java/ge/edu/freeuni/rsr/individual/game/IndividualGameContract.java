@@ -14,6 +14,8 @@ public interface IndividualGameContract {
         void renderWrongAnswerScreen(Answer correctAnswer);
 
         void loadFinishScreen(int correctAnswers);
+
+        void showLoader(boolean isLoading);
     }
 
     interface IndividualGamePresenter {

@@ -8,9 +8,9 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,6 +48,9 @@ public class IndividualGameActivity extends AppCompatActivity implements Individ
 
     @BindView(R.id.imgSendAnswer)
     ImageView imgSendAnswer;
+
+    @BindView(R.id.loader_view)
+    LinearLayout loaderView;
 
     @OnClick(R.id.imgSendAnswer)
     void onSendAnswerClick(View view) {
@@ -120,6 +123,15 @@ public class IndividualGameActivity extends AppCompatActivity implements Individ
     public void loadFinishScreen(int correctAnswers) {
         finish();
         FinishActivity.start(this, correctAnswers);
+    }
+
+    @Override
+    public void showLoader(boolean isLoading) {
+        if (isLoading) {
+            loaderView.setVisibility(View.VISIBLE);
+        } else {
+            loaderView.setVisibility(View.GONE);
+        }
     }
 
     @Override

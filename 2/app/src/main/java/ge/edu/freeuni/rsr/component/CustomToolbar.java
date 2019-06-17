@@ -7,7 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ge.edu.freeuni.rsr.R;
-import ge.edu.freeuni.rsr.auth.login.LoginActivity;
+import ge.edu.freeuni.rsr.auth.AuthActivity;
 
 public class CustomToolbar extends Toolbar {
 
@@ -29,6 +29,6 @@ public class CustomToolbar extends Toolbar {
 
     @OnClick(R.id.img_toolbar_profile)
     public void onProfileClick(){
-        LoginActivity.start(getContext());
+        AuthActivity.start(getContext());
     }
 }

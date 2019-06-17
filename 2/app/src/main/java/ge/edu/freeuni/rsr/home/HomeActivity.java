@@ -1,7 +1,8 @@
 package ge.edu.freeuni.rsr.home;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +21,11 @@ public class HomeActivity extends AppCompatActivity {
     ViewPager pager;
     GameTypesPagerAdapter adapter;
     List<GameTypeCardModel> models;
+
+    public static void start(Activity previous) {
+        Intent intent = new Intent(previous, HomeActivity.class);
+        previous.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
