@@ -13,9 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".auth.registration.RegistrationActivity"></activity>
         <activity
             android:name=".groupchat.chat.GroupChatActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".groupchat.configuration.GroupChatConfigActivity"
             android:screenOrientation="portrait" />
@@ -29,7 +30,7 @@
             android:name=".individual.configuration.IndividualGameConfigActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".login.LoginActivity"
+            android:name=".auth.login.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".home.HomeActivity"

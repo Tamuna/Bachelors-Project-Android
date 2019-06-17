@@ -1,4 +1,4 @@
-package ge.edu.freeuni.rsr.login;
+package ge.edu.freeuni.rsr.auth.login;
 
 import android.content.Context;
 import android.content.Intent;
