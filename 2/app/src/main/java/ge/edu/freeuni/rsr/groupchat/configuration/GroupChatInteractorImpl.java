@@ -13,27 +13,28 @@ public class GroupChatInteractorImpl implements GroupChatConfigurationContract.G
     @Override
     public void getFriends(OnFinishListener onFinishListener, int userId) {
         //TODO: api call
+        int id = 2;
         List<User> users = new ArrayList<>();
-        users.add(new User("თამუნა"));
-        users.add(new User("ლევანი"));
-        users.add(new User("ანდროი"));
-        users.add(new User("ვიღაც კაცი"));
-        users.add(new User("ვიღაც ქალი"));
-        users.add(new User("თამუნა"));
-        users.add(new User("ლევანი"));
-        users.add(new User("ანდროი"));
-        users.add(new User("ვიღაც კაცი"));
-        users.add(new User("ვიღაც ქალი"));
-        users.add(new User("თამუნა"));
-        users.add(new User("ლევანი"));
-        users.add(new User("ანდროი"));
-        users.add(new User("ვიღაც კაცი"));
-        users.add(new User("ვიღაც ქალი"));
-        users.add(new User("თამუნა"));
-        users.add(new User("ლევანი"));
-        users.add(new User("ანდროი"));
-        users.add(new User("ვიღაც კაცი"));
-        users.add(new User("ვიღაც ქალი"));
+        users.add(new User(id, "თამუნა"));
+        users.add(new User(id, "ლევანი"));
+        users.add(new User(id, "ანდროიდი"));
+        users.add(new User(id, "ვიღაც კაცი"));
+        users.add(new User(id, "ვიღაც ქალი"));
+        users.add(new User(id, "თამუნა"));
+        users.add(new User(id, "ლევანი"));
+        users.add(new User(id, "ანდროიდი"));
+        users.add(new User(id, "ვიღაც კაცი"));
+        users.add(new User(id, "ვიღაც ქალი"));
+        users.add(new User(id, "თამუნა"));
+        users.add(new User(id, "ლევანი"));
+        users.add(new User(id, "ანდროიდი"));
+        users.add(new User(id, "ვიღაც კაცი"));
+        users.add(new User(id, "ვიღაც ქალი"));
+        users.add(new User(id, "თამუნა"));
+        users.add(new User(id, "ლევანი"));
+        users.add(new User(id, "ანდროიდი"));
+        users.add(new User(id, "ვიღაც კაცი"));
+        users.add(new User(id, "ვიღაც ქალი"));
         onFinishListener.onFriendsLoaded(users);
     }
 }

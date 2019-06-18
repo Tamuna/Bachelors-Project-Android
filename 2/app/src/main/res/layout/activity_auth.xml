@@ -41,9 +41,9 @@
             android:id="@+id/et_reg_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/bg_oval"
-            android:drawableLeft="@drawable/ic_user"
+            android:drawableLeft="@drawable/drawable_user"
             android:drawablePadding="15dp"
             android:drawableTint="@color/text_color"
             android:hint="@string/username"
@@ -56,9 +56,9 @@
             android:id="@+id/et_reg_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/bg_oval"
-            android:drawableStart="@drawable/ic_user"
+            android:drawableStart="@drawable/drawable_mail"
             android:drawablePadding="15dp"
             android:drawableTint="@color/text_color"
             android:hint="@string/email"
@@ -67,35 +67,46 @@
             android:textColorHint="@color/light_gray"
             android:textSize="15sp" />
 
-        <EditText
-            android:id="@+id/et_reg_password"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/bg_oval"
-            android:drawableStart="@drawable/ic_user"
-            android:drawablePadding="15dp"
-            android:drawableTint="@color/text_color"
-            android:hint="@string/password"
-            android:maxLines="1"
-            android:padding="10dp"
-            android:textColorHint="@color/light_gray"
-            android:textSize="15sp" />
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/et_reg_confirm_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/bg_oval"
-            android:drawableStart="@drawable/ic_user"
-            android:drawablePadding="15dp"
-            android:drawableTint="@color/text_color"
-            android:hint="@string/confirm_password"
-            android:maxLines="1"
-            android:padding="10dp"
-            android:textColorHint="@color/light_gray"
-            android:textSize="15sp" />
+            <EditText
+                android:id="@+id/et_reg_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_oval"
+                android:drawableStart="@drawable/drawable_key"
+                android:drawablePadding="15dp"
+                android:drawableTint="@color/text_color"
+                android:hint="@string/password"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:textColorHint="@color/light_gray"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/et_reg_confirm_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:background="@drawable/bg_oval"
+                android:drawableStart="@drawable/drawable_key"
+                android:drawablePadding="15dp"
+                android:drawableTint="@color/text_color"
+
+                android:hint="@string/confirm_password"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:textColorHint="@color/light_gray"
+                android:textSize="15sp" />
+        </LinearLayout>
+
 
         <Button
             android:id="@+id/btn_register"
@@ -142,6 +153,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="20dp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView">
@@ -149,7 +161,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:gravity="center"
             android:text="@string/login"
             android:textColor="@color/text_color"
@@ -159,10 +171,10 @@
             android:id="@+id/et_log_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/bg_oval"
-            android:drawableStart="@drawable/ic_user"
-            android:drawablePadding="15dp"
+            android:drawableStart="@drawable/drawable_user"
+            android:drawablePadding="10dp"
             android:drawableTint="@color/text_color"
             android:hint="@string/username"
             android:maxLines="1"
@@ -174,10 +186,10 @@
             android:id="@+id/et_log_pass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/bg_oval"
-            android:drawableStart="@drawable/ic_key"
-            android:drawablePadding="15dp"
+            android:drawableStart="@drawable/drawable_key"
+            android:drawablePadding="10dp"
             android:drawableTint="@color/text_color"
             android:hint="@string/password"
             android:maxLines="1"

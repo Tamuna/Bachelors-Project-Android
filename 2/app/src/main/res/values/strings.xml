@@ -17,7 +17,7 @@
     <string name="username">მომხმარებლის სახელი</string>
     <string name="email">ელექტრონული ფოსტა</string>
     <string name="password">პაროლი</string>
-    <string name="confirm_password">გაიმეორეთ პაროლი</string>
+    <string name="confirm_password">გაიმეორეთ</string>
     <string name="login">შესვლა</string>
     <string name="already_registered">უკვე დარეგისტირებული ხარ?</string>
     <string name="forgot_password">დაგავიწყდათ პაროლი?</string>
