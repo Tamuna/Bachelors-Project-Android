@@ -1,4 +1,4 @@
-package ge.edu.freeuni.rsr;
+package ge.edu.freeuni.rsr.individual.game;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import ge.edu.freeuni.rsr.R;
 
 public class FinishActivity extends AppCompatActivity {
     public static final String NUM_POINTS = "numPoints";
