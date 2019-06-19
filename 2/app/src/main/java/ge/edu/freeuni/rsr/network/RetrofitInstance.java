@@ -11,6 +11,7 @@ public class RetrofitInstance {
     public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {
             OkHttpClient client = new OkHttpClient.Builder()
+                    .addInterceptor(new RequestInterceptor())
                     .build();
             retrofit = new retrofit2.Retrofit.Builder()
                     .baseUrl(BASE_URL)
