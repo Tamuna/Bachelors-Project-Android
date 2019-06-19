@@ -1,7 +1,5 @@
 package ge.edu.freeuni.rsr.auth;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -93,11 +91,7 @@ public class AuthActivity extends AppCompatActivity implements AuthContract.Auth
 
         presenter = new AuthPresenterImpl(new AuthInteractorImpl(), this);
     }
-
-    public static void start(Context previous) {
-        Intent intent = new Intent(previous, AuthActivity.class);
-        previous.startActivity(intent);
-    }
+    
 
     @Override
     public void redirectToHome() {

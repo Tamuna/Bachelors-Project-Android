@@ -4,10 +4,10 @@ import android.content.Context;
 import android.util.AttributeSet;
 
 import androidx.appcompat.widget.Toolbar;
+
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ge.edu.freeuni.rsr.R;
-import ge.edu.freeuni.rsr.auth.AuthActivity;
 
 public class CustomToolbar extends Toolbar {
 
