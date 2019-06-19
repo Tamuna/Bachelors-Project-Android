@@ -23,4 +23,5 @@
     <string name="forgot_password">დაგავიწყდათ პაროლი?</string>
     <string name="dont_have_account">არ გაქვთ ანგარიში?</string>
     <string name="registration">რეგისტრაცია</string>
+    <string name="congrats">გილოცავთ!</string>
 </resources>

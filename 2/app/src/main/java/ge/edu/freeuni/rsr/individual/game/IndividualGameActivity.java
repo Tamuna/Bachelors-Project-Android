@@ -121,6 +121,7 @@ public class IndividualGameActivity extends AppCompatActivity implements Individ
 
     @Override
     public void loadFinishScreen(int correctAnswers) {
+        presenter.finishGame(correctAnswers);
         finish();
         FinishActivity.start(this, correctAnswers);
     }

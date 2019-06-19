@@ -1,5 +1,7 @@
 package ge.edu.freeuni.rsr.individual.game;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +25,6 @@ public class IndividualGameInteractorImpl implements IndividualGameContract.Indi
 
     @Override
     public void loadNextQuestion(OnFinishListener listener) {
-
         api.loadNextQuestion(13).enqueue(new Callback<List<Question>>() {
             @Override
             public void onResponse(Call<List<Question>> call, Response<List<Question>> response) {
@@ -54,6 +55,16 @@ public class IndividualGameInteractorImpl implements IndividualGameContract.Indi
 
     @Override
     public void finishIndividualGame(OnFinishListener listener, int correctAnswers) {
-        api.finishGame(1, correctAnswers).enqueue(null);
+        api.finishGame(1, correctAnswers).enqueue(new Callback<Question>() {
+            @Override
+            public void onResponse(Call<Question> call, Response<Question> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<Question> call, Throwable t) {
+
+            }
+        });
     }
 }
