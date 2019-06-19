@@ -29,6 +29,6 @@ public class CustomToolbar extends Toolbar {
 
     @OnClick(R.id.img_toolbar_profile)
     public void onProfileClick(){
-        AuthActivity.start(getContext());
+        //TODO: start profile
     }
 }

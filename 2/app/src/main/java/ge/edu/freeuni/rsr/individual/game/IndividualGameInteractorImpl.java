@@ -1,11 +1,7 @@
 package ge.edu.freeuni.rsr.individual.game;
 
-import android.util.Log;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import ge.edu.freeuni.rsr.individual.game.entity.CorrectAnswers;
+import ge.edu.freeuni.rsr.individual.game.entity.IndGameResponse;
 import ge.edu.freeuni.rsr.individual.game.entity.Question;
 import ge.edu.freeuni.rsr.network.Api;
 import ge.edu.freeuni.rsr.network.RetrofitInstance;
@@ -25,14 +21,14 @@ public class IndividualGameInteractorImpl implements IndividualGameContract.Indi
 
     @Override
     public void loadNextQuestion(OnFinishListener listener) {
-        api.loadNextQuestion(13).enqueue(new Callback<List<Question>>() {
+        api.loadNextQuestion().enqueue(new Callback<IndGameResponse>() {
             @Override
-            public void onResponse(Call<List<Question>> call, Response<List<Question>> response) {
-                listener.onNextQuestionLoaded(response.body().get(0));
+            public void onResponse(Call<IndGameResponse> call, Response<IndGameResponse> response) {
+                listener.onNextQuestionLoaded(response.body().getResult().getQuestions().get(0));
             }
 
             @Override
-            public void onFailure(Call<List<Question>> call, Throwable t) {
+            public void onFailure(Call<IndGameResponse> call, Throwable t) {
                 System.out.println("here");
             }
         });
@@ -55,7 +51,7 @@ public class IndividualGameInteractorImpl implements IndividualGameContract.Indi
 
     @Override
     public void finishIndividualGame(OnFinishListener listener, int correctAnswers) {
-        api.finishGame(1, correctAnswers).enqueue(new Callback<Question>() {
+        api.finishGame(correctAnswers).enqueue(new Callback<Question>() {
             @Override
             public void onResponse(Call<Question> call, Response<Question> response) {
 

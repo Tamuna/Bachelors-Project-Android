@@ -101,6 +101,7 @@ public class AuthActivity extends AppCompatActivity implements AuthContract.Auth
 
     @Override
     public void redirectToHome() {
+        finish();
         HomeActivity.start(this);
     }
 

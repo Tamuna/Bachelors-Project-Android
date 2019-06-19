@@ -25,9 +25,9 @@ public class AuthInteractorImpl implements AuthContract.AuthInteractor {
             @Override
             public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
                 if (response.body().getError() != null) {
-                    onFinishListener.onLoggedIn(false, response.body().getResult().getToken());
+                    onFinishListener.onLoggedIn(false, response.body().getError());
                 } else {
-                    onFinishListener.onLoggedIn(false, response.body().getResult().getToken());
+                    onFinishListener.onLoggedIn(true, response.body().getResult().getToken());
                 }
             }
 
