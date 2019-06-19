@@ -15,6 +15,11 @@ public class Credentials {
         this.chat_user_id = chat_user_id;
     }
 
+    public Credentials(String user_name, String password) {
+        this.user_name = user_name;
+        this.password = password;
+    }
+
     public String getUser_name() {
         return user_name;
     }

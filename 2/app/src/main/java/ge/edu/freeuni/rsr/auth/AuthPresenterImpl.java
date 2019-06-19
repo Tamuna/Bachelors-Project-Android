@@ -1,5 +1,8 @@
 package ge.edu.freeuni.rsr.auth;
 
+import ge.edu.freeuni.rsr.ErrorUtils;
+import ge.edu.freeuni.rsr.network.RequestInterceptor;
+
 public class AuthPresenterImpl implements AuthContract.AuthPresenter {
 
     private AuthContract.AuthInteractor interactor;
@@ -35,22 +38,24 @@ public class AuthPresenterImpl implements AuthContract.AuthPresenter {
     private class OnFinishListenerImpl implements AuthContract.AuthInteractor.OnFinishListener {
 
         @Override
-        public void onLoggedIn(boolean success, String error) {
+        public void onLoggedIn(boolean success, String info) {
             view.showLoader(false);
             if (success) {
+                RequestInterceptor.setToken(info);
                 view.redirectToHome();
             } else {
-                view.showError(error);
+                view.showError(new ErrorUtils().processError(info));
             }
         }
 
         @Override
-        public void onRegistered(boolean success, String error) {
+        public void onRegistered(boolean success, String info) {
             view.showLoader(false);
             if (success) {
                 view.redirectToHome();
+                RequestInterceptor.setToken(info);
             } else {
-                view.showError(error);
+                view.showError(new ErrorUtils().processError(info));
             }
         }
     }

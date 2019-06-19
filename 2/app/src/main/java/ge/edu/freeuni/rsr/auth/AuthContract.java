@@ -19,7 +19,7 @@ public interface AuthContract {
         interface OnFinishListener {
             void onLoggedIn(boolean success, String error);
 
-            void onRegistered(boolean success, String error);
+            void onRegistered(boolean success, String info);
         }
 
         void login(String username, String password, OnFinishListener onFinishListener);

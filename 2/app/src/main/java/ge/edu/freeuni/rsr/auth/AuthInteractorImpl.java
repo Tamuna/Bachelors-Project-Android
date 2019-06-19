@@ -3,6 +3,7 @@ package ge.edu.freeuni.rsr.auth;
 import ge.edu.freeuni.rsr.auth.entity.AuthResponse;
 import ge.edu.freeuni.rsr.auth.entity.Credentials;
 import ge.edu.freeuni.rsr.network.Api;
+import ge.edu.freeuni.rsr.network.RequestInterceptor;
 import ge.edu.freeuni.rsr.network.RetrofitInstance;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,19 +21,32 @@ public class AuthInteractorImpl implements AuthContract.AuthInteractor {
 
     @Override
     public void login(String username, String password, OnFinishListener onFinishListener) {
-        //TODO api call
+        api.login(new Credentials(username, password)).enqueue(new Callback<AuthResponse>() {
+            @Override
+            public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
+                if (response.body().getError() != null) {
+                    onFinishListener.onLoggedIn(false, response.body().getResult().getToken());
+                } else {
+                    onFinishListener.onLoggedIn(false, response.body().getResult().getToken());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AuthResponse> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override
     public void register(String username, String password, String email, OnFinishListener onFinishListener) {
-        api.register(new Credentials(username, email,password, password, 2)).enqueue(new Callback<AuthResponse>() {
+        api.register(new Credentials(username, email, password, password, 3)).enqueue(new Callback<AuthResponse>() {
             @Override
             public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
-                if(response.body().getError() != null){
-                    onFinishListener.onRegistered(false, "გადაამოწმეთ შეყვანილი მონაცემები");
-                }else {
-                    //set token to interceptor
-                    onFinishListener.onRegistered(true, "");
+                if (response.body().getError() != null) {
+                    onFinishListener.onRegistered(false, response.body().getError());
+                } else {
+                    onFinishListener.onRegistered(true, response.body().getResult().getToken());
                 }
             }
 

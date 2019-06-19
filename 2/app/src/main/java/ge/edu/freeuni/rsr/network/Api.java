@@ -25,4 +25,7 @@ public interface Api {
     @POST("api/auth/register")
     Call<AuthResponse> register(@Body Credentials credentials);
 
+    @POST("api/auth/login")
+    Call<AuthResponse> login(@Body Credentials credentials);
+
 }
