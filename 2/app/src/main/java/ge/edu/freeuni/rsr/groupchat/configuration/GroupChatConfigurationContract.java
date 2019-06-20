@@ -6,7 +6,7 @@ package ge.edu.freeuni.rsr.groupchat.configuration;
 
 import java.util.List;
 
-import ge.edu.freeuni.rsr.auth.entity.User;
+import ge.edu.freeuni.rsr.common.entity.User;
 
 public interface GroupChatConfigurationContract {
     interface GroupChatView {

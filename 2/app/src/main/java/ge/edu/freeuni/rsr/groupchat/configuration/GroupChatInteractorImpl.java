@@ -5,7 +5,7 @@ package ge.edu.freeuni.rsr.groupchat.configuration;
  */
 
 
-import ge.edu.freeuni.rsr.auth.entity.RsrResponse;
+import ge.edu.freeuni.rsr.common.entity.RsrResponse;
 import ge.edu.freeuni.rsr.groupchat.FriendsResult;
 import ge.edu.freeuni.rsr.network.Api;
 import ge.edu.freeuni.rsr.network.RetrofitInstance;

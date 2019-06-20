@@ -1,8 +1,8 @@
 package ge.edu.freeuni.rsr.network;
 
 import ge.edu.freeuni.rsr.auth.entity.Credentials;
-import ge.edu.freeuni.rsr.auth.entity.Result;
-import ge.edu.freeuni.rsr.auth.entity.RsrResponse;
+import ge.edu.freeuni.rsr.auth.entity.AuthResult;
+import ge.edu.freeuni.rsr.common.entity.RsrResponse;
 import ge.edu.freeuni.rsr.auth.entity.UserResult;
 import ge.edu.freeuni.rsr.groupchat.FriendsResult;
 import ge.edu.freeuni.rsr.individual.game.entity.CorrectAnswers;
@@ -25,10 +25,10 @@ public interface Api {
     Call<Question> finishGame(@Path("numberOfCorrect") int numberOfQuestions);
 
     @POST("api/auth/register")
-    Call<RsrResponse<Result>> register(@Body Credentials credentials);
+    Call<RsrResponse<AuthResult>> register(@Body Credentials credentials);
 
     @POST("api/auth/login")
-    Call<RsrResponse<Result>> login(@Body Credentials credentials);
+    Call<RsrResponse<AuthResult>> login(@Body Credentials credentials);
 
     @POST("api/auth/logout")
     Call<RsrResponse> logout(@Body Credentials credentials);

@@ -1,4 +1,4 @@
-package ge.edu.freeuni.rsr.auth.entity;
+package ge.edu.freeuni.rsr.common.entity;
 
 public class RsrResponse<T> {
     private String error;

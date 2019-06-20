@@ -7,7 +7,7 @@
     android:background="@color/dark_blue"
     tools:context=".individual.game.FinishActivity">
 
-    <ge.edu.freeuni.rsr.component.CustomToolbar
+    <ge.edu.freeuni.rsr.common.component.CustomToolbar
         android:id="@+id/customToolbar3"
         android:layout_width="match_parent"
         android:layout_height="50dp"

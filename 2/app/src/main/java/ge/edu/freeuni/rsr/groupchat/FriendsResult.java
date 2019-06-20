@@ -2,7 +2,7 @@ package ge.edu.freeuni.rsr.groupchat;
 
 import java.util.List;
 
-import ge.edu.freeuni.rsr.auth.entity.User;
+import ge.edu.freeuni.rsr.common.entity.User;
 
 public class FriendsResult {
     private List<User> friends;

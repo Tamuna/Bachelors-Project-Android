@@ -20,7 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ge.edu.freeuni.rsr.R;
-import ge.edu.freeuni.rsr.component.AfterAnswerSubmissionDialog;
+import ge.edu.freeuni.rsr.common.component.AfterAnswerSubmissionDialog;
 import ge.edu.freeuni.rsr.individual.game.entity.Answer;
 import ge.edu.freeuni.rsr.individual.game.entity.Question;
 

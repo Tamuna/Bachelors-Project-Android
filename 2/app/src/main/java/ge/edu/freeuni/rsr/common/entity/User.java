@@ -1,4 +1,4 @@
-package ge.edu.freeuni.rsr.auth.entity;
+package ge.edu.freeuni.rsr.common.entity;
 
 import com.google.gson.annotations.SerializedName;
 

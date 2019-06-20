@@ -7,13 +7,13 @@
     android:background="@color/dark_blue"
     tools:context=".groupchat.chat.GroupChatActivity">
 
-    <ge.edu.freeuni.rsr.component.CustomToolbar
+    <ge.edu.freeuni.rsr.common.component.CustomToolbar
         android:id="@+id/customToolbar5"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></ge.edu.freeuni.rsr.component.CustomToolbar>
+        app:layout_constraintTop_toTopOf="parent"></ge.edu.freeuni.rsr.common.component.CustomToolbar>
 
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"

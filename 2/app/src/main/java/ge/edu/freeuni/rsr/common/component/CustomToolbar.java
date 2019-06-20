@@ -1,4 +1,4 @@
-package ge.edu.freeuni.rsr.component;
+package ge.edu.freeuni.rsr.common.component;
 
 import android.content.Context;
 import android.util.AttributeSet;

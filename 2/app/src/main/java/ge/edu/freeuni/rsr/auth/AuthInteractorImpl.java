@@ -7,10 +7,10 @@ import com.connectycube.core.exception.ResponseException;
 import com.connectycube.users.ConnectycubeUsers;
 import com.connectycube.users.model.ConnectycubeUser;
 
-import ge.edu.freeuni.rsr.auth.entity.RsrResponse;
+import ge.edu.freeuni.rsr.common.entity.RsrResponse;
 import ge.edu.freeuni.rsr.auth.entity.Credentials;
-import ge.edu.freeuni.rsr.auth.entity.Result;
-import ge.edu.freeuni.rsr.auth.entity.User;
+import ge.edu.freeuni.rsr.auth.entity.AuthResult;
+import ge.edu.freeuni.rsr.common.entity.User;
 import ge.edu.freeuni.rsr.auth.entity.UserResult;
 import ge.edu.freeuni.rsr.network.Api;
 import ge.edu.freeuni.rsr.network.RequestInterceptor;
@@ -31,9 +31,9 @@ public class AuthInteractorImpl implements AuthContract.AuthInteractor {
 
     @Override
     public void login(String username, String password, OnFinishListener onFinishListener) {
-        api.login(new Credentials(username, password)).enqueue(new Callback<RsrResponse<Result>>() {
+        api.login(new Credentials(username, password)).enqueue(new Callback<RsrResponse<AuthResult>>() {
             @Override
-            public void onResponse(Call<RsrResponse<Result>> call, Response<RsrResponse<Result>> response) {
+            public void onResponse(Call<RsrResponse<AuthResult>> call, Response<RsrResponse<AuthResult>> response) {
                 if (response.body().getError() != null) {
                     onFinishListener.onLoggedIn(false, response.body().getError());
                 } else {
@@ -42,7 +42,7 @@ public class AuthInteractorImpl implements AuthContract.AuthInteractor {
             }
 
             @Override
-            public void onFailure(Call<RsrResponse<Result>> call, Throwable t) {
+            public void onFailure(Call<RsrResponse<AuthResult>> call, Throwable t) {
 
             }
         });
@@ -50,9 +50,9 @@ public class AuthInteractorImpl implements AuthContract.AuthInteractor {
 
     @Override
     public void register(String username, String password, String email, OnFinishListener onFinishListener) {
-        api.register(new Credentials(username, email, password, password)).enqueue(new Callback<RsrResponse<Result>>() {
+        api.register(new Credentials(username, email, password, password)).enqueue(new Callback<RsrResponse<AuthResult>>() {
             @Override
-            public void onResponse(Call<RsrResponse<Result>> call, Response<RsrResponse<Result>> response) {
+            public void onResponse(Call<RsrResponse<AuthResult>> call, Response<RsrResponse<AuthResult>> response) {
                 if (response.body().getError() != null) {
                     onFinishListener.onRegistered(false, response.body().getError());
                 } else {
@@ -62,7 +62,7 @@ public class AuthInteractorImpl implements AuthContract.AuthInteractor {
             }
 
             @Override
-            public void onFailure(Call<RsrResponse<Result>> call, Throwable t) {
+            public void onFailure(Call<RsrResponse<AuthResult>> call, Throwable t) {
 
             }
         });

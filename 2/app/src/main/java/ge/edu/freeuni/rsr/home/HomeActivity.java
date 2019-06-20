@@ -15,7 +15,7 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import ge.edu.freeuni.rsr.R;
-import ge.edu.freeuni.rsr.utils.animation.ZoomOutPageTransformer;
+import ge.edu.freeuni.rsr.common.animation.ZoomOutPageTransformer;
 
 public class HomeActivity extends AppCompatActivity {
     ViewPager pager;

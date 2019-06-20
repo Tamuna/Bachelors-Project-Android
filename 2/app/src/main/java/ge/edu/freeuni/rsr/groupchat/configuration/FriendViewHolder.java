@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ge.edu.freeuni.rsr.R;
-import ge.edu.freeuni.rsr.auth.entity.User;
+import ge.edu.freeuni.rsr.common.entity.User;
 
 
 

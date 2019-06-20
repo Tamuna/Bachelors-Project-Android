@@ -1,4 +1,4 @@
-package ge.edu.freeuni.rsr.utils.animation;
+package ge.edu.freeuni.rsr.common.animation;
 
 import android.view.View;
 

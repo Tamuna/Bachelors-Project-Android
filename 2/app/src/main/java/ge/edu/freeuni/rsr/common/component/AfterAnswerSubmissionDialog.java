@@ -1,4 +1,4 @@
-package ge.edu.freeuni.rsr.component;
+package ge.edu.freeuni.rsr.common.component;
 
 /*
  * created by tgeldiashvili on 5/17/2019
@@ -6,7 +6,6 @@ package ge.edu.freeuni.rsr.component;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
