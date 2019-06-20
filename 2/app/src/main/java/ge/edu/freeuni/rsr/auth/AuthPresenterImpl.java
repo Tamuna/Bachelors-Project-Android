@@ -1,6 +1,6 @@
 package ge.edu.freeuni.rsr.auth;
 
-import ge.edu.freeuni.rsr.ErrorUtils;
+import ge.edu.freeuni.rsr.common.utils.ErrorUtils;
 import ge.edu.freeuni.rsr.network.RequestInterceptor;
 
 public class AuthPresenterImpl implements AuthContract.AuthPresenter {

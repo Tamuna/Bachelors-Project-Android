@@ -1,4 +1,4 @@
-package ge.edu.freeuni.rsr;
+package ge.edu.freeuni.rsr.common.utils;
 
 /*
  * created by tgeldiashvili on 6/19/2019

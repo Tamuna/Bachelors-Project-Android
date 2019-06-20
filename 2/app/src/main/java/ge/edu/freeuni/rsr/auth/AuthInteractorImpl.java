@@ -7,11 +7,12 @@ import com.connectycube.core.exception.ResponseException;
 import com.connectycube.users.ConnectycubeUsers;
 import com.connectycube.users.model.ConnectycubeUser;
 
-import ge.edu.freeuni.rsr.common.entity.RsrResponse;
-import ge.edu.freeuni.rsr.auth.entity.Credentials;
+import ge.edu.freeuni.rsr.AppUser;
 import ge.edu.freeuni.rsr.auth.entity.AuthResult;
-import ge.edu.freeuni.rsr.common.entity.User;
+import ge.edu.freeuni.rsr.auth.entity.Credentials;
 import ge.edu.freeuni.rsr.auth.entity.UserResult;
+import ge.edu.freeuni.rsr.common.entity.RsrResponse;
+import ge.edu.freeuni.rsr.common.entity.User;
 import ge.edu.freeuni.rsr.network.Api;
 import ge.edu.freeuni.rsr.network.RequestInterceptor;
 import ge.edu.freeuni.rsr.network.RetrofitInstance;
@@ -99,14 +100,15 @@ public class AuthInteractorImpl implements AuthContract.AuthInteractor {
     }
 
     private void setChatId(Integer id, OnFinishListener onFinishListener) {
-        api.registerChatId(new Credentials(id)).enqueue(new Callback<Object>() {
+        api.registerChatId(new Credentials(id)).enqueue(new Callback<RsrResponse<UserResult>>() {
             @Override
-            public void onResponse(Call<Object> call, Response<Object> response) {
+            public void onResponse(Call<RsrResponse<UserResult>> call, Response<RsrResponse<UserResult>> response) {
+                AppUser.getInstance().setUser(response.body().getResult().getUser());
                 onFinishListener.onRegistered(true, "");
             }
 
             @Override
-            public void onFailure(Call<Object> call, Throwable t) {
+            public void onFailure(Call<RsrResponse<UserResult>> call, Throwable t) {
 
             }
         });
