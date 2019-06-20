@@ -53,7 +53,6 @@ public class AuthPresenterImpl implements AuthContract.AuthPresenter {
             view.showLoader(false);
             if (success) {
                 view.redirectToHome();
-                RequestInterceptor.setToken(info);
             } else {
                 view.showError(new ErrorUtils().processError(info));
             }

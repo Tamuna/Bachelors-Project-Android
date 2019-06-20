@@ -4,7 +4,7 @@ package ge.edu.freeuni.rsr.groupchat.chat.entity;
  * created by tgeldiashvili on 6/6/2019
  */
 
-import ge.edu.freeuni.rsr.groupchat.configuration.entity.User;
+import ge.edu.freeuni.rsr.auth.entity.User;
 
 public class Message {
     private User sender;

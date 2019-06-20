@@ -7,7 +7,7 @@ import com.connectycube.core.exception.ResponseException;
 import com.connectycube.users.ConnectycubeUsers;
 import com.connectycube.users.model.ConnectycubeUser;
 
-import ge.edu.freeuni.rsr.auth.entity.AuthResponse;
+import ge.edu.freeuni.rsr.auth.entity.RsrResponse;
 import ge.edu.freeuni.rsr.auth.entity.Credentials;
 import ge.edu.freeuni.rsr.auth.entity.Result;
 import ge.edu.freeuni.rsr.auth.entity.User;
@@ -31,9 +31,9 @@ public class AuthInteractorImpl implements AuthContract.AuthInteractor {
 
     @Override
     public void login(String username, String password, OnFinishListener onFinishListener) {
-        api.login(new Credentials(username, password)).enqueue(new Callback<AuthResponse<Result>>() {
+        api.login(new Credentials(username, password)).enqueue(new Callback<RsrResponse<Result>>() {
             @Override
-            public void onResponse(Call<AuthResponse<Result>> call, Response<AuthResponse<Result>> response) {
+            public void onResponse(Call<RsrResponse<Result>> call, Response<RsrResponse<Result>> response) {
                 if (response.body().getError() != null) {
                     onFinishListener.onLoggedIn(false, response.body().getError());
                 } else {
@@ -42,7 +42,7 @@ public class AuthInteractorImpl implements AuthContract.AuthInteractor {
             }
 
             @Override
-            public void onFailure(Call<AuthResponse<Result>> call, Throwable t) {
+            public void onFailure(Call<RsrResponse<Result>> call, Throwable t) {
 
             }
         });
@@ -50,9 +50,9 @@ public class AuthInteractorImpl implements AuthContract.AuthInteractor {
 
     @Override
     public void register(String username, String password, String email, OnFinishListener onFinishListener) {
-        api.register(new Credentials(username, email, password, password)).enqueue(new Callback<AuthResponse<Result>>() {
+        api.register(new Credentials(username, email, password, password)).enqueue(new Callback<RsrResponse<Result>>() {
             @Override
-            public void onResponse(Call<AuthResponse<Result>> call, Response<AuthResponse<Result>> response) {
+            public void onResponse(Call<RsrResponse<Result>> call, Response<RsrResponse<Result>> response) {
                 if (response.body().getError() != null) {
                     onFinishListener.onRegistered(false, response.body().getError());
                 } else {
@@ -62,16 +62,16 @@ public class AuthInteractorImpl implements AuthContract.AuthInteractor {
             }
 
             @Override
-            public void onFailure(Call<AuthResponse<Result>> call, Throwable t) {
+            public void onFailure(Call<RsrResponse<Result>> call, Throwable t) {
 
             }
         });
     }
 
     private void registerInConnectyCube(OnFinishListener onFinishListener, String password) {
-        api.getUser().enqueue(new Callback<AuthResponse<UserResult>>() {
+        api.getUser().enqueue(new Callback<RsrResponse<UserResult>>() {
             @Override
-            public void onResponse(Call<AuthResponse<UserResult>> call, Response<AuthResponse<UserResult>> response) {
+            public void onResponse(Call<RsrResponse<UserResult>> call, Response<RsrResponse<UserResult>> response) {
                 if (response.body().getError() == null) {
                     User user = response.body().getResult().getUser();
 
@@ -92,7 +92,7 @@ public class AuthInteractorImpl implements AuthContract.AuthInteractor {
             }
 
             @Override
-            public void onFailure(Call<AuthResponse<UserResult>> call, Throwable t) {
+            public void onFailure(Call<RsrResponse<UserResult>> call, Throwable t) {
 
             }
         });

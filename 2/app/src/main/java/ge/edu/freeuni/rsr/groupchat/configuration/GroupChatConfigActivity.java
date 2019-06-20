@@ -1,13 +1,13 @@
 package ge.edu.freeuni.rsr.groupchat.configuration;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.WindowManager;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
@@ -15,8 +15,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ge.edu.freeuni.rsr.R;
+import ge.edu.freeuni.rsr.auth.entity.User;
 import ge.edu.freeuni.rsr.groupchat.chat.GroupChatActivity;
-import ge.edu.freeuni.rsr.groupchat.configuration.entity.User;
 
 public class GroupChatConfigActivity extends AppCompatActivity implements GroupChatConfigurationContract.GroupChatView {
 

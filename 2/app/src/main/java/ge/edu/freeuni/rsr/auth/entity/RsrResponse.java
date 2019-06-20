@@ -1,6 +1,6 @@
 package ge.edu.freeuni.rsr.auth.entity;
 
-public class AuthResponse<T> {
+public class RsrResponse<T> {
     private String error;
     private T result;
 

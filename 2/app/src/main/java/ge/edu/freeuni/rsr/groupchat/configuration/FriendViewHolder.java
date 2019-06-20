@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ge.edu.freeuni.rsr.R;
-import ge.edu.freeuni.rsr.groupchat.configuration.entity.User;
+import ge.edu.freeuni.rsr.auth.entity.User;
 
 
 
@@ -32,7 +32,7 @@ public class FriendViewHolder extends RecyclerView.ViewHolder {
         } else {
             itemView.setBackgroundResource(R.drawable.bg_oval);
         }
-        txtFullName.setText(friend.getName());
+        txtFullName.setText(friend.getUserName());
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
