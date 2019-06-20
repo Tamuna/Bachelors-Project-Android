@@ -2,6 +2,8 @@ package ge.edu.freeuni.rsr.network;
 
 import ge.edu.freeuni.rsr.auth.entity.AuthResponse;
 import ge.edu.freeuni.rsr.auth.entity.Credentials;
+import ge.edu.freeuni.rsr.auth.entity.Result;
+import ge.edu.freeuni.rsr.auth.entity.UserResult;
 import ge.edu.freeuni.rsr.individual.game.entity.CorrectAnswers;
 import ge.edu.freeuni.rsr.individual.game.entity.IndGameResponse;
 import ge.edu.freeuni.rsr.individual.game.entity.Question;
@@ -19,15 +21,21 @@ public interface Api {
     Call<CorrectAnswers> checkAnswer(@Path("questionId") int questionId, @Path("currentAnswer") String currentAnswer);
 
     @POST("api/individual/finish-game/{numberOfCorrect}")
-    Call<Question> finishGame( @Path("numberOfCorrect") int numberOfQuestions);
+    Call<Question> finishGame(@Path("numberOfCorrect") int numberOfQuestions);
 
     @POST("api/auth/register")
-    Call<AuthResponse> register(@Body Credentials credentials);
+    Call<AuthResponse<Result>> register(@Body Credentials credentials);
 
     @POST("api/auth/login")
-    Call<AuthResponse> login(@Body Credentials credentials);
+    Call<AuthResponse<Result>> login(@Body Credentials credentials);
 
     @POST("api/auth/logout")
     Call<AuthResponse> logout(@Body Credentials credentials);
+
+    @GET("api/auth/user")
+    Call<AuthResponse<UserResult>> getUser();
+
+    @POST("api/auth/register-chat-id")
+    Call<Object> registerChatId(@Body Credentials credentials);
 
 }

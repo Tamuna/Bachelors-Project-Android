@@ -1,8 +1,8 @@
 package ge.edu.freeuni.rsr.auth.entity;
 
-public class AuthResponse {
+public class AuthResponse<T> {
     private String error;
-    private Result result;
+    private T result;
 
     public String getError() {
         return error;
@@ -12,11 +12,11 @@ public class AuthResponse {
         this.error = error;
     }
 
-    public Result getResult() {
+    public T getResult() {
         return result;
     }
 
-    public void setResult(Result result) {
+    public void setResult(T result) {
         this.result = result;
     }
 }

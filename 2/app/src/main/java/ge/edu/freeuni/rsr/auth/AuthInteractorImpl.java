@@ -1,7 +1,17 @@
 package ge.edu.freeuni.rsr.auth;
 
+import android.os.Bundle;
+
+import com.connectycube.core.EntityCallback;
+import com.connectycube.core.exception.ResponseException;
+import com.connectycube.users.ConnectycubeUsers;
+import com.connectycube.users.model.ConnectycubeUser;
+
 import ge.edu.freeuni.rsr.auth.entity.AuthResponse;
 import ge.edu.freeuni.rsr.auth.entity.Credentials;
+import ge.edu.freeuni.rsr.auth.entity.Result;
+import ge.edu.freeuni.rsr.auth.entity.User;
+import ge.edu.freeuni.rsr.auth.entity.UserResult;
 import ge.edu.freeuni.rsr.network.Api;
 import ge.edu.freeuni.rsr.network.RequestInterceptor;
 import ge.edu.freeuni.rsr.network.RetrofitInstance;
@@ -21,9 +31,9 @@ public class AuthInteractorImpl implements AuthContract.AuthInteractor {
 
     @Override
     public void login(String username, String password, OnFinishListener onFinishListener) {
-        api.login(new Credentials(username, password)).enqueue(new Callback<AuthResponse>() {
+        api.login(new Credentials(username, password)).enqueue(new Callback<AuthResponse<Result>>() {
             @Override
-            public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
+            public void onResponse(Call<AuthResponse<Result>> call, Response<AuthResponse<Result>> response) {
                 if (response.body().getError() != null) {
                     onFinishListener.onLoggedIn(false, response.body().getError());
                 } else {
@@ -32,7 +42,7 @@ public class AuthInteractorImpl implements AuthContract.AuthInteractor {
             }
 
             @Override
-            public void onFailure(Call<AuthResponse> call, Throwable t) {
+            public void onFailure(Call<AuthResponse<Result>> call, Throwable t) {
 
             }
         });
@@ -40,18 +50,63 @@ public class AuthInteractorImpl implements AuthContract.AuthInteractor {
 
     @Override
     public void register(String username, String password, String email, OnFinishListener onFinishListener) {
-        api.register(new Credentials(username, email, password, password, 3)).enqueue(new Callback<AuthResponse>() {
+        api.register(new Credentials(username, email, password, password)).enqueue(new Callback<AuthResponse<Result>>() {
             @Override
-            public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
+            public void onResponse(Call<AuthResponse<Result>> call, Response<AuthResponse<Result>> response) {
                 if (response.body().getError() != null) {
                     onFinishListener.onRegistered(false, response.body().getError());
                 } else {
-                    onFinishListener.onRegistered(true, response.body().getResult().getToken());
+                    RequestInterceptor.setToken(response.body().getResult().getToken());
+                    registerInConnectyCube(onFinishListener, password);
                 }
             }
 
             @Override
-            public void onFailure(Call<AuthResponse> call, Throwable t) {
+            public void onFailure(Call<AuthResponse<Result>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void registerInConnectyCube(OnFinishListener onFinishListener, String password) {
+        api.getUser().enqueue(new Callback<AuthResponse<UserResult>>() {
+            @Override
+            public void onResponse(Call<AuthResponse<UserResult>> call, Response<AuthResponse<UserResult>> response) {
+                if (response.body().getError() == null) {
+                    User user = response.body().getResult().getUser();
+
+                    final ConnectycubeUser chatUser = new ConnectycubeUser("default_username" + user.getId(), user.getUserName());
+                    chatUser.setPassword(password);
+
+                    ConnectycubeUsers.signUp(chatUser).performAsync(new EntityCallback<ConnectycubeUser>() {
+                        @Override
+                        public void onSuccess(ConnectycubeUser userHere, Bundle args) {
+                            setChatId(userHere.getId(), onFinishListener);
+                        }
+
+                        @Override
+                        public void onError(ResponseException error) {
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AuthResponse<UserResult>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void setChatId(Integer id, OnFinishListener onFinishListener) {
+        api.registerChatId(new Credentials(id)).enqueue(new Callback<Object>() {
+            @Override
+            public void onResponse(Call<Object> call, Response<Object> response) {
+                onFinishListener.onRegistered(true, "");
+            }
+
+            @Override
+            public void onFailure(Call<Object> call, Throwable t) {
 
             }
         });
