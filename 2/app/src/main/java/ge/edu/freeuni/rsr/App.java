@@ -5,6 +5,9 @@ package ge.edu.freeuni.rsr;
  */
 
 import android.app.Application;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.os.Build;
 import android.util.Log;
 
 import com.connectycube.auth.session.ConnectycubeSettings;
@@ -17,10 +20,12 @@ public class App extends Application {
     private static final String AUTH_KEY = "62ZOdpsta6t6d-f";
     private static final String AUTH_SECRET = "yE9AqCx4O4hwkEp";
     private static final String ACCOUNT_KEY = "s19cvj_s-pHTuiyfh26n";
+    static final String NOTIFICATION_CHANNEL_ID = "ge.edu.freeuni.rsr.Notification";
 
     private static App instance;
 
     public String getDeviceToken() {
+        Log.d("token:", deviceToken);
         return deviceToken;
     }
 
@@ -37,8 +42,14 @@ public class App extends Application {
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(
                 instanceIdResult -> deviceToken = instanceIdResult.getToken());
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "Channel F name";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, name, importance);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
 
-//        FirebaseMessaging.getInstance().subscribeToTopic("weather");
     }
 
     private void initConnectyCube() {

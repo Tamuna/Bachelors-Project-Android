@@ -7,6 +7,7 @@ import com.connectycube.core.exception.ResponseException;
 import com.connectycube.users.ConnectycubeUsers;
 import com.connectycube.users.model.ConnectycubeUser;
 
+import ge.edu.freeuni.rsr.App;
 import ge.edu.freeuni.rsr.AppUser;
 import ge.edu.freeuni.rsr.auth.entity.AuthResult;
 import ge.edu.freeuni.rsr.auth.entity.Credentials;
@@ -82,7 +83,7 @@ public class AuthInteractorImpl implements AuthContract.AuthInteractor {
                     ConnectycubeUsers.signUp(chatUser).performAsync(new EntityCallback<ConnectycubeUser>() {
                         @Override
                         public void onSuccess(ConnectycubeUser userHere, Bundle args) {
-                            setChatId(userHere.getId(), onFinishListener);
+                            setAdditionalInfo(userHere.getId(), onFinishListener);
                         }
 
                         @Override
@@ -99,8 +100,8 @@ public class AuthInteractorImpl implements AuthContract.AuthInteractor {
         });
     }
 
-    private void setChatId(Integer id, OnFinishListener onFinishListener) {
-        api.registerChatId(new Credentials(id)).enqueue(new Callback<RsrResponse<UserResult>>() {
+    private void setAdditionalInfo(Integer id, OnFinishListener onFinishListener) {
+        api.registerAdditionalInfo(new Credentials(id, App.getInstance().getDeviceToken())).enqueue(new Callback<RsrResponse<UserResult>>() {
             @Override
             public void onResponse(Call<RsrResponse<UserResult>> call, Response<RsrResponse<UserResult>> response) {
                 AppUser.getInstance().setUser(response.body().getResult().getUser());
