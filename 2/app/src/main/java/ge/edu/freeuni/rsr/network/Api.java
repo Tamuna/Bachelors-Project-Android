@@ -37,7 +37,7 @@ public interface Api {
     Call<RsrResponse<UserResult>> getUser();
 
     @POST("api/auth/register-chat-id")
-    Call<RsrResponse<UserResult>> registerChatId(@Body Credentials credentials);
+    Call<RsrResponse<UserResult>> registerAdditionalInfo(@Body Credentials credentials);
 
     @GET("api/profile/get-friends-list")
     Call<RsrResponse<FriendsResult>> getFriends();

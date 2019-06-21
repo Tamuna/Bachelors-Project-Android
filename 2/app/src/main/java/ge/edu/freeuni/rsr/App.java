@@ -9,11 +9,8 @@ import android.util.Log;
 
 import com.connectycube.auth.session.ConnectycubeSettings;
 import com.connectycube.chat.ConnectycubeChatService;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
-import com.google.firebase.messaging.FirebaseMessaging;
 
 public class App extends Application {
     private static final String APP_ID = "769";
@@ -23,6 +20,12 @@ public class App extends Application {
 
     private static App instance;
 
+    public String getDeviceToken() {
+        return deviceToken;
+    }
+
+    private String deviceToken = null;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -30,15 +33,9 @@ public class App extends Application {
         initConnectyCube();
 
         FirebaseApp.initializeApp(this);
-        Log.d("token:",FirebaseInstanceId.getInstance().getToken());
 
-
-        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
-            @Override
-            public void onSuccess(InstanceIdResult instanceIdResult) {
-                Log.d("token:",instanceIdResult.getToken());
-            }
-        });
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(
+                instanceIdResult -> deviceToken = instanceIdResult.getToken());
 
 
 //        FirebaseMessaging.getInstance().subscribeToTopic("weather");
