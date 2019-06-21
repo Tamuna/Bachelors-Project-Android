@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 28
@@ -47,4 +48,5 @@ dependencies {
 
     implementation 'com.tuyenmonkey:mkloader:1.4.0'
 
+    implementation 'com.google.firebase:firebase-messaging:19.0.0'
 }

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "977728359354",
+    "firebase_url": "https://ra-sad-rodis.firebaseio.com",
+    "project_id": "ra-sad-rodis",
+    "storage_bucket": "ra-sad-rodis.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:977728359354:android:1fc68379989dd954",
+        "android_client_info": {
+          "package_name": "ge.edu.freeuni.rsr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "977728359354-s9d1s2dtqv808u4btrb97p3f5j698ivg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpaQsofoGSQljH3LeVIWI4AXgX7hRLeXE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "977728359354-s9d1s2dtqv808u4btrb97p3f5j698ivg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
