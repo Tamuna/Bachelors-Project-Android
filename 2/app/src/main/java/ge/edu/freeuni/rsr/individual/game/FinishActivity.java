@@ -1,13 +1,13 @@
 package ge.edu.freeuni.rsr.individual.game;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,6 +32,7 @@ public class FinishActivity extends AppCompatActivity {
         int numCorrect = getIntent().getIntExtra(NUM_POINTS, 0);
         if (numCorrect > 0) {
             tvNumCorrect.setText("+" + numCorrect + " ");
+            tvNumCorrectLabel.setText(getResources().getString(R.string.correct_answer));
         } else {
             tvNumCorrect.setText(getResources().getString(R.string.some_interesting_activity));
             tvNumCorrectLabel.setVisibility(View.GONE);

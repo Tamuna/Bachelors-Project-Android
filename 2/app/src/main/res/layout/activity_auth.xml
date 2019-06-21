@@ -34,7 +34,7 @@
             android:layout_marginBottom="20dp"
             android:gravity="center"
             android:text="@string/registration"
-            android:textColor="@color/text_color"
+            android:textColor="@color/dark_blue"
             android:textSize="20sp" />
 
         <EditText
@@ -43,12 +43,9 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:background="@drawable/bg_oval"
-            android:drawableLeft="@drawable/drawable_user"
-            android:drawablePadding="15dp"
-            android:drawableTint="@color/text_color"
             android:hint="@string/username"
             android:maxLines="1"
-            android:padding="10dp"
+            android:padding="15dp"
             android:textColorHint="@color/light_gray"
             android:textSize="15sp" />
 
@@ -58,12 +55,9 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:background="@drawable/bg_oval"
-            android:drawableStart="@drawable/drawable_mail"
-            android:drawablePadding="15dp"
-            android:drawableTint="@color/text_color"
             android:hint="@string/email"
             android:maxLines="1"
-            android:padding="10dp"
+            android:padding="15dp"
             android:textColorHint="@color/light_gray"
             android:textSize="15sp" />
 
@@ -80,12 +74,10 @@
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_oval"
-                android:drawableStart="@drawable/drawable_key"
-                android:drawablePadding="15dp"
-                android:drawableTint="@color/text_color"
                 android:hint="@string/password"
+                android:inputType="textPassword"
                 android:maxLines="1"
-                android:padding="10dp"
+                android:padding="15dp"
                 android:textColorHint="@color/light_gray"
                 android:textSize="15sp" />
 
@@ -94,15 +86,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-
                 android:background="@drawable/bg_oval"
-                android:drawableStart="@drawable/drawable_key"
-                android:drawablePadding="15dp"
-                android:drawableTint="@color/text_color"
-
                 android:hint="@string/confirm_password"
+                android:inputType="textPassword"
                 android:maxLines="1"
-                android:padding="10dp"
+                android:padding="15dp"
                 android:textColorHint="@color/light_gray"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -113,6 +101,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_oval_blue"
+            android:padding="15dp"
             android:text="@string/registration"
             android:textColor="@color/light_gray"
             android:textStyle="bold" />
@@ -143,7 +132,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login"
-            android:textColor="@color/text_color" />
+            android:textColor="@color/dark_blue" />
     </LinearLayout>
 
 
@@ -164,7 +153,7 @@
             android:layout_marginBottom="10dp"
             android:gravity="center"
             android:text="@string/login"
-            android:textColor="@color/text_color"
+            android:textColor="@color/dark_blue"
             android:textSize="20sp" />
 
         <EditText
@@ -173,12 +162,9 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:background="@drawable/bg_oval"
-            android:drawableStart="@drawable/drawable_user"
-            android:drawablePadding="10dp"
-            android:drawableTint="@color/text_color"
             android:hint="@string/username"
             android:maxLines="1"
-            android:padding="10dp"
+            android:padding="15dp"
             android:textColorHint="@color/light_gray"
             android:textSize="15sp" />
 
@@ -188,12 +174,10 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:background="@drawable/bg_oval"
-            android:drawableStart="@drawable/drawable_key"
-            android:drawablePadding="10dp"
-            android:drawableTint="@color/text_color"
             android:hint="@string/password"
+            android:inputType="textPassword"
             android:maxLines="1"
-            android:padding="10dp"
+            android:padding="15dp"
             android:textColorHint="@color/light_gray"
             android:textSize="15sp" />
 
@@ -203,6 +187,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:background="@drawable/bg_oval_blue"
+            android:padding="15dp"
             android:text="@string/login"
             android:textColor="@color/light_gray"
             android:textStyle="bold" />
@@ -214,7 +199,7 @@
             android:layout_marginBottom="10dp"
             android:gravity="center"
             android:text="@string/forgot_password"
-            android:textColor="@color/text_color" />
+            android:textColor="@color/dark_blue" />
     </LinearLayout>
 
     <LinearLayout
@@ -239,7 +224,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/registration"
-            android:textColor="@color/text_color" />
+            android:textColor="@color/dark_blue" />
     </LinearLayout>
 
     <LinearLayout
