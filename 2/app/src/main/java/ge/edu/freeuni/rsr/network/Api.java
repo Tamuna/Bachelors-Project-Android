@@ -1,10 +1,11 @@
 package ge.edu.freeuni.rsr.network;
 
-import ge.edu.freeuni.rsr.auth.entity.Credentials;
 import ge.edu.freeuni.rsr.auth.entity.AuthResult;
-import ge.edu.freeuni.rsr.common.entity.RsrResponse;
+import ge.edu.freeuni.rsr.auth.entity.Credentials;
 import ge.edu.freeuni.rsr.auth.entity.UserResult;
+import ge.edu.freeuni.rsr.common.entity.RsrResponse;
 import ge.edu.freeuni.rsr.groupchat.FriendsResult;
+import ge.edu.freeuni.rsr.groupchat.configuration.NotificationBody;
 import ge.edu.freeuni.rsr.individual.game.entity.CorrectAnswers;
 import ge.edu.freeuni.rsr.individual.game.entity.IndGameResponse;
 import ge.edu.freeuni.rsr.individual.game.entity.Question;
@@ -41,5 +42,8 @@ public interface Api {
 
     @GET("api/profile/get-friends-list")
     Call<RsrResponse<FriendsResult>> getFriends();
+
+    @POST("api/group/send-notification")
+    Call<RsrResponse<String>> sendNotifications(@Body NotificationBody notificationBody);
 
 }

@@ -12,8 +12,7 @@ import ge.edu.freeuni.rsr.common.entity.User;
 public class GroupChatPresenterImpl implements GroupChatConfigurationContract.GroupChatPresenter {
     private GroupChatConfigurationContract.GroupChatView view;
     private GroupChatConfigurationContract.GroupChatInteractor interactor;
-    private List<User> highlightedFriends = new ArrayList<>();
-    private int id = 5;
+    private List<String> highlightedFriends = new ArrayList<String>();
 
     public GroupChatPresenterImpl(GroupChatConfigurationContract.GroupChatView view, GroupChatConfigurationContract.GroupChatInteractor interactor) {
         this.view = view;
@@ -22,7 +21,7 @@ public class GroupChatPresenterImpl implements GroupChatConfigurationContract.Gr
 
     @Override
     public void getFriends() {
-        interactor.getFriends(new OnFinishListenerImpl(), id);
+        interactor.getFriends(new OnFinishListenerImpl());
     }
 
     @Override
@@ -31,9 +30,14 @@ public class GroupChatPresenterImpl implements GroupChatConfigurationContract.Gr
             highlightedFriends.remove(friend);
             view.unhighlight(position);
         } else {
-            highlightedFriends.add(friend);
+            highlightedFriends.add(friend.getUserName());
             view.highlight(position);
         }
+    }
+
+    @Override
+    public void sendNotifications() {
+        interactor.sendNotifications(highlightedFriends, new OnFinishListenerImpl());
     }
 
     class OnFinishListenerImpl implements GroupChatConfigurationContract.GroupChatInteractor.OnFinishListener {
@@ -41,6 +45,11 @@ public class GroupChatPresenterImpl implements GroupChatConfigurationContract.Gr
         @Override
         public void onFriendsLoaded(List<User> friends) {
             view.onDataLoaded(friends);
+        }
+
+        @Override
+        public void onNotificationsSent() {
+            view.startChat("თქვნ წარმატებით მოიწვიეთ მეგობრები ინტელექტუალურ ჩატში");
         }
     }
 }

@@ -43,8 +43,8 @@ public class App extends Application {
                 instanceIdResult -> deviceToken = instanceIdResult.getToken());
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = "Channel F name";
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            CharSequence name = "Chat Invites";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
             NotificationChannel channel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, name, importance);
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);

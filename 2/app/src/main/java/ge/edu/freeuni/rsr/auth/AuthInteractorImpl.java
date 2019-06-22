@@ -39,12 +39,30 @@ public class AuthInteractorImpl implements AuthContract.AuthInteractor {
                 if (response.body().getError() != null) {
                     onFinishListener.onLoggedIn(false, response.body().getError());
                 } else {
-                    onFinishListener.onLoggedIn(true, response.body().getResult().getToken());
+                    RequestInterceptor.setToken(response.body().getResult().getToken());
+                    saveUserLocally(onFinishListener);
                 }
             }
 
             @Override
             public void onFailure(Call<RsrResponse<AuthResult>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    void saveUserLocally(OnFinishListener onFinishListener) {
+        api.getUser().enqueue(new Callback<RsrResponse<UserResult>>() {
+            @Override
+            public void onResponse(Call<RsrResponse<UserResult>> call, Response<RsrResponse<UserResult>> response) {
+                if (response.body().getError() == null) {
+                    AppUser.getInstance().setUser(response.body().getResult().getUser());
+                    onFinishListener.onLoggedIn(true, "");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RsrResponse<UserResult>> call, Throwable t) {
 
             }
         });

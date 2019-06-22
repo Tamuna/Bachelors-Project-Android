@@ -5,6 +5,9 @@ package ge.edu.freeuni.rsr.groupchat.configuration;
  */
 
 
+import java.util.List;
+
+import ge.edu.freeuni.rsr.AppUser;
 import ge.edu.freeuni.rsr.common.entity.RsrResponse;
 import ge.edu.freeuni.rsr.groupchat.FriendsResult;
 import ge.edu.freeuni.rsr.network.Api;
@@ -26,7 +29,24 @@ public class GroupChatInteractorImpl implements GroupChatConfigurationContract.G
     }
 
     @Override
-    public void getFriends(OnFinishListener onFinishListener, int userId) {
+    public void sendNotifications(List<String> highlightedFriends, OnFinishListener onFinishListener) {
+        api.sendNotifications(new NotificationBody(AppUser.getInstance().getUser().getUserName() + " გიწვევთ ინტელექტუალურ ჩატში!", highlightedFriends)).enqueue(new Callback<RsrResponse<String>>() {
+            @Override
+            public void onResponse(Call<RsrResponse<String>> call, Response<RsrResponse<String>> response) {
+                if (response.body() != null) {
+                    onFinishListener.onNotificationsSent();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RsrResponse<String>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    @Override
+    public void getFriends(OnFinishListener onFinishListener) {
         api.getFriends().enqueue(new Callback<RsrResponse<FriendsResult>>() {
             @Override
             public void onResponse(Call<RsrResponse<FriendsResult>> call, Response<RsrResponse<FriendsResult>> response) {

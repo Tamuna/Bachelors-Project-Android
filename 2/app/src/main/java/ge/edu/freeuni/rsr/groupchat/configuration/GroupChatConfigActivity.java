@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -29,7 +30,7 @@ public class GroupChatConfigActivity extends AppCompatActivity implements GroupC
 
     @OnClick(R.id.txt_start_chat)
     void onStartChatClick() {
-        GroupChatActivity.start(this,1);
+        presenter.sendNotifications();
     }
 
     public static void start(Context previous) {
@@ -68,7 +69,13 @@ public class GroupChatConfigActivity extends AppCompatActivity implements GroupC
         adapter.unhighlight(position);
     }
 
-    class OnItemClickListenerImpl implements FriendsRecyclerAdapter.OnItemClickListener{
+    @Override
+    public void startChat(String s) {
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+        GroupChatActivity.start(this, 1);
+    }
+
+    class OnItemClickListenerImpl implements FriendsRecyclerAdapter.OnItemClickListener {
 
         @Override
         public void onFriendSelected(User friend, int position) {

@@ -28,13 +28,13 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Notification notification = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
-                .setAutoCancel(true)
                 .setContentTitle("მოწვევა")
                 .setContentText(message)
                 .setBadgeIconType(NotificationCompat.BADGE_ICON_LARGE)
-                .setColorized(true)
+                .setColor(getResources().getColor(R.color.text_color))
                 .setSmallIcon(R.drawable.logo_owl)
                 .setContentIntent(pendingIntent)
+                .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE)
                 .build();
         startForeground(FOREGROUND_SERVICE, notification);
     }

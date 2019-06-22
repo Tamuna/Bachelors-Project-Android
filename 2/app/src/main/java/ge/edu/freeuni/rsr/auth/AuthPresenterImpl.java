@@ -41,7 +41,6 @@ public class AuthPresenterImpl implements AuthContract.AuthPresenter {
         public void onLoggedIn(boolean success, String info) {
             view.showLoader(false);
             if (success) {
-                RequestInterceptor.setToken(info);
                 view.redirectToHome();
             } else {
                 view.showError(new ErrorUtils().processError(info));

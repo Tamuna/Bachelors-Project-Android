@@ -15,19 +15,27 @@ public interface GroupChatConfigurationContract {
         void highlight(int position);
 
         void unhighlight(int position);
+
+        void startChat(String s);
     }
 
     interface GroupChatPresenter {
         void getFriends();
 
         void selectFriend(User friend, int position);
+
+        void sendNotifications();
     }
 
     interface GroupChatInteractor {
         interface OnFinishListener {
             void onFriendsLoaded(List<User> friends);
+
+            void onNotificationsSent();
         }
 
-        void getFriends(OnFinishListener onFinishListener, int userId);
+        void sendNotifications(List<String> highlightedFriends, OnFinishListener onFinishListener);
+
+        void getFriends(OnFinishListener onFinishListener);
     }
 }
