@@ -9,6 +9,7 @@ import androidx.core.app.NotificationCompat;
 import com.google.firebase.messaging.RemoteMessage;
 
 import ge.edu.freeuni.rsr.auth.AuthActivity;
+import ge.edu.freeuni.rsr.groupchat.chat.GroupChatActivity;
 
 import static ge.edu.freeuni.rsr.App.NOTIFICATION_CHANNEL_ID;
 
@@ -17,12 +18,19 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        showNotification(remoteMessage.getData().get("message"));
+        String dialogId = remoteMessage.getData().get("dialog_id");
+        showNotification(remoteMessage.getData().get("message"), dialogId);
     }
 
-    private void showNotification(String message) {
+    private void showNotification(String message, String dialogId) {
+        Intent i;
+        if (AppUser.getInstance().getUser() == null) {
+            i = new Intent(this, AuthActivity.class);
+        } else {
+            i = new Intent(this, GroupChatActivity.class);
+        }
 
-        Intent i = new Intent(this, AuthActivity.class);
+        i.putExtra("dialog_id", dialogId);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -30,11 +38,12 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         Notification notification = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
                 .setContentTitle("მოწვევა")
                 .setContentText(message)
+                .setAutoCancel(true)
                 .setBadgeIconType(NotificationCompat.BADGE_ICON_LARGE)
                 .setColor(getResources().getColor(R.color.text_color))
                 .setSmallIcon(R.drawable.logo_owl)
                 .setContentIntent(pendingIntent)
-                .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE)
+                .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE | Notification.FLAG_AUTO_CANCEL)
                 .build();
         startForeground(FOREGROUND_SERVICE, notification);
     }

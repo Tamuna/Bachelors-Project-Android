@@ -26,9 +26,9 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:descendantFocusability="blocksDescendants"
-                android:focusableInTouchMode="true"
-                android:layout_height="match_parent">
+                android:focusableInTouchMode="true">
 
                 <ImageView
                     android:id="@+id/imageView4"
@@ -66,9 +66,25 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txt_start_chat" />
 
+
             </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.core.widget.NestedScrollView>
 
+        <LinearLayout
+            android:id="@+id/loader_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <com.tuyenmonkey.mkloader.MKLoader
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:mk_color="@color/text_color"
+                app:mk_type="Whirlpool" />
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <ge.edu.freeuni.rsr.common.component.CustomToolbar

@@ -17,6 +17,8 @@ public interface GroupChatConfigurationContract {
         void unhighlight(int position);
 
         void startChat(String s);
+
+        void showToast(String s);
     }
 
     interface GroupChatPresenter {
@@ -34,7 +36,7 @@ public interface GroupChatConfigurationContract {
             void onNotificationsSent();
         }
 
-        void sendNotifications(List<String> highlightedFriends, OnFinishListener onFinishListener);
+        void sendNotifications(List<String> highlightedFriends, String dialogId, OnFinishListener onFinishListener);
 
         void getFriends(OnFinishListener onFinishListener);
     }

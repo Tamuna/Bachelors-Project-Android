@@ -3,7 +3,9 @@ package ge.edu.freeuni.rsr.groupchat.configuration;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,12 +26,16 @@ public class GroupChatConfigActivity extends AppCompatActivity implements GroupC
     @BindView(R.id.rv_friends)
     RecyclerView rvFriends;
 
+    @BindView(R.id.loader_view)
+    LinearLayout loaderView;
+
     private FriendsRecyclerAdapter adapter;
     private GroupChatConfigurationContract.GroupChatPresenter presenter;
     private OnItemClickListenerImpl onItemClickListener;
 
     @OnClick(R.id.txt_start_chat)
     void onStartChatClick() {
+        loaderView.setVisibility(View.VISIBLE);
         presenter.sendNotifications();
     }
 
@@ -47,7 +53,7 @@ public class GroupChatConfigActivity extends AppCompatActivity implements GroupC
 
         rvFriends.setNestedScrollingEnabled(false);
         onItemClickListener = new OnItemClickListenerImpl();
-        presenter = new GroupChatPresenterImpl(this, new GroupChatInteractorImpl());
+        presenter = new GroupChatConfigPresenterImpl(this, new GroupChatConfigInteractorImpl());
         adapter = new FriendsRecyclerAdapter(onItemClickListener);
         presenter.getFriends();
     }
@@ -70,9 +76,14 @@ public class GroupChatConfigActivity extends AppCompatActivity implements GroupC
     }
 
     @Override
-    public void startChat(String s) {
+    public void startChat(String dialogId) {
+        loaderView.setVisibility(View.GONE);
+        GroupChatActivity.start(this, dialogId);
+    }
+
+    @Override
+    public void showToast(String s) {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
-        GroupChatActivity.start(this, 1);
     }
 
     class OnItemClickListenerImpl implements FriendsRecyclerAdapter.OnItemClickListener {

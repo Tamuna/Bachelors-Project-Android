@@ -95,13 +95,13 @@ public class AuthInteractorImpl implements AuthContract.AuthInteractor {
                 if (response.body().getError() == null) {
                     User user = response.body().getResult().getUser();
 
-                    final ConnectycubeUser chatUser = new ConnectycubeUser("default_username" + user.getId(), user.getUserName());
-                    chatUser.setPassword(password);
+                    final ConnectycubeUser chatUser = new ConnectycubeUser("username" + user.getId(), "username" + user.getId());
 
                     ConnectycubeUsers.signUp(chatUser).performAsync(new EntityCallback<ConnectycubeUser>() {
                         @Override
                         public void onSuccess(ConnectycubeUser userHere, Bundle args) {
                             setAdditionalInfo(userHere.getId(), onFinishListener);
+
                         }
 
                         @Override

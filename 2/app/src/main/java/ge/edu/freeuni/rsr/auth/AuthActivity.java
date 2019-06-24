@@ -13,6 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ge.edu.freeuni.rsr.R;
+import ge.edu.freeuni.rsr.groupchat.chat.GroupChatActivity;
 import ge.edu.freeuni.rsr.home.HomeActivity;
 
 public class AuthActivity extends AppCompatActivity implements AuthContract.AuthView {
@@ -82,6 +83,8 @@ public class AuthActivity extends AppCompatActivity implements AuthContract.Auth
 
     private AuthContract.AuthPresenter presenter;
 
+    private String dialogId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,13 +93,23 @@ public class AuthActivity extends AppCompatActivity implements AuthContract.Auth
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         presenter = new AuthPresenterImpl(new AuthInteractorImpl(), this);
+        dialogId = getIntent().getStringExtra("dialog_id");
     }
-    
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        dialogId = getIntent().getStringExtra("dialog_id");
+    }
 
     @Override
     public void redirectToHome() {
         finish();
-        HomeActivity.start(this);
+        if (dialogId == null) {
+            HomeActivity.start(this);
+        } else {
+            GroupChatActivity.start(this, dialogId);
+        }
     }
 
     @Override

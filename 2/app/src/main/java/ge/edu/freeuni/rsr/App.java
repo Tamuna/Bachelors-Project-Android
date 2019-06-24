@@ -25,7 +25,6 @@ public class App extends Application {
     private static App instance;
 
     public String getDeviceToken() {
-        Log.d("token:", deviceToken);
         return deviceToken;
     }
 

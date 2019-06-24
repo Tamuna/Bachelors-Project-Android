@@ -10,7 +10,6 @@ public class AppUser {
     private static final AppUser instance = new AppUser();
 
     private User user;
-
     public static AppUser getInstance() {
         return instance;
     }

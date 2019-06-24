@@ -8,8 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import ge.edu.freeuni.rsr.AppUser;
 import ge.edu.freeuni.rsr.R;
 import ge.edu.freeuni.rsr.groupchat.chat.entity.Message;
+
+import static android.graphics.Color.rgb;
 
 
 /*
@@ -27,7 +30,14 @@ public class SentMessageViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void setData(Message message) {
-        //if sender is currently logged in send
+        if (message.getSender().getId().equals(AppUser.getInstance().getUser().getId())) {
+            tvMessage.setBackgroundResource(R.drawable.bg_sent_message);
+            tvMessage.setTextColor(	rgb(255,255,255));
+        } else {
+            tvMessage.setBackgroundResource(R.drawable.bg_received_message);
+            tvMessage.setTextColor(	rgb(0,0,0));
+        }
         tvMessage.setText(message.getMessage());
+
     }
 }
