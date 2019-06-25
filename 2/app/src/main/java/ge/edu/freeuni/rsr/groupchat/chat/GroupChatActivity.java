@@ -48,6 +48,16 @@ public class GroupChatActivity extends AppCompatActivity implements GroupChatCon
     @BindView(R.id.loader_view)
     LinearLayout loaderView;
 
+    @OnClick(R.id.tv_become_host)
+    void onBecomeHost() {
+        presenter.sendBecomeHostMessage();
+    }
+
+    @OnClick(R.id.tv_become_cap)
+    void onBecomeCap() {
+        presenter.sendBecomeCapMessage();
+    }
+
     private MessagesRecyclerAdapter adapter;
     private GroupChatContract.GroupChatPresenter presenter;
 
@@ -144,5 +154,17 @@ public class GroupChatActivity extends AppCompatActivity implements GroupChatCon
     @Override
     public void showMessageSentError() {
         Toast.makeText(this, getString(R.string.cannot_send_message), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void capAlreadyAcquired(String name) {
+        tvBecomeCap.setTextColor(getResources().getColor(R.color.light_gray));
+        AfterRoleAcquiredDialog.newInstance(name, "კაპიტანი").show(getSupportFragmentManager(), "alert");
+    }
+
+    @Override
+    public void hostAlreadyAcquired(String name) {
+        tvBecomeHost.setTextColor(getResources().getColor(R.color.light_gray));
+        AfterRoleAcquiredDialog.newInstance(name, "წამყვანი").show(getSupportFragmentManager(), "alert");
     }
 }

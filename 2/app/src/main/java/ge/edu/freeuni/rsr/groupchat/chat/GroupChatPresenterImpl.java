@@ -20,6 +20,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import ge.edu.freeuni.rsr.AppUser;
 import ge.edu.freeuni.rsr.common.entity.User;
 import ge.edu.freeuni.rsr.groupchat.chat.entity.Message;
 
@@ -29,6 +30,8 @@ public class GroupChatPresenterImpl implements GroupChatContract.GroupChatPresen
     private GroupChatContract.GroupChatInteractor interactor;
     private HashMap<Integer, User> occupants;
     private ConnectycubeChatDialog createdDialog;
+    private User host;
+    private User captain;
 
     public GroupChatPresenterImpl(GroupChatContract.GroupChatView view, GroupChatContract.GroupChatInteractor interactor) {
         this.view = view;
@@ -64,6 +67,19 @@ public class GroupChatPresenterImpl implements GroupChatContract.GroupChatPresen
         }
     }
 
+    private static String PRE_BECOME_HOST = "~~HOSTING";
+    private static String PRE_BECOME_CAP = "~~CAPTAINING";
+
+    @Override
+    public void sendBecomeHostMessage() {
+        sendMessage(PRE_BECOME_HOST + AppUser.getInstance().getUser().getUserName());
+    }
+
+    @Override
+    public void sendBecomeCapMessage() {
+        sendMessage(PRE_BECOME_CAP + AppUser.getInstance().getUser().getUserName());
+    }
+
 
     class OnFinishListenerImpl implements GroupChatContract.GroupChatInteractor.OnFinishListener {
 
@@ -94,7 +110,16 @@ public class GroupChatPresenterImpl implements GroupChatContract.GroupChatPresen
         createdDialog.addMessageListener(new ChatDialogMessageListener() {
             @Override
             public void processMessage(String s, ConnectycubeChatMessage connectycubeChatMessage, Integer integer) {
-                view.displaySingleMessage(new Message(occupants.get(connectycubeChatMessage.getSenderId()), connectycubeChatMessage.getBody(), false, false));
+                String message = connectycubeChatMessage.getBody();
+                if (message.startsWith(PRE_BECOME_HOST)) {
+                    host = occupants.get(connectycubeChatMessage.getSenderId());
+                    view.hostAlreadyAcquired(host.getUserName());
+                } else if (message.startsWith(PRE_BECOME_CAP)) {
+                    captain = occupants.get(connectycubeChatMessage.getSenderId());
+                    view.capAlreadyAcquired(captain.getUserName());
+                } else {
+                    view.displaySingleMessage(new Message(occupants.get(connectycubeChatMessage.getSenderId()), connectycubeChatMessage.getBody(), false, false));
+                }
             }
 
             @Override
@@ -115,7 +140,11 @@ public class GroupChatPresenterImpl implements GroupChatContract.GroupChatPresen
             public void onSuccess(ArrayList<ConnectycubeChatMessage> messages, Bundle bundle) {
                 List<Message> history = new ArrayList<>();
                 for (ConnectycubeChatMessage msg : messages) {
-                    history.add(new Message(occupants.get(msg.getSenderId()), msg.getBody(), false, false));
+                    String message = msg.getBody();
+                    if (!(message.startsWith(PRE_BECOME_CAP) || message.startsWith(PRE_BECOME_HOST))) {
+                        history.add(new Message(occupants.get(msg.getSenderId()), message, false, false));
+                    }
+
                 }
                 Collections.reverse(history);
                 view.onChatHistoryLoaded(history);

@@ -17,12 +17,20 @@ public interface GroupChatContract {
         void displaySingleMessage(Message message);
 
         void showMessageSentError();
+
+        void capAlreadyAcquired(String name);
+
+        void hostAlreadyAcquired(String message);
     }
 
     interface GroupChatPresenter {
         void getHistory(String chatId);
 
         void sendMessage(String toString);
+
+        void sendBecomeHostMessage();
+
+        void sendBecomeCapMessage();
     }
 
     interface GroupChatInteractor {
