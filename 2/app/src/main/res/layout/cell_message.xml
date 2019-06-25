@@ -2,21 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:id="@+id/layout_msg_container"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-
-    android:gravity="center_vertical">
-
+    android:gravity="right"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/tv_message"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@drawable/bg_sent_message"
         android:padding="10dp"
-        android:text="მე მაქვს ძალიან საინტერე"
+        android:text="მე ძალიან საინტერე"
         android:textColor="@color/light_gray"
         android:textSize="15sp" />
 

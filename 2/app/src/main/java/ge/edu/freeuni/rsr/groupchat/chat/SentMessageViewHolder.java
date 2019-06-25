@@ -1,6 +1,9 @@
 package ge.edu.freeuni.rsr.groupchat.chat;
 
+import android.graphics.drawable.GradientDrawable;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,6 +26,9 @@ public class SentMessageViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.tv_message)
     TextView tvMessage;
 
+    @BindView(R.id.layout_msg_container)
+    LinearLayout layoutContainer;
+
 
     public SentMessageViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -31,13 +37,18 @@ public class SentMessageViewHolder extends RecyclerView.ViewHolder {
 
     public void setData(Message message) {
         if (message.getSender().getId().equals(AppUser.getInstance().getUser().getId())) {
+            layoutContainer.setGravity(Gravity.END);
             tvMessage.setBackgroundResource(R.drawable.bg_sent_message);
-            tvMessage.setTextColor(	rgb(255,255,255));
+            tvMessage.setTextColor(itemView.getContext().getResources().getColor(R.color.light_gray));
         } else {
+            layoutContainer.setGravity(Gravity.START);
             tvMessage.setBackgroundResource(R.drawable.bg_received_message);
-            tvMessage.setTextColor(	rgb(0,0,0));
+            tvMessage.setTextColor(itemView.getContext().getResources().getColor(R.color.dark_blue));
+        }
+        if (message.isQuestion()) {
+            GradientDrawable drawable = (GradientDrawable) tvMessage.getBackground();
+            drawable.setColor(itemView.getContext().getResources().getColor(R.color.light_red));
         }
         tvMessage.setText(message.getMessage());
-
     }
 }

@@ -30,7 +30,7 @@ public class MessagesRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_sent_message, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_message, parent, false);
         return new SentMessageViewHolder(view);
     }
 
@@ -52,6 +52,6 @@ public class MessagesRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     public void setSingleData(Message message, boolean isQuestion, boolean isAnswer) {
         this.data.add(message);
-        notifyDataSetChanged();
+        notifyItemChanged(data.size() - 1);
     }
 }

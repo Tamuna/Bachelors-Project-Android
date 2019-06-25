@@ -67,8 +67,8 @@ public class GroupChatPresenterImpl implements GroupChatContract.GroupChatPresen
         }
     }
 
-    private static String PRE_BECOME_HOST = "~~HOSTING";
-    private static String PRE_BECOME_CAP = "~~CAPTAINING";
+    private static String PRE_BECOME_HOST = "~~HOSTING:";
+    private static String PRE_BECOME_CAP = "~~CAPTAINING:";
 
     @Override
     public void sendBecomeHostMessage() {
@@ -118,7 +118,9 @@ public class GroupChatPresenterImpl implements GroupChatContract.GroupChatPresen
                     captain = occupants.get(connectycubeChatMessage.getSenderId());
                     view.capAlreadyAcquired(captain.getUserName());
                 } else {
-                    view.displaySingleMessage(new Message(occupants.get(connectycubeChatMessage.getSenderId()), connectycubeChatMessage.getBody(), false, false));
+                    boolean isQuestion = host != null && connectycubeChatMessage.getSenderId().equals(host.getChatUserId());
+                    view.displaySingleMessage(new Message(occupants.get(connectycubeChatMessage.getSenderId()), message,
+                            isQuestion, false));
                 }
             }
 
@@ -139,14 +141,18 @@ public class GroupChatPresenterImpl implements GroupChatContract.GroupChatPresen
             @Override
             public void onSuccess(ArrayList<ConnectycubeChatMessage> messages, Bundle bundle) {
                 List<Message> history = new ArrayList<>();
+                Collections.reverse(history);
                 for (ConnectycubeChatMessage msg : messages) {
                     String message = msg.getBody();
-                    if (!(message.startsWith(PRE_BECOME_CAP) || message.startsWith(PRE_BECOME_HOST))) {
-                        history.add(new Message(occupants.get(msg.getSenderId()), message, false, false));
+                    if (message.startsWith(PRE_BECOME_HOST)) {
+                        host = occupants.get(msg.getSenderId());
+                    } else if (message.startsWith(PRE_BECOME_CAP)) {
+                        captain = occupants.get(msg.getSenderId());
+                    } else {
+                        boolean isQuestion = host != null && msg.getSenderId().equals(host.getChatUserId());
+                        history.add(new Message(occupants.get(msg.getSenderId()), message, isQuestion, false));
                     }
-
                 }
-                Collections.reverse(history);
                 view.onChatHistoryLoaded(history);
             }
 
