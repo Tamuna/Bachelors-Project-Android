@@ -25,4 +25,7 @@
     <string name="registration">რეგისტრაცია</string>
     <string name="congrats">გილოცავთ!</string>
     <string name="correct_answer">სწორი პასუხი</string>
+    <string name="save">შენახვა</string>
+    <string name="surname">გვარი</string>
+    <string name="name">სახელი</string>
 </resources>
