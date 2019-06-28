@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.w3c.dom.Text;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ge.edu.freeuni.rsr.AppUser;
@@ -22,20 +24,24 @@ import static android.graphics.Color.rgb;
  * created by tgeldiashvili on 6/6/2019
  */
 
-public class SentMessageViewHolder extends RecyclerView.ViewHolder {
+public class MessageViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.tv_message)
     TextView tvMessage;
 
     @BindView(R.id.layout_msg_container)
     LinearLayout layoutContainer;
 
+    @BindView(R.id.tv_sender_id)
+    TextView tvSender;
 
-    public SentMessageViewHolder(@NonNull View itemView) {
+
+    public MessageViewHolder(@NonNull View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }
 
     public void setData(Message message) {
+        tvSender.setText(message.getSender().getUserName());
         if (message.getSender().getId().equals(AppUser.getInstance().getUser().getId())) {
             layoutContainer.setGravity(Gravity.END);
             tvMessage.setBackgroundResource(R.drawable.bg_sent_message);

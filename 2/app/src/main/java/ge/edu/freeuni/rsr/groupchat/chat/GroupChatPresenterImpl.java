@@ -58,10 +58,12 @@ public class GroupChatPresenterImpl implements GroupChatContract.GroupChatPresen
     @Override
     public void sendMessage(String message) {
         try {
-            ConnectycubeChatMessage chatMessage = new ConnectycubeChatMessage();
-            chatMessage.setBody(message);
-            chatMessage.setSaveToHistory(true);
-            createdDialog.sendMessage(chatMessage);
+            if (message != null && message.length() != 0) {
+                ConnectycubeChatMessage chatMessage = new ConnectycubeChatMessage();
+                chatMessage.setBody(message);
+                chatMessage.setSaveToHistory(true);
+                createdDialog.sendMessage(chatMessage);
+            }
         } catch (Exception e) {
             view.showMessageSentError();
         }

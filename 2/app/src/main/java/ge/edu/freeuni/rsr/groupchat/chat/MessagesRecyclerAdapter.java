@@ -31,12 +31,12 @@ public class MessagesRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_message, parent, false);
-        return new SentMessageViewHolder(view);
+        return new MessageViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ((SentMessageViewHolder) holder).setData(data.get(position));
+        ((MessageViewHolder) holder).setData(data.get(position));
     }
 
     @Override
