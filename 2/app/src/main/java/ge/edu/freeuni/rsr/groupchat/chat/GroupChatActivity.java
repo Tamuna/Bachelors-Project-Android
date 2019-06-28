@@ -2,6 +2,7 @@ package ge.edu.freeuni.rsr.groupchat.chat;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -136,8 +138,12 @@ public class GroupChatActivity extends AppCompatActivity implements GroupChatCon
     public void displayHostCheckBox(boolean visibility) {
         cbRoleContorller.setVisibility(visibility ? View.VISIBLE : View.GONE);
         if (visibility) {
+            ViewCompat.setBackgroundTintList(
+                    cbRoleContorller,
+                    ColorStateList.valueOf(getResources().getColor(R.color.light_red)));
             cbRoleContorller.setTextColor(getResources().getColor(R.color.light_red));
             cbRoleContorller.setText("კითხვის დასმა და წამზომის ჩართვა");
+
         }
     }
 
@@ -145,6 +151,9 @@ public class GroupChatActivity extends AppCompatActivity implements GroupChatCon
     public void displayCapCheckBox(boolean visibility) {
         cbRoleContorller.setVisibility(visibility ? View.VISIBLE : View.GONE);
         if (visibility) {
+            ViewCompat.setBackgroundTintList(
+                    cbRoleContorller,
+                    ColorStateList.valueOf(getResources().getColor(R.color.green)));
             cbRoleContorller.setTextColor(getResources().getColor(R.color.green));
             cbRoleContorller.setText("კითხვაზე პასუხის დაფიქსირება");
         }

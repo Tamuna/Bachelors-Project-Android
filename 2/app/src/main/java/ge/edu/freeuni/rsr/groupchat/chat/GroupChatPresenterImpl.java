@@ -142,14 +142,18 @@ public class GroupChatPresenterImpl implements GroupChatContract.GroupChatPresen
             public void processMessage(String s, ConnectycubeChatMessage connectycubeChatMessage, Integer integer) {
                 String message = connectycubeChatMessage.getBody();
                 if (message.startsWith(PRE_BECOME_HOST)) {
-                    if(AppUser.getInstance().getUser().getChatUserId().equals(connectycubeChatMessage.getSenderId())){
-                        view.displayHostCheckBox();
+                    if (AppUser.getInstance().getUser().getChatUserId().equals(connectycubeChatMessage.getSenderId())) {
+                        view.displayHostCheckBox(true);
+                    } else {
+                        view.displayHostCheckBox(false);
                     }
                     host = occupants.get(connectycubeChatMessage.getSenderId());
                     view.hostAlreadyAcquired(host.getUserName());
                 } else if (message.startsWith(PRE_BECOME_CAP)) {
-                    if(AppUser.getInstance().getUser().getChatUserId().equals(connectycubeChatMessage.getSenderId())){
-                        view.displayCapCheckBox();
+                    if (AppUser.getInstance().getUser().getChatUserId().equals(connectycubeChatMessage.getSenderId())) {
+                        view.displayCapCheckBox(true);
+                    } else {
+                        view.displayHostCheckBox(false);
                     }
                     captain = occupants.get(connectycubeChatMessage.getSenderId());
                     view.capAlreadyAcquired(captain.getUserName());
