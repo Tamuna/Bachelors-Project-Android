@@ -6,6 +6,7 @@ package ge.edu.freeuni.rsr.groupchat.chat;
 
 import android.os.Bundle;
 
+import com.connectycube.chat.ConnectycubeChatService;
 import com.connectycube.chat.ConnectycubeRestChatService;
 import com.connectycube.chat.exception.ChatException;
 import com.connectycube.chat.listeners.ChatDialogMessageListener;
@@ -14,6 +15,8 @@ import com.connectycube.chat.model.ConnectycubeChatMessage;
 import com.connectycube.chat.request.MessageGetBuilder;
 import com.connectycube.core.EntityCallback;
 import com.connectycube.core.exception.ResponseException;
+import com.connectycube.users.ConnectycubeUsers;
+import com.connectycube.users.model.ConnectycubeUser;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -82,6 +85,31 @@ public class GroupChatPresenterImpl implements GroupChatContract.GroupChatPresen
         sendMessage(PRE_BECOME_CAP + AppUser.getInstance().getUser().getUserName());
     }
 
+    @Override
+    public void loginToChat(String chatId) {
+        ConnectycubeUser user = new ConnectycubeUser("username" + AppUser.getInstance().getUser().getId(), "username" + AppUser.getInstance().getUser().getId());
+        user.setId(AppUser.getInstance().getUser().getChatUserId());
+        ConnectycubeChatService.getInstance().login(user, new EntityCallback() {
+            @Override
+            public void onSuccess(Object o, Bundle bundle) {
+                ConnectycubeUsers.signIn(user).performAsync(new EntityCallback<ConnectycubeUser>() {
+                    @Override
+                    public void onSuccess(ConnectycubeUser user, Bundle args) {
+                        getHistory(chatId);
+                    }
+
+                    @Override
+                    public void onError(ResponseException error) {
+                    }
+                });
+            }
+
+            @Override
+            public void onError(ResponseException errors) {
+            }
+        });
+    }
+
 
     class OnFinishListenerImpl implements GroupChatContract.GroupChatInteractor.OnFinishListener {
 
@@ -114,9 +142,15 @@ public class GroupChatPresenterImpl implements GroupChatContract.GroupChatPresen
             public void processMessage(String s, ConnectycubeChatMessage connectycubeChatMessage, Integer integer) {
                 String message = connectycubeChatMessage.getBody();
                 if (message.startsWith(PRE_BECOME_HOST)) {
+                    if(AppUser.getInstance().getUser().getChatUserId().equals(connectycubeChatMessage.getSenderId())){
+                        view.displayHostCheckBox();
+                    }
                     host = occupants.get(connectycubeChatMessage.getSenderId());
                     view.hostAlreadyAcquired(host.getUserName());
                 } else if (message.startsWith(PRE_BECOME_CAP)) {
+                    if(AppUser.getInstance().getUser().getChatUserId().equals(connectycubeChatMessage.getSenderId())){
+                        view.displayCapCheckBox();
+                    }
                     captain = occupants.get(connectycubeChatMessage.getSenderId());
                     view.capAlreadyAcquired(captain.getUserName());
                 } else {

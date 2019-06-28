@@ -70,8 +70,9 @@
                 android:textColor="@color/text_color"
                 android:textColorHint="@color/light_gray"
                 android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/cb_role_checker"
                 app:layout_constraintEnd_toStartOf="@+id/imgSend"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <ImageView
@@ -132,7 +133,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/white"
-                android:gravity="center">
+                android:gravity="center"
+                android:visibility="gone">
 
                 <com.tuyenmonkey.mkloader.MKLoader
                     android:layout_width="wrap_content"
@@ -140,6 +142,21 @@
                     app:mk_color="@color/text_color"
                     app:mk_type="Whirlpool" />
             </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/cb_role_checker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:buttonTint="@color/green"
+                android:text="პასუხის დაფიქსირება"
+                android:textColor="@color/green"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -21,6 +21,10 @@ public interface GroupChatContract {
         void capAlreadyAcquired(String name);
 
         void hostAlreadyAcquired(String message);
+
+        void displayHostCheckBox(boolean visibility);
+
+        void displayCapCheckBox(boolean visibility);
     }
 
     interface GroupChatPresenter {
@@ -31,6 +35,8 @@ public interface GroupChatContract {
         void sendBecomeHostMessage();
 
         void sendBecomeCapMessage();
+
+        void loginToChat(String chatId);
     }
 
     interface GroupChatInteractor {
