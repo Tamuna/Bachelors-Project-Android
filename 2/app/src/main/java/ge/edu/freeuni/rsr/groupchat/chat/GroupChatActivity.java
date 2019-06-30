@@ -179,6 +179,10 @@ public class GroupChatActivity extends AppCompatActivity implements GroupChatCon
     @Override
     public void showAnswerDialog(String answer) {
         GroupAnswerSubmittedDialog.newInstance(answer).show(getSupportFragmentManager(), "alert");
+    }
+
+    @Override
+    public void timerCancel() {
         timer.cancel();
     }
 

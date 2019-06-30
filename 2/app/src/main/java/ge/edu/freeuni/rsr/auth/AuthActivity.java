@@ -1,5 +1,7 @@
 package ge.edu.freeuni.rsr.auth;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -38,6 +40,11 @@ public class AuthActivity extends AppCompatActivity implements AuthContract.Auth
 
     @BindView(R.id.et_reg_confirm_password)
     EditText etRegConfirmPassword;
+
+    public static void start(Context previous) {
+        Intent intent = new Intent(previous, AuthActivity.class);
+        previous.startActivity(intent);
+    }
 
     @OnClick(R.id.txt_login)
     void onLoginTxtClick() {

@@ -29,6 +29,8 @@ public interface GroupChatContract {
         void startTimer();
 
         void showAnswerDialog(String s);
+
+        void timerCancel();
     }
 
     interface GroupChatPresenter {

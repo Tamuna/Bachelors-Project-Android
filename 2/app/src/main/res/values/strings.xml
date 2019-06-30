@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">რა? სად? როდის?</string>
-    <string name="group_practice">გუნდური პრაქტიკა</string>
-    <string name="tournir">ტურნირი</string>
+    <string name="group_practice">ინტელექტუალური ჩატი</string>
+    <string name="tournir">ტურნირები</string>
     <string name="individual_practice">ინდივიდუალური პრაქტიკა</string>
     <string name="game_desc_individual">შეარჩიეთ სასურველი კითხვების რაოდენობა და ითამაშეთ \"რა? სად? როდის?\" ინდივიდუალურად</string>
-    <string name="game_desc_tournir">აღწერა</string>
+    <string name="game_desc_tournir">მალე დაემატება</string>
     <string name="game_desc_group">მოიწვიე მეგობრები ინტელექტუალურ ჩატში, გაუზიარეთ ერთმანეთს საინტერესო კითხვები და იმსჯელეთ ერთად</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="question">კითხვა</string>
@@ -28,4 +28,5 @@
     <string name="save">შენახვა</string>
     <string name="surname">გვარი</string>
     <string name="name">სახელი</string>
+    <string name="logout">გამოსვლა</string>
 </resources>

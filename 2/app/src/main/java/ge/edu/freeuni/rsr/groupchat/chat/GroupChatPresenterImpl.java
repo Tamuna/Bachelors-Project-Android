@@ -170,6 +170,7 @@ public class GroupChatPresenterImpl implements GroupChatContract.GroupChatPresen
                                 true, false));
                     }
                     if (captain != null && connectycubeChatMessage.getSenderId().equals(captain.getChatUserId())) {
+                        view.timerCancel();
                         if (host != null && AppUser.getInstance().getUser().getId().equals(host.getId())) {
                             view.showAnswerDialog(message.substring(PRE_ROLE_USED.length()));
                         }

@@ -52,16 +52,16 @@ public class AfterRoleAcquiredDialog extends DialogFragment {
         imgCheck.setVisibility(View.GONE);
         Button btnOk = view.findViewById(R.id.btn_next);
         btnOk.setText("ძალიან კარგი");
-        TextView tvInfoHolder = view.findViewById(R.id.txt_correct_answer);
-        TextView tvOwner = view.findViewById(R.id.txt_correctness);
+        TextView tvUsernameHolder = view.findViewById(R.id.txt_correct_answer);
+        TextView tvInfoHolder = view.findViewById(R.id.txt_correctness);
 
         btnOk.setBackgroundColor(getResources().getColor(R.color.green));
         imgCheck.setImageResource(R.drawable.ic_correct);
+        tvUsernameHolder.setTextColor(getResources().getColor(R.color.green));
         tvInfoHolder.setTextColor(getResources().getColor(R.color.green));
-        tvOwner.setTextColor(getResources().getColor(R.color.green));
 
-        tvInfoHolder.setText("წარმატებით გახდა " + roleName);
-        tvOwner.setText(roleOwner);
+        tvUsernameHolder.setText(roleOwner);
+        tvInfoHolder.setText(roleName + "გახდა:");
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
