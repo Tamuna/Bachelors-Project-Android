@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CheckBox;
@@ -13,7 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.ViewCompat;
+import androidx.core.widget.CompoundButtonCompat;
+import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,7 +29,7 @@ import butterknife.OnClick;
 import ge.edu.freeuni.rsr.R;
 import ge.edu.freeuni.rsr.groupchat.chat.entity.Message;
 
-public class GroupChatActivity extends AppCompatActivity implements GroupChatContract.GroupChatView {
+public class GroupChatActivity extends AppCompatActivity implements GroupChatContract.GroupChatView, GroupAnswerSubmittedDialog.AnswerDecisionListener {
 
     @BindView(R.id.rv_messages)
     RecyclerView rvMessages;
@@ -47,6 +49,10 @@ public class GroupChatActivity extends AppCompatActivity implements GroupChatCon
     @BindView(R.id.cb_role_checker)
     CheckBox cbRoleContorller;
 
+    @BindView(R.id.tvTime)
+    TextView tvTime;
+
+
     @OnClick(R.id.tv_become_host)
     void onBecomeHost() {
         presenter.sendBecomeHostMessage();
@@ -62,9 +68,11 @@ public class GroupChatActivity extends AppCompatActivity implements GroupChatCon
 
     @OnClick(R.id.imgSend)
     void onSendMessageClicked() {
-        presenter.sendMessage(etMessage.getText().toString().trim());
+        presenter.sendMessage(etMessage.getText().toString().trim(), cbRoleContorller.isChecked());
         etMessage.setText("");
     }
+
+    private CountDownTimer timer;
 
     @Override
     protected void onNewIntent(Intent intent) {
@@ -115,7 +123,7 @@ public class GroupChatActivity extends AppCompatActivity implements GroupChatCon
 
     @Override
     public void displaySingleMessage(Message message) {
-        adapter.setSingleData(message, false, false);
+        adapter.setSingleData(message);
         rvMessages.scrollToPosition(adapter.getItemCount() - 1);
     }
 
@@ -137,25 +145,75 @@ public class GroupChatActivity extends AppCompatActivity implements GroupChatCon
     @Override
     public void displayHostCheckBox(boolean visibility) {
         cbRoleContorller.setVisibility(visibility ? View.VISIBLE : View.GONE);
-        if (visibility) {
-            ViewCompat.setBackgroundTintList(
-                    cbRoleContorller,
-                    ColorStateList.valueOf(getResources().getColor(R.color.light_red)));
-            cbRoleContorller.setTextColor(getResources().getColor(R.color.light_red));
-            cbRoleContorller.setText("კითხვის დასმა და წამზომის ჩართვა");
 
+        if (visibility) {
+            CompoundButtonCompat.setButtonTintList(cbRoleContorller, ColorStateList.valueOf(getResources().getColor(R.color.light_red)));
+            cbRoleContorller.setTextColor(getResources().getColor(R.color.light_red));
+            cbRoleContorller.setText("კითხვის დასმა");
+        } else {
+            cbRoleContorller.setChecked(false);
         }
     }
 
     @Override
     public void displayCapCheckBox(boolean visibility) {
         cbRoleContorller.setVisibility(visibility ? View.VISIBLE : View.GONE);
+
         if (visibility) {
-            ViewCompat.setBackgroundTintList(
-                    cbRoleContorller,
-                    ColorStateList.valueOf(getResources().getColor(R.color.green)));
+            CompoundButtonCompat.setButtonTintList(cbRoleContorller, ColorStateList.valueOf(getResources().getColor(R.color.green)));
             cbRoleContorller.setTextColor(getResources().getColor(R.color.green));
-            cbRoleContorller.setText("კითხვაზე პასუხის დაფიქსირება");
+            cbRoleContorller.setText("პასუხის დაფიქსირება");
+        } else {
+            cbRoleContorller.setChecked(false);
         }
+    }
+
+    @Override
+    public void startTimer() {
+        tvTime.setVisibility(View.VISIBLE);
+        if (timer != null) timer.cancel();
+        createTimer();
+        timer.start();
+    }
+
+    @Override
+    public void showAnswerDialog(String answer) {
+        GroupAnswerSubmittedDialog.newInstance(answer).show(getSupportFragmentManager(), "alert");
+        timer.cancel();
+    }
+
+    private String toTime(long seconds) {
+        return "" + seconds / 60 + ":" + seconds % 60;
+    }
+
+    private long timeOnSingleQuestion = 120000;
+
+    private void createTimer() {
+        timeOnSingleQuestion = 120000;
+        timer = new CountDownTimer(timeOnSingleQuestion, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timeOnSingleQuestion = millisUntilFinished;
+                tvTime.setText(toTime(timeOnSingleQuestion / 1000));
+            }
+
+            @Override
+            public void onFinish() {
+                timer.cancel();
+                presenter.sendMessage("-", true);
+            }
+        };
+    }
+
+    @Override
+    public void onPositiveDecision(DialogFragment dialog) {
+        dialog.dismiss();
+        presenter.sendMessage("სწორია", false);
+    }
+
+    @Override
+    public void onNegativeDecision(DialogFragment dialog) {
+        dialog.dismiss();
+        presenter.sendMessage("არასწორია", false);
     }
 }

@@ -50,7 +50,7 @@ public class MessagesRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         notifyDataSetChanged();
     }
 
-    public void setSingleData(Message message, boolean isQuestion, boolean isAnswer) {
+    public void setSingleData(Message message) {
         this.data.add(message);
         notifyItemChanged(data.size() - 1);
     }

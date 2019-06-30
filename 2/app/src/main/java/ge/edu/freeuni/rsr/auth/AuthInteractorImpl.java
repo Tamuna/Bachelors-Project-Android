@@ -77,7 +77,7 @@ public class AuthInteractorImpl implements AuthContract.AuthInteractor {
                     onFinishListener.onRegistered(false, response.body().getError());
                 } else {
                     RequestInterceptor.setToken(response.body().getResult().getToken());
-                    registerInConnectyCube(onFinishListener, password);
+                    registerInConnectyCube(onFinishListener);
                 }
             }
 
@@ -88,7 +88,7 @@ public class AuthInteractorImpl implements AuthContract.AuthInteractor {
         });
     }
 
-    private void registerInConnectyCube(OnFinishListener onFinishListener, String password) {
+    private void registerInConnectyCube(OnFinishListener onFinishListener) {
         api.getUser().enqueue(new Callback<RsrResponse<UserResult>>() {
             @Override
             public void onResponse(Call<RsrResponse<UserResult>> call, Response<RsrResponse<UserResult>> response) {
@@ -101,7 +101,6 @@ public class AuthInteractorImpl implements AuthContract.AuthInteractor {
                         @Override
                         public void onSuccess(ConnectycubeUser userHere, Bundle args) {
                             setAdditionalInfo(userHere.getId(), onFinishListener);
-
                         }
 
                         @Override
@@ -123,6 +122,7 @@ public class AuthInteractorImpl implements AuthContract.AuthInteractor {
             @Override
             public void onResponse(Call<RsrResponse<UserResult>> call, Response<RsrResponse<UserResult>> response) {
                 AppUser.getInstance().setUser(response.body().getResult().getUser());
+                ConnectycubeUsers.signOut();
                 onFinishListener.onRegistered(true, "");
             }
 

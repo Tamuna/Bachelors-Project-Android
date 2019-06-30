@@ -25,12 +25,16 @@ public interface GroupChatContract {
         void displayHostCheckBox(boolean visibility);
 
         void displayCapCheckBox(boolean visibility);
+
+        void startTimer();
+
+        void showAnswerDialog(String s);
     }
 
     interface GroupChatPresenter {
         void getHistory(String chatId);
 
-        void sendMessage(String toString);
+        void sendMessage(String toString, boolean roleCbChecked);
 
         void sendBecomeHostMessage();
 

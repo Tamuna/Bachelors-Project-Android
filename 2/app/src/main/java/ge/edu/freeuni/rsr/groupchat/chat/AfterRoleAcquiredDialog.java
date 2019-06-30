@@ -47,7 +47,9 @@ public class AfterRoleAcquiredDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         final View view = requireActivity().getLayoutInflater().inflate(R.layout.dialog_after_answer_submission, null);
+
         ImageView imgCheck = view.findViewById(R.id.img_corrctness);
+        imgCheck.setVisibility(View.GONE);
         Button btnOk = view.findViewById(R.id.btn_next);
         btnOk.setText("ძალიან კარგი");
         TextView tvInfoHolder = view.findViewById(R.id.txt_correct_answer);
@@ -58,7 +60,7 @@ public class AfterRoleAcquiredDialog extends DialogFragment {
         tvInfoHolder.setTextColor(getResources().getColor(R.color.green));
         tvOwner.setTextColor(getResources().getColor(R.color.green));
 
-        tvInfoHolder.setText("წარმატებით გახდა "+ roleName);
+        tvInfoHolder.setText("წარმატებით გახდა " + roleName);
         tvOwner.setText(roleOwner);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());

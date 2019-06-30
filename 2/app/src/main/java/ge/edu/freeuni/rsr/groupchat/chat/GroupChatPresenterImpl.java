@@ -36,7 +36,7 @@ public class GroupChatPresenterImpl implements GroupChatContract.GroupChatPresen
     private User host;
     private User captain;
 
-    public GroupChatPresenterImpl(GroupChatContract.GroupChatView view, GroupChatContract.GroupChatInteractor interactor) {
+    GroupChatPresenterImpl(GroupChatContract.GroupChatView view, GroupChatContract.GroupChatInteractor interactor) {
         this.view = view;
         this.interactor = interactor;
     }
@@ -59,7 +59,10 @@ public class GroupChatPresenterImpl implements GroupChatContract.GroupChatPresen
     }
 
     @Override
-    public void sendMessage(String message) {
+    public void sendMessage(String message, boolean roleCbChecked) {
+        if (message != null && message.length() > 0 && roleCbChecked) {
+            message = PRE_ROLE_USED + message;
+        }
         try {
             if (message != null && message.length() != 0) {
                 ConnectycubeChatMessage chatMessage = new ConnectycubeChatMessage();
@@ -74,15 +77,16 @@ public class GroupChatPresenterImpl implements GroupChatContract.GroupChatPresen
 
     private static String PRE_BECOME_HOST = "~~HOSTING:";
     private static String PRE_BECOME_CAP = "~~CAPTAINING:";
+    private static String PRE_ROLE_USED = "~~ROLE_USED:";
 
     @Override
     public void sendBecomeHostMessage() {
-        sendMessage(PRE_BECOME_HOST + AppUser.getInstance().getUser().getUserName());
+        sendMessage(PRE_BECOME_HOST + AppUser.getInstance().getUser().getUserName(), false);
     }
 
     @Override
     public void sendBecomeCapMessage() {
-        sendMessage(PRE_BECOME_CAP + AppUser.getInstance().getUser().getUserName());
+        sendMessage(PRE_BECOME_CAP + AppUser.getInstance().getUser().getUserName(), false);
     }
 
     @Override
@@ -115,10 +119,8 @@ public class GroupChatPresenterImpl implements GroupChatContract.GroupChatPresen
 
         @Override
         public void onOccupantsLoaded(HashMap<Integer, User> occupants) {
-            loadHistory();
-            addIncomingMessageListener();
-            joinChat();
             GroupChatPresenterImpl.this.occupants = occupants;
+            joinChat();
         }
     }
 
@@ -126,7 +128,8 @@ public class GroupChatPresenterImpl implements GroupChatContract.GroupChatPresen
         createdDialog.join(new EntityCallback() {
             @Override
             public void onSuccess(Object o, Bundle bundle) {
-
+                loadHistory();
+                addIncomingMessageListener();
             }
 
             @Override
@@ -142,33 +145,62 @@ public class GroupChatPresenterImpl implements GroupChatContract.GroupChatPresen
             public void processMessage(String s, ConnectycubeChatMessage connectycubeChatMessage, Integer integer) {
                 String message = connectycubeChatMessage.getBody();
                 if (message.startsWith(PRE_BECOME_HOST)) {
+                    removeFromCaptain(connectycubeChatMessage.getSenderId());
                     if (AppUser.getInstance().getUser().getChatUserId().equals(connectycubeChatMessage.getSenderId())) {
                         view.displayHostCheckBox(true);
-                    } else {
+                    } else if (captain == null || !AppUser.getInstance().getUser().getId().equals(captain.getId())) {
                         view.displayHostCheckBox(false);
                     }
                     host = occupants.get(connectycubeChatMessage.getSenderId());
                     view.hostAlreadyAcquired(host.getUserName());
                 } else if (message.startsWith(PRE_BECOME_CAP)) {
+                    removeFromHost(connectycubeChatMessage.getSenderId());
                     if (AppUser.getInstance().getUser().getChatUserId().equals(connectycubeChatMessage.getSenderId())) {
                         view.displayCapCheckBox(true);
-                    } else {
-                        view.displayHostCheckBox(false);
+                    } else if (host == null || !AppUser.getInstance().getUser().getId().equals(host.getId())) {
+                        view.displayCapCheckBox(false);
                     }
                     captain = occupants.get(connectycubeChatMessage.getSenderId());
                     view.capAlreadyAcquired(captain.getUserName());
+
+                } else if (message.startsWith(PRE_ROLE_USED)) {
+                    if (host != null && connectycubeChatMessage.getSenderId().equals(host.getChatUserId())) {
+                        view.startTimer();
+                        view.displaySingleMessage(new Message(occupants.get(connectycubeChatMessage.getSenderId()), message.substring(PRE_ROLE_USED.length()),
+                                true, false));
+                    }
+                    if (captain != null && connectycubeChatMessage.getSenderId().equals(captain.getChatUserId())) {
+                        if (host != null && AppUser.getInstance().getUser().getId().equals(host.getId())) {
+                            view.showAnswerDialog(message.substring(PRE_ROLE_USED.length()));
+                        }
+                        view.displaySingleMessage(new Message(captain, "კაპიტანმა დააფიქსირა: " + message.substring(PRE_ROLE_USED.length()), false, true));
+                    }
                 } else {
                     boolean isQuestion = host != null && connectycubeChatMessage.getSenderId().equals(host.getChatUserId());
+                    boolean isAnswer = captain != null && connectycubeChatMessage.getSenderId().equals(captain.getChatUserId());
                     view.displaySingleMessage(new Message(occupants.get(connectycubeChatMessage.getSenderId()), message,
-                            isQuestion, false));
+                            isQuestion, isAnswer));
                 }
             }
 
             @Override
-            public void processError(String s, ChatException e, ConnectycubeChatMessage connectycubeChatMessage, Integer integer) {
+            public void processError(String s, ChatException e, ConnectycubeChatMessage
+                    connectycubeChatMessage, Integer integer) {
 
             }
         });
+    }
+
+    private void removeFromCaptain(Integer senderId) {
+        if (captain != null && captain.getChatUserId().equals(senderId)) {
+            captain = null;
+        }
+    }
+
+    private void removeFromHost(Integer senderId) {
+        if (host != null && host.getChatUserId().equals(senderId)) {
+            host = null;
+        }
     }
 
     private void loadHistory() {
@@ -181,7 +213,7 @@ public class GroupChatPresenterImpl implements GroupChatContract.GroupChatPresen
             @Override
             public void onSuccess(ArrayList<ConnectycubeChatMessage> messages, Bundle bundle) {
                 List<Message> history = new ArrayList<>();
-                Collections.reverse(history);
+                Collections.reverse(messages);
                 for (ConnectycubeChatMessage msg : messages) {
                     String message = msg.getBody();
                     if (message.startsWith(PRE_BECOME_HOST)) {
@@ -190,7 +222,9 @@ public class GroupChatPresenterImpl implements GroupChatContract.GroupChatPresen
                         captain = occupants.get(msg.getSenderId());
                     } else {
                         boolean isQuestion = host != null && msg.getSenderId().equals(host.getChatUserId());
-                        history.add(new Message(occupants.get(msg.getSenderId()), message, isQuestion, false));
+                        boolean isAnswer = captain != null && msg.getSenderId().equals(captain.getChatUserId());
+                        if (message.startsWith(PRE_ROLE_USED)) message = message.split(":")[1];
+                        history.add(new Message(occupants.get(msg.getSenderId()), message, isQuestion, isAnswer));
                     }
                 }
                 view.onChatHistoryLoaded(history);

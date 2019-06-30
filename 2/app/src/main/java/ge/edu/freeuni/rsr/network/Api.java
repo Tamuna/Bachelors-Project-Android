@@ -48,6 +48,4 @@ public interface Api {
 
     @POST("api/group/get-chat-occupants")
     Call<RsrResponse<FriendsResult>> getChatOccupants(@Body NotificationBody notificationBody);
-
-
 }
