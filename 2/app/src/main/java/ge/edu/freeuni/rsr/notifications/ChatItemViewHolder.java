@@ -1,4 +1,4 @@
-package ge.edu.freeuni.rsr.Notifications;
+package ge.edu.freeuni.rsr.notifications;
 
 import android.view.Gravity;
 import android.view.View;
@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import ge.edu.freeuni.rsr.Notifications.entity.Dialog;
 import ge.edu.freeuni.rsr.R;
 import ge.edu.freeuni.rsr.common.entity.User;
+import ge.edu.freeuni.rsr.notifications.entity.Dialog;
 
 public class ChatItemViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.layout_chat_users)
@@ -23,13 +23,14 @@ public class ChatItemViewHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-    public void setData(Dialog dialog) {
+    public void setData(Dialog dialog, NotificationRecyclerAdapter.OnItemClickListener listener) {
         for (User user : dialog.getOccupants()) {
             TextView textView = new TextView(itemView.getContext());
             textView.setText(user.getUserName());
             textView.setTextColor(itemView.getContext().getResources().getColor(R.color.text_color));
             textView.setGravity(Gravity.CENTER);
             layout.addView(textView);
+            itemView.setOnClickListener(v -> listener.onDialogSelected(dialog.getDialogId()));
         }
     }
 }

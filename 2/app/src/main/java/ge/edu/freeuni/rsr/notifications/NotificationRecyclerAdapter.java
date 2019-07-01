@@ -1,4 +1,4 @@
-package ge.edu.freeuni.rsr.Notifications;
+package ge.edu.freeuni.rsr.notifications;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,14 +10,25 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import ge.edu.freeuni.rsr.Notifications.entity.Dialog;
 import ge.edu.freeuni.rsr.R;
+import ge.edu.freeuni.rsr.notifications.entity.Dialog;
 
 public class NotificationRecyclerAdapter extends RecyclerView.Adapter<ChatItemViewHolder> {
     List<Dialog> dialogList = new ArrayList<>();
 
+    public interface OnItemClickListener {
+        void onDialogSelected(String dialogId);
+    }
+
+    private OnItemClickListener listener;
+
+    public NotificationRecyclerAdapter(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
     @NonNull
     @Override
+
     public ChatItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_chat, parent, false);
         return new ChatItemViewHolder(view);
@@ -25,7 +36,7 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<ChatItemVi
 
     @Override
     public void onBindViewHolder(@NonNull ChatItemViewHolder holder, int position) {
-        holder.setData(dialogList.get(position));
+        holder.setData(dialogList.get(position), listener);
     }
 
     @Override

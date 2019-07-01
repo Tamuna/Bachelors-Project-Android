@@ -2,10 +2,13 @@ package ge.edu.freeuni.rsr.auth;
 
 import android.os.Bundle;
 
+import com.connectycube.chat.ConnectycubeChatService;
 import com.connectycube.core.EntityCallback;
 import com.connectycube.core.exception.ResponseException;
 import com.connectycube.users.ConnectycubeUsers;
 import com.connectycube.users.model.ConnectycubeUser;
+
+import org.jivesoftware.smack.SmackException;
 
 import ge.edu.freeuni.rsr.App;
 import ge.edu.freeuni.rsr.AppUser;
@@ -51,12 +54,43 @@ public class AuthInteractorImpl implements AuthContract.AuthInteractor {
         });
     }
 
+    private void loginToChat() {
+        if (ConnectycubeChatService.getInstance().isLoggedIn()) {
+            try {
+                ConnectycubeChatService.getInstance().logout();
+            } catch (SmackException.NotConnectedException e) {
+                e.printStackTrace();
+            }
+        }
+        ConnectycubeUser user = new ConnectycubeUser("username" + AppUser.getInstance().getUser().getId(), "username" + AppUser.getInstance().getUser().getId());
+        user.setId(AppUser.getInstance().getUser().getChatUserId());
+        ConnectycubeChatService.getInstance().login(user, new EntityCallback() {
+            @Override
+            public void onSuccess(Object o, Bundle bundle) {
+                ConnectycubeUsers.signIn(user).performAsync(new EntityCallback<ConnectycubeUser>() {
+                    @Override
+                    public void onSuccess(ConnectycubeUser user, Bundle args) {
+                    }
+
+                    @Override
+                    public void onError(ResponseException error) {
+                    }
+                });
+            }
+
+            @Override
+            public void onError(ResponseException errors) {
+            }
+        });
+    }
+
     void saveUserLocally(OnFinishListener onFinishListener) {
         api.getUser().enqueue(new Callback<RsrResponse<UserResult>>() {
             @Override
             public void onResponse(Call<RsrResponse<UserResult>> call, Response<RsrResponse<UserResult>> response) {
                 if (response.body().getError() == null) {
                     AppUser.getInstance().setUser(response.body().getResult().getUser());
+                    loginToChat();
                     onFinishListener.onLoggedIn(true, "");
                 }
             }

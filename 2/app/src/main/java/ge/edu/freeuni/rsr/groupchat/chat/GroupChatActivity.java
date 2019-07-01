@@ -106,7 +106,6 @@ public class GroupChatActivity extends AppCompatActivity implements GroupChatCon
 
         adapter = new MessagesRecyclerAdapter();
         rvMessages.setAdapter(adapter);
-
         if (ConnectycubeChatService.getInstance().isLoggedIn()) {
             presenter.getHistory(chatId);
         } else {
@@ -118,7 +117,6 @@ public class GroupChatActivity extends AppCompatActivity implements GroupChatCon
     @Override
     public void onChatHistoryLoaded(List<Message> history) {
         adapter.setData(history);
-        loaderView.setVisibility(View.GONE);
     }
 
     @Override

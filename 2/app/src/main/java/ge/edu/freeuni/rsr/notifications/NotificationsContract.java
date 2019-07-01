@@ -1,9 +1,9 @@
-package ge.edu.freeuni.rsr.Notifications;
+package ge.edu.freeuni.rsr.notifications;
 
 import java.util.List;
 
-import ge.edu.freeuni.rsr.Notifications.entity.Dialog;
 import ge.edu.freeuni.rsr.common.entity.User;
+import ge.edu.freeuni.rsr.notifications.entity.Dialog;
 
 public interface NotificationsContract {
     interface NotificationsView {

@@ -1,4 +1,4 @@
-package ge.edu.freeuni.rsr.Notifications.entity;
+package ge.edu.freeuni.rsr.notifications.entity;
 
 import java.util.List;
 

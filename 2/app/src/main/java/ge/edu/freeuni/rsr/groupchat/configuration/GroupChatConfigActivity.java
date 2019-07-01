@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -62,7 +62,7 @@ public class GroupChatConfigActivity extends AppCompatActivity implements GroupC
     public void onDataLoaded(List<User> friends) {
         adapter.setData(friends);
         rvFriends.setAdapter(adapter);
-        rvFriends.setLayoutManager(new GridLayoutManager(this, 2));
+        rvFriends.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override

@@ -1,4 +1,4 @@
-package ge.edu.freeuni.rsr.Notifications;
+package ge.edu.freeuni.rsr.notifications;
 
 import android.os.Bundle;
 
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ge.edu.freeuni.rsr.AppUser;
-import ge.edu.freeuni.rsr.Notifications.entity.Dialog;
+import ge.edu.freeuni.rsr.notifications.entity.Dialog;
 
 public class NotificationPresenterImpl implements NotificationsContract.NotificationsPresenter {
 

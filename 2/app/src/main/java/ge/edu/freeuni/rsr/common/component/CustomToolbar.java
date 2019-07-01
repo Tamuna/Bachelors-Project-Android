@@ -8,9 +8,9 @@ import androidx.appcompat.widget.Toolbar;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import ge.edu.freeuni.rsr.Notifications.NotificationsActivity;
 import ge.edu.freeuni.rsr.R;
 import ge.edu.freeuni.rsr.home.HomeActivity;
+import ge.edu.freeuni.rsr.notifications.NotificationsActivity;
 import ge.edu.freeuni.rsr.profile.ProfileActivity;
 
 public class CustomToolbar extends Toolbar {
