@@ -12,9 +12,9 @@ public interface GroupChatConfigurationContract {
     interface GroupChatView {
         void onDataLoaded(List<User> friends);
 
-        void highlight(int position);
+        void highlight(User user);
 
-        void unhighlight(int position);
+        void unhighlight(User user);
 
         void startChat(String s);
 

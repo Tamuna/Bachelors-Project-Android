@@ -40,10 +40,10 @@ public class GroupChatConfigPresenterImpl implements GroupChatConfigurationContr
     public void selectFriend(User friend, int position) {
         if (highlightedFriends.contains(friend)) {
             highlightedFriends.remove(friend);
-            view.unhighlight(position);
+            view.unhighlight(friend);
         } else {
             highlightedFriends.add(friend);
-            view.highlight(position);
+            view.highlight(friend);
         }
     }
 

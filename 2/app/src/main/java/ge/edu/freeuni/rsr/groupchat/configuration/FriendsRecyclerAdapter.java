@@ -21,11 +21,21 @@ import ge.edu.freeuni.rsr.common.entity.User;
 public class FriendsRecyclerAdapter extends RecyclerView.Adapter<FriendViewHolder> {
 
     private List<User> data = new ArrayList<>();
+    private List<User> filtered = new ArrayList<>();
     private OnItemClickListener onItemClickListener;
-    private List<Integer> highlights = new ArrayList<>();
+    private List<User> highlights = new ArrayList<>();
 
     public FriendsRecyclerAdapter(GroupChatConfigActivity.OnItemClickListenerImpl onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
+    }
+
+    public void filterUsers(CharSequence text) {
+        filtered.clear();
+        for (int i = 0; i < data.size(); i++) {
+            if (data.get(i).getUserName().contains(text))
+                filtered.add(data.get(i));
+        }
+        notifyDataSetChanged();
     }
 
     public interface OnItemClickListener {
@@ -41,27 +51,29 @@ public class FriendsRecyclerAdapter extends RecyclerView.Adapter<FriendViewHolde
 
     @Override
     public void onBindViewHolder(@NonNull FriendViewHolder holder, int position) {
-        holder.setData(data.get(position), onItemClickListener, highlights.contains(position));
+        holder.setData(filtered.get(position), onItemClickListener, highlights.contains(filtered.get(position)));
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return filtered.size();
     }
 
     public void setData(List<User> data) {
         this.data.clear();
         this.data.addAll(data);
+        filtered.clear();
+        filtered.addAll(data);
         notifyDataSetChanged();
     }
 
-    public void highlight(int position) {
-        highlights.add(position);
-        notifyItemChanged(position);
+    public void highlight(User user) {
+        highlights.add(user);
+        notifyItemChanged(filtered.indexOf(user));
     }
 
-    public void unhighlight(int position) {
-        highlights.remove((Integer) position);
-        notifyItemChanged(position);
+    public void unhighlight(User user) {
+        highlights.remove(user);
+        notifyItemChanged(filtered.indexOf(user));
     }
 }
