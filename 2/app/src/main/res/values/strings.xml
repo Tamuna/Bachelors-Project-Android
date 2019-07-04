@@ -4,7 +4,7 @@
     <string name="tournir">ტურნირები</string>
     <string name="individual_practice">ინდივიდუალური პრაქტიკა</string>
     <string name="game_desc_individual">შეარჩიეთ სასურველი კითხვების რაოდენობა და ითამაშეთ \"რა? სად? როდის?\" ინდივიდუალურად</string>
-    <string name="game_desc_tournir">მალე დაემატება</string>
+    <string name="game_desc_tournir">შექმენი საავტორო ტურნირი ან გაეცანი უკვე არსებულ ტურნირებს და მიიღე მონაწილეობა </string>
     <string name="game_desc_group">მოიწვიე მეგობრები ინტელექტუალურ ჩატში, გაუზიარეთ ერთმანეთს საინტერესო კითხვები და იმსჯელეთ ერთად</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="question">კითხვა</string>

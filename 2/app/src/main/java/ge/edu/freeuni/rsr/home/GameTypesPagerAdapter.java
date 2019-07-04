@@ -7,13 +7,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
+
+import java.util.List;
+
 import ge.edu.freeuni.rsr.R;
 import ge.edu.freeuni.rsr.groupchat.configuration.GroupChatConfigActivity;
 import ge.edu.freeuni.rsr.individual.configuration.IndividualGameConfigActivity;
+import ge.edu.freeuni.rsr.tournaments.config.TournamentConfigActivity;
 
 public class GameTypesPagerAdapter extends PagerAdapter {
 
@@ -57,10 +59,13 @@ public class GameTypesPagerAdapter extends PagerAdapter {
         container.addView(view, 0);
 
         view.findViewById(R.id.btn_start_game).setOnClickListener(v -> {
+            if (position == 0) {
+                TournamentConfigActivity.start(view.getContext());
+            }
             if (position == 1) {
                 IndividualGameConfigActivity.start(view.getContext());
             }
-            if(position == 2){
+            if (position == 2) {
                 GroupChatConfigActivity.start(view.getContext());
             }
         });
