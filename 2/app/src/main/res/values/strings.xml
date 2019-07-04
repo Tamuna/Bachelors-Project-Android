@@ -29,4 +29,5 @@
     <string name="surname">გვარი</string>
     <string name="name">სახელი</string>
     <string name="logout">გამოსვლა</string>
+    <string name="default_font" translatable="false">sans-serif-light</string>
 </resources>
