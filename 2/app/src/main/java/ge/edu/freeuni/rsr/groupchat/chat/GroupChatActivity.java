@@ -28,6 +28,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ge.edu.freeuni.rsr.R;
 import ge.edu.freeuni.rsr.groupchat.chat.entity.Message;
+import ge.edu.freeuni.rsr.home.HomeActivity;
 
 public class GroupChatActivity extends AppCompatActivity implements GroupChatContract.GroupChatView, GroupAnswerSubmittedDialog.AnswerDecisionListener {
 
@@ -70,6 +71,7 @@ public class GroupChatActivity extends AppCompatActivity implements GroupChatCon
     void onSendMessageClicked() {
         presenter.sendMessage(etMessage.getText().toString().trim(), cbRoleContorller.isChecked());
         etMessage.setText("");
+        if (cbRoleContorller.isChecked()) cbRoleContorller.setChecked(false);
     }
 
     private CountDownTimer timer;
@@ -217,5 +219,11 @@ public class GroupChatActivity extends AppCompatActivity implements GroupChatCon
     public void onNegativeDecision(DialogFragment dialog) {
         dialog.dismiss();
         presenter.sendMessage("არასწორია", false);
+    }
+
+    @Override
+    public void onBackPressed() {
+        HomeActivity.start(this);
+        finish();
     }
 }

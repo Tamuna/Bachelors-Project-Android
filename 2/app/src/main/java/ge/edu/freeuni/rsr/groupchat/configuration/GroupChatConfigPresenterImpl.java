@@ -62,6 +62,7 @@ public class GroupChatConfigPresenterImpl implements GroupChatConfigurationContr
             ConnectycubeChatService.getInstance().login(user, new EntityCallback() {
                 @Override
                 public void onSuccess(Object o, Bundle bundle) {
+
                     createDialog(user);
                 }
 
@@ -86,7 +87,7 @@ public class GroupChatConfigPresenterImpl implements GroupChatConfigurationContr
                     userNames.add(friend.getUserName());
                 }
                 dialog.setOccupantsIds(occupantIds);
-                dialog.setName("rsr group chat");
+                dialog.setName("ინტელექტუალური ჩატი:created on ANDR");
 
                 ConnectycubeRestChatService.createChatDialog(dialog).performAsync(new EntityCallback<ConnectycubeChatDialog>() {
                     @Override

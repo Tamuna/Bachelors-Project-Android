@@ -51,7 +51,7 @@ public class GroupChatConfigInteractorImpl implements GroupChatConfigurationCont
         api.getFriends().enqueue(new Callback<RsrResponse<FriendsResult>>() {
             @Override
             public void onResponse(Call<RsrResponse<FriendsResult>> call, Response<RsrResponse<FriendsResult>> response) {
-                if (response.body().getError() == null) {
+                if (response.body() != null && response.body().getError() == null) {
                     onFinishListener.onFriendsLoaded(response.body().getResult().getFriends());
                 }
             }

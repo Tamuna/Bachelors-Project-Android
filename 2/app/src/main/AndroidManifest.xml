@@ -14,9 +14,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".tournaments.config.TournamentConfigActivity"></activity>
-        <activity android:name=".notifications.NotificationsActivity" />
-        <activity android:name=".profile.ProfileActivity" />
+        <activity
+            android:name=".tournaments.create.TournamentCreateActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tournaments.add.TournamentGameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tournaments.config.TournamentConfigActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".notifications.NotificationsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".profile.ProfileActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".groupchat.chat.GroupChatActivity"
             android:screenOrientation="portrait" />
