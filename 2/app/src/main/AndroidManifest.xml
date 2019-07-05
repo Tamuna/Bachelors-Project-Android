@@ -18,7 +18,7 @@
             android:name=".tournaments.create.TournamentCreateActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".tournaments.add.TournamentGameActivity"
+            android:name=".tournaments.game.TournamentGameActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".tournaments.config.TournamentConfigActivity"

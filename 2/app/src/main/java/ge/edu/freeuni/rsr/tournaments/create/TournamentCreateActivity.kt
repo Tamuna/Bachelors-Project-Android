@@ -5,16 +5,27 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager.widget.ViewPager
+import butterknife.BindView
 import butterknife.ButterKnife
 import ge.edu.freeuni.rsr.R
-import ge.edu.freeuni.rsr.tournaments.config.TournamentConfigActivity
+import ge.edu.freeuni.rsr.tournaments.create.viewpager.TournamentConfigFragment
+import ge.edu.freeuni.rsr.tournaments.create.viewpager.ViewPagerAdapter
+import ge.edu.freeuni.rsr.tournaments.create.viewpager.ViewPagerAdapter.Companion.FRAGMENT_QUESTION
 
-class TournamentCreateActivity : AppCompatActivity() {
+class TournamentCreateActivity : AppCompatActivity(), TournamentConfigFragment.OnFragmentInteractionListener {
+    override fun onNextClick(dateTime: String, tourName: String) {
+        //TODO create tournament in db get id and start adding questions
+        vpTournamentConfig.currentItem = FRAGMENT_QUESTION
+    }
+
+    @BindView(R.id.vpTournamentConfig)
+    lateinit var vpTournamentConfig: ViewPager
 
     companion object {
         @JvmStatic
         fun start(previous: Context) {
-            val intent = Intent(previous, TournamentConfigActivity::class.java)
+            val intent = Intent(previous, TournamentCreateActivity::class.java)
             previous.startActivity(intent)
         }
     }
@@ -24,5 +35,6 @@ class TournamentCreateActivity : AppCompatActivity() {
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_tournament_create)
         ButterKnife.bind(this)
+        vpTournamentConfig.adapter = ViewPagerAdapter(supportFragmentManager)
     }
 }

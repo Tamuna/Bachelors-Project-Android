@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import butterknife.ButterKnife
 import butterknife.OnClick
 import ge.edu.freeuni.rsr.R
+import ge.edu.freeuni.rsr.tournaments.create.TournamentCreateActivity
+import ge.edu.freeuni.rsr.tournaments.game.TournamentGameActivity
 
 class TournamentConfigActivity : AppCompatActivity() {
 
@@ -21,12 +23,12 @@ class TournamentConfigActivity : AppCompatActivity() {
 
     @OnClick(R.id.btn_add_tour)
     fun onAddTourClick() {
-
+        TournamentCreateActivity.start(this)
     }
 
     @OnClick(R.id.btn_enter_tours)
     fun onEnterToursClick() {
-
+        TournamentGameActivity.start(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -8,7 +8,6 @@
     <string name="game_desc_group">მოიწვიე მეგობრები ინტელექტუალურ ჩატში, გაუზიარეთ ერთმანეთს საინტერესო კითხვები და იმსჯელეთ ერთად</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="question">კითხვა</string>
-    <string name="next">შემდეგი</string>
     <string name="some_interesting_activity">თქვენ რამდენიმე საინტერესო კითხვას გაეცანით</string>
     <string name="captain">კაპიტანი</string>
     <string name="host">წამყვანი</string>
@@ -30,4 +29,10 @@
     <string name="name">სახელი</string>
     <string name="logout">გამოსვლა</string>
     <string name="default_font" translatable="false">sans-serif-light</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="next">შემდეგი</string>
+    <string name="choose_time">დროის არჩევა</string>
+    <string name="tournir_name">ტურნირის სახელი</string>
 </resources>

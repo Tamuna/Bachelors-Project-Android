@@ -1,4 +1,4 @@
-package ge.edu.freeuni.rsr.tournaments.add
+package ge.edu.freeuni.rsr.tournaments.game
 
 import android.content.Context
 import android.content.Intent
@@ -7,14 +7,14 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import butterknife.ButterKnife
 import ge.edu.freeuni.rsr.R
-import ge.edu.freeuni.rsr.tournaments.config.TournamentConfigActivity
 
 class TournamentGameActivity : AppCompatActivity() {
+
 
     companion object {
         @JvmStatic
         fun start(previous: Context) {
-            val intent = Intent(previous, TournamentConfigActivity::class.java)
+            val intent = Intent(previous, TournamentGameActivity::class.java)
             previous.startActivity(intent)
         }
     }
