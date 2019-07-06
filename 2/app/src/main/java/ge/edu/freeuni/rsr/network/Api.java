@@ -9,6 +9,7 @@ import ge.edu.freeuni.rsr.groupchat.configuration.NotificationBody;
 import ge.edu.freeuni.rsr.individual.game.entity.CorrectAnswers;
 import ge.edu.freeuni.rsr.individual.game.entity.IndGameResponse;
 import ge.edu.freeuni.rsr.individual.game.entity.Question;
+import ge.edu.freeuni.rsr.tournaments.create.TournamentConfigBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -48,4 +49,9 @@ public interface Api {
 
     @POST("api/group/get-chat-occupants")
     Call<RsrResponse<FriendsResult>> getChatOccupants(@Body NotificationBody notificationBody);
+
+    @POST("api/tour/save-tour")
+    Call<RsrResponse<Integer>> saveTourHeader(@Body TournamentConfigBody tournamentConfigBody);
+
 }
+

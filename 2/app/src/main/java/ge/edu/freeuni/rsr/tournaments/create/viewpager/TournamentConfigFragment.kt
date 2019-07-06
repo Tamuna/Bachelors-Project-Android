@@ -87,12 +87,12 @@ class TournamentConfigFragment : Fragment(), TimePickerDialog.OnTimeSetListener,
     }
 
     override fun onTimeSet(view: TimePickerDialog?, hourOfDay: Int, minute: Int, second: Int) {
-        dateTime = "$date $hourOfDay:$minute"
+        dateTime = "$date $hourOfDay:$minute:0"
         tvTime.text = dateTime
     }
 
     override fun onDateSet(view: DatePickerDialog?, year: Int, monthOfYear: Int, dayOfMonth: Int) {
-        date = "" + dayOfMonth + "/" + (monthOfYear + 1) + "/" + year
+        date = "" + year + "-" + (monthOfYear + 1) + "-" + dayOfMonth
         val now = Calendar.getInstance()
         val tpd = TimePickerDialog.newInstance(
                 this,
