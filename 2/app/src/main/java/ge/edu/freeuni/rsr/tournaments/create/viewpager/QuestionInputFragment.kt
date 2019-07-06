@@ -1,72 +1,72 @@
 package ge.edu.freeuni.rsr.tournaments.create.viewpager
 
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.fragment.app.Fragment
+import butterknife.BindView
+import butterknife.ButterKnife
+import butterknife.OnClick
+import butterknife.Unbinder
 import ge.edu.freeuni.rsr.R
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-//private const val ARG_PARAM1 = "param1"
-//private const val ARG_PARAM2 = "param2"
 
 class QuestionInputFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-//    private var param1: String? = null
-//    private var param2: String? = null
+
+    @BindView(R.id.etQuestionContent)
+    lateinit var etQuestionContent: EditText
+
+    @BindView(R.id.etAnswerContent)
+    lateinit var etAnswerContent: EditText
+
+    @OnClick(R.id.txtNext)
+    fun onNextClick() {
+        listener?.onSaveQuestionClick(etQuestionContent.toString(),
+                etAnswerContent.toString().split(";").map { it.trim() })
+        etAnswerContent.setText("")
+        etQuestionContent.setText("")
+    }
+
+    @OnClick(R.id.txtCreateTournament)
+    fun onFinishClick() {
+        listener?.onFinishCreatingClick()
+    }
+
+    private var unbinder: Unbinder? = null
     private var listener: OnFragmentInteractionListener? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-//            param1 = it.getString(ARG_PARAM1)
-//            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_question_input, container, false)
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(uri: Uri) {
-        listener?.onFragmentInteraction(uri)
+        val view = inflater.inflate(R.layout.fragment_question_input, container, false)
+        unbinder = ButterKnife.bind(this, view)
+        return view
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-//        if (context is OnFragmentInteractionListener) {
-//            listener = context
-//        } else {
-//            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
-//        }
+        if (context is OnFragmentInteractionListener) {
+            listener = context
+        }
     }
 
     override fun onDetach() {
         super.onDetach()
         listener = null
+        unbinder?.unbind()
     }
 
 
     interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        fun onFragmentInteraction(uri: Uri)
+        fun onSaveQuestionClick(question: String, answers: List<String>)
+        fun onFinishCreatingClick()
     }
 
     companion object {
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-                QuestionInputFragment().apply {
-                    arguments = Bundle().apply {
-//                        putString(ARG_PARAM1, param1)
-//                        putString(ARG_PARAM2, param2)
-                    }
-                }
+        fun newInstance() = QuestionInputFragment()
     }
 }

@@ -9,6 +9,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 
 class TournamentCreateInteractorImpl : TournamentCreateContract.TournamentCreateInteractor {
+
     private var api: Api
     private var retrofit: Retrofit
 
@@ -18,19 +19,40 @@ class TournamentCreateInteractorImpl : TournamentCreateContract.TournamentCreate
     }
 
     override fun saveTournament(name: String, startTime: String, userId: Int, listener: TournamentCreateContract.TournamentCreateInteractor.OnFinishListener) {
-        api.saveTourHeader(TournamentConfigBody(name, userId, startTime)).enqueue(object : Callback<RsrResponse<Int>> {
-            override fun onResponse(call: Call<RsrResponse<Int>>, response: Response<RsrResponse<Int>>) {
-                if (response.body() != null && response.body()!!.error == null) {
-                    listener.OnTournamentSaved()
-                } else {
-                    listener.OnError()
-                }
-            }
+        api.saveTourHeader(
+                TournamentConfigBody(name, userId, startTime))
+                .enqueue(object : Callback<RsrResponse<Int>> {
+                    override fun onResponse(call: Call<RsrResponse<Int>>, response: Response<RsrResponse<Int>>) {
+                        if (response.body() != null && response.body()!!.error == null) {
+                            listener.onTournamentSaved(response.body()!!.result)
+                        } else {
+                            listener.onError()
+                        }
+                    }
 
-            override fun onFailure(call: Call<RsrResponse<Int>>, t: Throwable) {
+                    override fun onFailure(call: Call<RsrResponse<Int>>, t: Throwable) {
 
-            }
-        });
+                    }
+                })
     }
+
+    override fun saveSingleQuestion(question: String, answers: List<String>, userId: Int, tourId: Int, listener: TournamentCreateContract.TournamentCreateInteractor.OnFinishListener) {
+        api.saveTourHeader(
+                TournamentConfigBody(user_id = userId, question_content = question, answers = answers, tour_id = tourId))
+                .enqueue(object : Callback<RsrResponse<Int>> {
+                    override fun onResponse(call: Call<RsrResponse<Int>>, response: Response<RsrResponse<Int>>) {
+                        if (response.body() != null && response.body()!!.error == null) {
+                            listener.onQuestionAddedToTournament()
+                        } else {
+                            listener.onError()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<RsrResponse<Int>>, t: Throwable) {
+
+                    }
+                })
+    }
+
 
 }

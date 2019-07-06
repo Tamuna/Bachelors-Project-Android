@@ -36,7 +36,7 @@ public interface GroupChatConfigurationContract {
             void onNotificationsSent();
         }
 
-        void sendNotifications(List<String> highlightedFriends, String dialogId, OnFinishListener onFinishListener);
+        void sendNotifications(List<String> highlightedFriends, String dialogId, List<Integer> chatUserIds, OnFinishListener onFinishListener);
 
         void getFriends(OnFinishListener onFinishListener);
     }

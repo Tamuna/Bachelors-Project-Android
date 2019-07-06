@@ -29,9 +29,9 @@ public class GroupChatConfigInteractorImpl implements GroupChatConfigurationCont
     }
 
     @Override
-    public void sendNotifications(List<String> highlightedFriends, String dialogId, OnFinishListener onFinishListener) {
+    public void sendNotifications(List<String> highlightedFriends, String dialogId, List<Integer> chatUserIds, OnFinishListener onFinishListener) {
 
-        api.sendNotifications(new NotificationBody(dialogId, AppUser.getInstance().getUser().getUserName() + " გიწვევთ ინტელექტუალურ ჩატში!", highlightedFriends)).enqueue(new Callback<RsrResponse<String>>() {
+        api.sendNotifications(new NotificationBody(dialogId, AppUser.getInstance().getUser().getUserName() + " გიწვევთ ინტელექტუალურ ჩატში!", highlightedFriends, chatUserIds)).enqueue(new Callback<RsrResponse<String>>() {
             @Override
             public void onResponse(Call<RsrResponse<String>> call, Response<RsrResponse<String>> response) {
                 if (response.body() != null) {

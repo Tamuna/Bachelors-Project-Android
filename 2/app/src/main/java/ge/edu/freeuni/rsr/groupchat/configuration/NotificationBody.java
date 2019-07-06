@@ -7,11 +7,13 @@ public class NotificationBody {
     private List<String> friend_usernames;
     private String dialog_id;
     private List<Integer> chat_ids;
+    private List<Integer> chat_user_ids;
 
-    public NotificationBody(String dialog_id, String message, List<String> friend_usernames) {
+    public NotificationBody(String dialog_id, String message, List<String> friend_usernames, List<Integer> chat_user_ids) {
         this.dialog_id = dialog_id;
         this.message = message;
         this.friend_usernames = friend_usernames;
+        this.chat_user_ids = chat_user_ids;
     }
 
     public NotificationBody(List<Integer> chat_ids) {

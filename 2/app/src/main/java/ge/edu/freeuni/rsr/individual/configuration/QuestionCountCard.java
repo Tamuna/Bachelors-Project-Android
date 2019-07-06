@@ -3,10 +3,10 @@ package ge.edu.freeuni.rsr.individual.configuration;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
+
 import ge.edu.freeuni.rsr.R;
 
 public class QuestionCountCard extends ConstraintLayout {

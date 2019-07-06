@@ -5,5 +5,6 @@ class TournamentConfigBody(
         private val user_id: Int = 0,
         private val start_time: String = "",
         private val answers: List<String>? = null,
-        private val question_content: String = ""
+        private val question_content: String = "",
+        private val tour_id: Int = 0
 )

@@ -12,17 +12,15 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 class ViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     companion object {
-         const val FRAGMENT_CONFIG = 0
-         const val FRAGMENT_QUESTION = 1
+        const val FRAGMENT_CONFIG = 0
+        const val FRAGMENT_QUESTION = 1
     }
 
     override fun getItem(position: Int): Fragment {
-        if (position == FRAGMENT_CONFIG)
-            return TournamentConfigFragment.newInstance()
-        if (position == FRAGMENT_QUESTION)
-            return QuestionInputFragment.newInstance("1", "2")
+        return if (position == FRAGMENT_CONFIG)
+            TournamentConfigFragment.newInstance()
         else
-            return QuestionInputFragment.newInstance("1", "2")
+            QuestionInputFragment.newInstance()
     }
 
     override fun getCount(): Int {

@@ -93,7 +93,7 @@ public class GroupChatConfigPresenterImpl implements GroupChatConfigurationContr
                     @Override
                     public void onSuccess(ConnectycubeChatDialog connectycubeChatDialog, Bundle bundle) {
                         view.startChat(connectycubeChatDialog.getDialogId());
-                        interactor.sendNotifications(userNames, connectycubeChatDialog.getDialogId(), new OnFinishListenerImpl());
+                        interactor.sendNotifications(userNames, connectycubeChatDialog.getDialogId(), connectycubeChatDialog.getOccupants(), new OnFinishListenerImpl());
                     }
 
                     @Override

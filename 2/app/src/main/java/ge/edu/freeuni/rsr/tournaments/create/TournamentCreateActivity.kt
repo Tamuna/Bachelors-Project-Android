@@ -10,11 +10,27 @@ import androidx.viewpager.widget.ViewPager
 import butterknife.BindView
 import butterknife.ButterKnife
 import ge.edu.freeuni.rsr.R
+import ge.edu.freeuni.rsr.tournaments.create.viewpager.QuestionInputFragment
 import ge.edu.freeuni.rsr.tournaments.create.viewpager.TournamentConfigFragment
 import ge.edu.freeuni.rsr.tournaments.create.viewpager.ViewPagerAdapter
 import ge.edu.freeuni.rsr.tournaments.create.viewpager.ViewPagerAdapter.Companion.FRAGMENT_QUESTION
 
-class TournamentCreateActivity : AppCompatActivity(), TournamentConfigFragment.OnFragmentInteractionListener, TournamentCreateContract.TournamentCreateView {
+class TournamentCreateActivity :
+        AppCompatActivity(),
+        TournamentConfigFragment.OnFragmentInteractionListener,
+        TournamentCreateContract.TournamentCreateView,
+        QuestionInputFragment.OnFragmentInteractionListener {
+    override fun onSaveQuestionClick(question: String, answers: List<String>) {
+        presenter?.saveSingleQuestion(question, answers)
+    }
+
+    override fun onFinishCreatingClick() {
+        Toast.makeText(this, "ტურნირის შექმნა წამატებით დასრულდა!", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun notifyQuestionSaved() {
+        Toast.makeText(this, "კითხვა წარმატებით დაემატა ტურნირში!", Toast.LENGTH_SHORT).show()
+    }
 
     private var presenter: TournamentCreateContract.TournamentCreatePresenter? = null
     @BindView(R.id.vpTournamentConfig)
@@ -33,7 +49,7 @@ class TournamentCreateActivity : AppCompatActivity(), TournamentConfigFragment.O
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_tournament_create)
         ButterKnife.bind(this)
-        presenter = TournamenntCreatePresenterImpl(this, TournamentCreateInteractorImpl())
+        presenter = TournamentCreatePresenterImpl(this, TournamentCreateInteractorImpl())
         vpTournamentConfig.adapter = ViewPagerAdapter(supportFragmentManager)
     }
 

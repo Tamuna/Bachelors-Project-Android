@@ -53,5 +53,8 @@ public interface Api {
     @POST("api/tour/save-tour")
     Call<RsrResponse<Integer>> saveTourHeader(@Body TournamentConfigBody tournamentConfigBody);
 
+    @POST("api/tour/add-question-to-tour")
+    Call<RsrResponse<Integer>> saveSingleQuestion(@Body TournamentConfigBody tournamentConfigBody);
+
 }
 
