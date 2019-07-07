@@ -22,6 +22,7 @@ import butterknife.OnTextChanged;
 import ge.edu.freeuni.rsr.R;
 import ge.edu.freeuni.rsr.common.entity.User;
 import ge.edu.freeuni.rsr.groupchat.chat.GroupChatActivity;
+import ge.edu.freeuni.rsr.groupchat.configuration.recycler.FriendsRecyclerAdapter;
 
 public class GroupChatConfigActivity extends AppCompatActivity implements GroupChatConfigurationContract.GroupChatView {
 
@@ -96,7 +97,7 @@ public class GroupChatConfigActivity extends AppCompatActivity implements GroupC
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
     }
 
-    class OnItemClickListenerImpl implements FriendsRecyclerAdapter.OnItemClickListener {
+    public class OnItemClickListenerImpl implements FriendsRecyclerAdapter.OnItemClickListener {
 
         @Override
         public void onFriendSelected(User friend, int position) {

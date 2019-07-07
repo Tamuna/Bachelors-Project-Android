@@ -37,7 +37,7 @@ class TournamentCreateInteractorImpl : TournamentCreateContract.TournamentCreate
     }
 
     override fun saveSingleQuestion(question: String, answers: List<String>, userId: Int, tourId: Int, listener: TournamentCreateContract.TournamentCreateInteractor.OnFinishListener) {
-        api.saveTourHeader(
+        api.saveSingleQuestion(
                 TournamentConfigBody(user_id = userId, question_content = question, answers = answers, tour_id = tourId))
                 .enqueue(object : Callback<RsrResponse<Int>> {
                     override fun onResponse(call: Call<RsrResponse<Int>>, response: Response<RsrResponse<Int>>) {

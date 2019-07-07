@@ -28,6 +28,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ge.edu.freeuni.rsr.R;
 import ge.edu.freeuni.rsr.groupchat.chat.entity.Message;
+import ge.edu.freeuni.rsr.groupchat.chat.recycler.MessagesRecyclerAdapter;
 import ge.edu.freeuni.rsr.home.HomeActivity;
 
 public class GroupChatActivity extends AppCompatActivity implements GroupChatContract.GroupChatView, GroupAnswerSubmittedDialog.AnswerDecisionListener {

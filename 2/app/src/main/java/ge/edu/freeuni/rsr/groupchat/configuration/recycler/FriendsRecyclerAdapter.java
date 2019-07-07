@@ -1,4 +1,4 @@
-package ge.edu.freeuni.rsr.groupchat.configuration;
+package ge.edu.freeuni.rsr.groupchat.configuration.recycler;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +12,7 @@ import java.util.List;
 
 import ge.edu.freeuni.rsr.R;
 import ge.edu.freeuni.rsr.common.entity.User;
+import ge.edu.freeuni.rsr.groupchat.configuration.GroupChatConfigActivity;
 
 
 /*

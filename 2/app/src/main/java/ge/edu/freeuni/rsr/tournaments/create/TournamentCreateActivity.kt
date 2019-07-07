@@ -14,6 +14,7 @@ import ge.edu.freeuni.rsr.tournaments.create.viewpager.QuestionInputFragment
 import ge.edu.freeuni.rsr.tournaments.create.viewpager.TournamentConfigFragment
 import ge.edu.freeuni.rsr.tournaments.create.viewpager.ViewPagerAdapter
 import ge.edu.freeuni.rsr.tournaments.create.viewpager.ViewPagerAdapter.Companion.FRAGMENT_QUESTION
+import ge.edu.freeuni.rsr.tournaments.game.TournamentGameActivity
 
 class TournamentCreateActivity :
         AppCompatActivity(),
@@ -26,6 +27,7 @@ class TournamentCreateActivity :
 
     override fun onFinishCreatingClick() {
         Toast.makeText(this, "ტურნირის შექმნა წამატებით დასრულდა!", Toast.LENGTH_SHORT).show()
+        TournamentGameActivity.start(this)
     }
 
     override fun notifyQuestionSaved() {

@@ -1,4 +1,4 @@
-package ge.edu.freeuni.rsr.groupchat.configuration;
+package ge.edu.freeuni.rsr.groupchat.configuration.recycler;
 
 import android.view.View;
 import android.widget.TextView;

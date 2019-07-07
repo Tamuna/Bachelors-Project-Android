@@ -24,8 +24,8 @@ class QuestionInputFragment : Fragment() {
 
     @OnClick(R.id.txtNext)
     fun onNextClick() {
-        listener?.onSaveQuestionClick(etQuestionContent.toString(),
-                etAnswerContent.toString().split(";").map { it.trim() })
+        listener?.onSaveQuestionClick(etQuestionContent.text.toString(),
+                etAnswerContent.text.toString().split(";").map { it.trim() })
         etAnswerContent.setText("")
         etQuestionContent.setText("")
     }

@@ -1,4 +1,4 @@
-package ge.edu.freeuni.rsr.groupchat.chat;
+package ge.edu.freeuni.rsr.groupchat.chat.recycler;
 
 import android.graphics.drawable.GradientDrawable;
 import android.view.Gravity;
