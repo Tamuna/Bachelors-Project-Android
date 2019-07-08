@@ -1,4 +1,4 @@
-package ge.edu.freeuni.rsr.tournaments.game.tourslist
+package ge.edu.freeuni.rsr.tournaments.game.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,18 +6,18 @@ import androidx.recyclerview.widget.RecyclerView
 import ge.edu.freeuni.rsr.R
 import ge.edu.freeuni.rsr.tournaments.game.entity.Tournament
 
-class TournamentsRecyclerAdapter(private val listener: OnItemClickListener) : RecyclerView.Adapter<TournirViewHolder>() {
+class TournamentsRecyclerAdapter(private val listener: OnItemClickListener) : RecyclerView.Adapter<TournamentViewHolder>() {
     private var data: MutableList<Tournament> = ArrayList()
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TournirViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TournamentViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.cell_tournament, parent, false)
-        return TournirViewHolder(view)
+        return TournamentViewHolder(view)
     }
 
     override fun getItemCount(): Int {
         return data.size
     }
 
-    override fun onBindViewHolder(holder: TournirViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TournamentViewHolder, position: Int) {
         holder.bindData(data[position], listener)
     }
 

@@ -9,7 +9,8 @@ data class Tournament(
         var start_time: String,
         var expired: Boolean,
         var question_count: Int,
-        var questions: Question
+        var questions: List<Question>,
+        var current_question: Int
 )
 
 data class Question(

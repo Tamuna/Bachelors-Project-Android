@@ -1,18 +1,18 @@
-package ge.edu.freeuni.rsr.tournaments.game
+package ge.edu.freeuni.rsr.tournaments.game.list
 
 import ge.edu.freeuni.rsr.tournaments.game.entity.Tournament
 
-interface TournamentGameContract {
+interface TournamentListContract {
 
-    interface TournamentGameView {
+    interface TournamentListView {
         fun displayAllTournamments(tournaments: List<Tournament>)
     }
 
-    interface TournamentGamePresenter {
+    interface TournamentListPresenter {
         fun getAllTournaments()
     }
 
-    interface TournamentGameInteractor {
+    interface TournamentListInteractor {
         interface OnFinishListener {
             fun onTournamentsLoaded(tournaments: List<Tournament>)
         }

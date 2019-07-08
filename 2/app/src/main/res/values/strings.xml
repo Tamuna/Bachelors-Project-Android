@@ -29,9 +29,6 @@
     <string name="name">სახელი</string>
     <string name="logout">გამოსვლა</string>
     <string name="default_font" translatable="false">sans-serif-light</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="next">შემდეგი</string>
     <string name="choose_time">დროის არჩევა</string>
     <string name="tournir_name">ტურნირის სახელი</string>

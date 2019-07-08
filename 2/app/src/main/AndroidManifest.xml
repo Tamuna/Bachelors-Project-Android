@@ -15,10 +15,13 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".tournaments.game.game.TournamentGameActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
             android:name=".tournaments.create.TournamentCreateActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".tournaments.game.TournamentGameActivity"
+            android:name=".tournaments.game.list.TournamentListActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".tournaments.config.TournamentConfigActivity"

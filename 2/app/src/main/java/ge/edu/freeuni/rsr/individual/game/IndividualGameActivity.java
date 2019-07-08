@@ -110,12 +110,12 @@ public class IndividualGameActivity extends AppCompatActivity implements Individ
 
     @Override
     public void renderCorrectAnswerScreen() {
-        AfterAnswerSubmissionDialog.newInstance(true, "").show(getSupportFragmentManager(), "");
+        AfterAnswerSubmissionDialog.newInstance(true, "", false).show(getSupportFragmentManager(), "");
     }
 
     @Override
     public void renderWrongAnswerScreen(Answer correctAnswer) {
-        AfterAnswerSubmissionDialog.newInstance(false, correctAnswer.getAnswer()).show(getSupportFragmentManager(), "");
+        AfterAnswerSubmissionDialog.newInstance(false, correctAnswer.getAnswer(), false).show(getSupportFragmentManager(), "");
     }
 
     @Override

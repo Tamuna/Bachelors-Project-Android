@@ -59,7 +59,6 @@ dependencies {
 
     implementation 'com.wdullaer:materialdatetimepicker:4.2.1'
 
-
 }
 repositories {
     mavenCentral()

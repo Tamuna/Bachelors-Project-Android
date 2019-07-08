@@ -4,13 +4,16 @@
     android:id="@+id/cardView3"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="10dp"
     android:orientation="vertical"
-    app:cardCornerRadius="10dp">
+    app:cardCornerRadius="10dp"
+    app:cardElevation="7dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp">
+        android:padding="15dp">
 
         <TextView
             android:id="@+id/txtTourName"
@@ -33,7 +36,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:text="დაწყების დრო:"
-            android:textColor="@color/light_gray"
+            android:textColor="@color/gray"
             app:layout_constraintBottom_toTopOf="@+id/textView6"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtTourName" />
@@ -45,7 +48,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
             android:text="კითხვების რაოდენობა:"
-            android:textColor="@color/light_gray"
+            android:textColor="@color/gray"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -56,7 +59,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:text="18:23"
-            android:textColor="@color/dark_blue"
+            android:textColor="@color/gray"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/textView5"
             app:layout_constraintStart_toEndOf="@+id/textView5"
             app:layout_constraintTop_toTopOf="@+id/textView5" />
@@ -67,7 +71,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:text="6"
-            android:textColor="@color/dark_blue"
+            android:textColor="@color/gray"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/textView6"
             app:layout_constraintStart_toEndOf="@+id/textView6"
             app:layout_constraintTop_toTopOf="@+id/textView6" />

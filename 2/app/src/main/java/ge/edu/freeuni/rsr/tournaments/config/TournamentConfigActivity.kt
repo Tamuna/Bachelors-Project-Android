@@ -9,7 +9,7 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import ge.edu.freeuni.rsr.R
 import ge.edu.freeuni.rsr.tournaments.create.TournamentCreateActivity
-import ge.edu.freeuni.rsr.tournaments.game.TournamentGameActivity
+import ge.edu.freeuni.rsr.tournaments.game.list.TournamentListActivity
 
 class TournamentConfigActivity : AppCompatActivity() {
 
@@ -28,7 +28,7 @@ class TournamentConfigActivity : AppCompatActivity() {
 
     @OnClick(R.id.btn_enter_tours)
     fun onEnterToursClick() {
-        TournamentGameActivity.start(this)
+        TournamentListActivity.start(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

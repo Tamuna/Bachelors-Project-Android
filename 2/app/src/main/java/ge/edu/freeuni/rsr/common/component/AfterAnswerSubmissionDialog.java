@@ -22,6 +22,7 @@ public class AfterAnswerSubmissionDialog extends DialogFragment {
 
     public static final String IS_CORRECT = "isCorrect";
     public static final String CORRECT_ANSWER = "correctAnswer";
+    public static final String IS_TOURNAMENT = "isTournament";
 
     public interface AnswerSubmissionDialogListener {
         void OnNextQuestionClicked(DialogFragment dialog);
@@ -30,13 +31,14 @@ public class AfterAnswerSubmissionDialog extends DialogFragment {
     private AnswerSubmissionDialogListener listener;
     private boolean isCorrect;
     private String correctAnswer;
+    private boolean isTournament;
 
 
-    public static AfterAnswerSubmissionDialog newInstance(boolean isCorrect, String answer) {
-
+    public static AfterAnswerSubmissionDialog newInstance(boolean isCorrect, String answer, boolean isTournament) {
         Bundle args = new Bundle();
         args.putBoolean(IS_CORRECT, isCorrect);
         args.putString(CORRECT_ANSWER, answer);
+        args.putBoolean(IS_TOURNAMENT, isTournament);
         AfterAnswerSubmissionDialog fragment = new AfterAnswerSubmissionDialog();
         fragment.setArguments(args);
         fragment.setCancelable(false);
@@ -48,7 +50,9 @@ public class AfterAnswerSubmissionDialog extends DialogFragment {
         super.onCreate(savedInstanceState);
         isCorrect = getArguments().getBoolean(IS_CORRECT);
         correctAnswer = getArguments().getString(CORRECT_ANSWER);
-        listener = (AnswerSubmissionDialogListener) getContext();
+        isTournament = getArguments().getBoolean(IS_TOURNAMENT);
+        if (!isTournament)
+            listener = (AnswerSubmissionDialogListener) getContext();
     }
 
 
@@ -73,6 +77,9 @@ public class AfterAnswerSubmissionDialog extends DialogFragment {
             correctness.setText("სწორი პასუხია:");
             correctAnswerHolder.setText(correctAnswer);
             correctAnswerHolder.setTextColor(getResources().getColor(R.color.light_red));
+        }
+        if (isTournament) {
+            btnNext.setVisibility(View.INVISIBLE);
         }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());

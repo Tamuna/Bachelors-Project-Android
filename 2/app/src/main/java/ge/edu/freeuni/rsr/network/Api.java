@@ -1,5 +1,7 @@
 package ge.edu.freeuni.rsr.network;
 
+import java.util.List;
+
 import ge.edu.freeuni.rsr.auth.entity.AuthResult;
 import ge.edu.freeuni.rsr.auth.entity.Credentials;
 import ge.edu.freeuni.rsr.auth.entity.UserResult;
@@ -10,6 +12,7 @@ import ge.edu.freeuni.rsr.individual.game.entity.CorrectAnswers;
 import ge.edu.freeuni.rsr.individual.game.entity.IndGameResponse;
 import ge.edu.freeuni.rsr.individual.game.entity.Question;
 import ge.edu.freeuni.rsr.tournaments.create.TournamentConfigBody;
+import ge.edu.freeuni.rsr.tournaments.game.entity.Tournament;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -55,6 +58,13 @@ public interface Api {
 
     @POST("api/tour/add-question-to-tour")
     Call<RsrResponse<Integer>> saveSingleQuestion(@Body TournamentConfigBody tournamentConfigBody);
+
+    @GET("api/tour/get-all-tours")
+    Call<RsrResponse<List<Tournament>>> getAllTournaments();
+
+    @GET("api/tour/get-selected-tour/{dialogId}")
+    Call<RsrResponse<Tournament>> getTournament(@Path("dialogId") int dialogId);
+
 
 }
 
