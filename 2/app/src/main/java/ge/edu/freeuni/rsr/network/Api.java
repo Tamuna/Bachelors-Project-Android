@@ -12,7 +12,7 @@ import ge.edu.freeuni.rsr.individual.game.entity.CorrectAnswers;
 import ge.edu.freeuni.rsr.individual.game.entity.IndGameResponse;
 import ge.edu.freeuni.rsr.individual.game.entity.Question;
 import ge.edu.freeuni.rsr.tournaments.create.TournamentConfigBody;
-import ge.edu.freeuni.rsr.tournaments.game.entity.Tournament;
+import ge.edu.freeuni.rsr.tournaments.entity.Tournament;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -65,6 +65,8 @@ public interface Api {
     @GET("api/tour/get-selected-tour/{dialogId}")
     Call<RsrResponse<Tournament>> getTournament(@Path("dialogId") int dialogId);
 
+    @POST("api/tour/save-tour-results")
+    Call<RsrResponse<String>> saveTourResults(@Body TournamentConfigBody tournamentConfigBody);
 
 }
 

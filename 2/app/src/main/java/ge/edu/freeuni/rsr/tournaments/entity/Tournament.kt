@@ -1,4 +1,4 @@
-package ge.edu.freeuni.rsr.tournaments.game.entity
+package ge.edu.freeuni.rsr.tournaments.entity
 
 import ge.edu.freeuni.rsr.individual.game.entity.Answer
 

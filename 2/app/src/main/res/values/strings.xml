@@ -35,4 +35,5 @@
     <string name="questionhint">დაწერეთ კითხვა…</string>
     <string name="answerhint">დაწერეთ პასუხი…</string>
     <string name="several_answers_possible">შეგიძლიათ დაამატოთ პასუხის რამდენიმე ვარიანტი, რომლებიც გამოყოფილი იქნება <b>;</b> სიმბოლოთი</string>
+    <string name="tour_start_time_is">ტურნირის დაწყების დროა:</string>
 </resources>

@@ -3,7 +3,7 @@ package ge.edu.freeuni.rsr.tournaments.game.list
 import ge.edu.freeuni.rsr.common.entity.RsrResponse
 import ge.edu.freeuni.rsr.network.Api
 import ge.edu.freeuni.rsr.network.RetrofitInstance
-import ge.edu.freeuni.rsr.tournaments.game.entity.Tournament
+import ge.edu.freeuni.rsr.tournaments.entity.Tournament
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

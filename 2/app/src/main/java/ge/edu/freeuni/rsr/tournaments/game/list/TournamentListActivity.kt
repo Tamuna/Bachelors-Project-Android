@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import butterknife.BindView
 import butterknife.ButterKnife
 import ge.edu.freeuni.rsr.R
-import ge.edu.freeuni.rsr.tournaments.game.entity.Tournament
+import ge.edu.freeuni.rsr.tournaments.entity.Tournament
 import ge.edu.freeuni.rsr.tournaments.game.game.TournamentGameActivity
 
 class TournamentListActivity : AppCompatActivity(), TournamentListContract.TournamentListView {

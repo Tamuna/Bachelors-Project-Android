@@ -17,6 +17,7 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import ge.edu.freeuni.rsr.R
 import ge.edu.freeuni.rsr.common.component.AfterAnswerSubmissionDialog
+import ge.edu.freeuni.rsr.home.HomeActivity
 
 
 class TournamentGameActivity : AppCompatActivity(), TournamentGameContract.TournamentGameView {
@@ -38,7 +39,6 @@ class TournamentGameActivity : AppCompatActivity(), TournamentGameContract.Tourn
     @BindView(R.id.etAnswerInput)
     lateinit var etAnswerInput: EditText
 
-
     @BindView(R.id.imgSendAnswer)
     lateinit var imgSendAnswer: ImageView
 
@@ -53,6 +53,12 @@ class TournamentGameActivity : AppCompatActivity(), TournamentGameContract.Tourn
 
     @BindView(R.id.txtStartTime)
     lateinit var txtStartTime: TextView
+
+    @BindView(R.id.txtInfo)
+    lateinit var txtInfo: TextView
+
+    @BindView(R.id.txtStart)
+    lateinit var txtAction: TextView
 
     @OnClick(R.id.txtStart)
     fun onStartClick() {
@@ -110,7 +116,7 @@ class TournamentGameActivity : AppCompatActivity(), TournamentGameContract.Tourn
     override fun showPreTournamentView(startTime: String) {
         containerPreTournament.visibility = View.VISIBLE
         containerGameHolder.visibility = View.GONE
-        txtStartTime.text = startTime
+        txtStartTime.text = startTime.substring(0, startTime.length - 3)
     }
 
     override fun displayQuestion(questionContent: String) {
@@ -134,6 +140,21 @@ class TournamentGameActivity : AppCompatActivity(), TournamentGameContract.Tourn
     }
 
     override fun showTournamentEndedInfo(numCorrect: Int) {
+        val info: String = if (numCorrect > 0) {
+            "თქვენ წარმატებით დაასრულეთ ტურნირი და დააგროვეთ $numCorrect სწორი პასუხი"
+        } else {
+            "თქვენ წარმატებით დაასრულეთ ტურნირი"
+        }
+        txtInfo.text = info
+        containerPreTournament.visibility = View.VISIBLE
+        containerGameHolder.visibility = View.GONE
+        txtAction.text = "მთავარი გვერდი"
+        txtAction.setOnClickListener {
+            HomeActivity.start(this)
+            finish()
+        }
+        txtStartTime.visibility = View.GONE
+
     }
 
 

@@ -1,6 +1,6 @@
 package ge.edu.freeuni.rsr.tournaments.game.list
 
-import ge.edu.freeuni.rsr.tournaments.game.entity.Tournament
+import ge.edu.freeuni.rsr.tournaments.entity.Tournament
 
 interface TournamentListContract {
 

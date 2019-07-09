@@ -1,6 +1,6 @@
 package ge.edu.freeuni.rsr.tournaments.game.game
 
-import ge.edu.freeuni.rsr.tournaments.game.entity.Tournament
+import ge.edu.freeuni.rsr.tournaments.entity.Tournament
 
 interface TournamentGameContract {
     interface TournamentGameView {
@@ -27,6 +27,6 @@ interface TournamentGameContract {
         }
 
         fun loadSingleTournament(id: Int, onFinishListener: OnFinishListener)
-        fun updateTournamentResults(id: Int?, id1: Int, numCorrect: Int, onFinishListener: OnFinishListener)
+        fun updateTournamentResults(userId: Int, tourId: Int, points: Int, onFinishListener: OnFinishListener)
     }
 }

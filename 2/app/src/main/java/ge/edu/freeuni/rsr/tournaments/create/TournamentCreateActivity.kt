@@ -27,6 +27,7 @@ class TournamentCreateActivity :
 
     override fun onFinishCreatingClick() {
         Toast.makeText(this, "ტურნირის შექმნა წამატებით დასრულდა!", Toast.LENGTH_SHORT).show()
+        finish()
         TournamentListActivity.start(this)
     }
 

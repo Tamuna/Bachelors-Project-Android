@@ -1,7 +1,7 @@
 package ge.edu.freeuni.rsr.tournaments.game.game
 
 import ge.edu.freeuni.rsr.AppUser
-import ge.edu.freeuni.rsr.tournaments.game.entity.Tournament
+import ge.edu.freeuni.rsr.tournaments.entity.Tournament
 
 class TournamentGamePresenterImpl(
         private val view: TournamentGameContract.TournamentGameView,
@@ -66,7 +66,7 @@ class TournamentGamePresenterImpl(
             view.showTournamentEndedInfo(numCorrect)
         }
 
-        override fun onResultsSaved(){
+        override fun onResultsSaved() {
             view.showTournamentEndedInfo(numCorrect)
         }
     }

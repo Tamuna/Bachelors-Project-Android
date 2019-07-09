@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ge.edu.freeuni.rsr.R
-import ge.edu.freeuni.rsr.tournaments.game.entity.Tournament
+import ge.edu.freeuni.rsr.tournaments.entity.Tournament
 
 class TournamentsRecyclerAdapter(private val listener: OnItemClickListener) : RecyclerView.Adapter<TournamentViewHolder>() {
     private var data: MutableList<Tournament> = ArrayList()
