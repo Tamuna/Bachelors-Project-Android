@@ -10,7 +10,7 @@ data class Tournament(
         var expired: Boolean,
         var question_count: Int,
         var questions: List<Question>,
-        var current_question: Int
+        var seconds_until: Long
 )
 
 data class Question(

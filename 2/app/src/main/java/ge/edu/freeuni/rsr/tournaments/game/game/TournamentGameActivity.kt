@@ -17,10 +17,13 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import ge.edu.freeuni.rsr.R
 import ge.edu.freeuni.rsr.common.component.CustomDialogFragment
-import ge.edu.freeuni.rsr.home.HomeActivity
 
 
 class TournamentGameActivity : AppCompatActivity(), TournamentGameContract.TournamentGameView {
+    override fun expired() {
+        Toast.makeText(this, "ტურნირი უკვე დაიწყო", Toast.LENGTH_SHORT).show()
+        finish()
+    }
 
     private var timeOnSingleQuestion: Long = 120000
     private var timer: CountDownTimer? = null
@@ -57,14 +60,6 @@ class TournamentGameActivity : AppCompatActivity(), TournamentGameContract.Tourn
     @BindView(R.id.txtInfo)
     lateinit var txtInfo: TextView
 
-    @BindView(R.id.txtStart)
-    lateinit var txtAction: TextView
-
-    @OnClick(R.id.txtStart)
-    fun onStartClick() {
-        presenter?.getTournamentData(tournamentId)
-    }
-
 
     @OnClick(R.id.imgSendAnswer)
     fun onSendAnswerClick(view: View) {
@@ -78,6 +73,8 @@ class TournamentGameActivity : AppCompatActivity(), TournamentGameContract.Tourn
 
     companion object {
         private const val TOURNAMENT_ID: String = "tournamentId"
+        private const val TIMER_TYPE_QUESTION: Int = 1
+        private const val TIMER_TYPE_TIME_LEFT: Int = 2
         fun start(previous: Context, tournamentId: Int) {
             val intent = Intent(previous, TournamentGameActivity::class.java)
             intent.putExtra(TOURNAMENT_ID, tournamentId)
@@ -94,7 +91,6 @@ class TournamentGameActivity : AppCompatActivity(), TournamentGameContract.Tourn
         presenter = TournamentGamePresenterImpl(this, TournamentGameInteractorImpl())
         tournamentId = intent.getIntExtra(TOURNAMENT_ID, 0)
         presenter?.getTournamentData(tournamentId)
-        createTimer()
     }
 
     private fun hideKeyboard() {
@@ -113,17 +109,20 @@ class TournamentGameActivity : AppCompatActivity(), TournamentGameContract.Tourn
             loaderView.visibility = View.GONE
     }
 
-    override fun showPreTournamentView(startTime: String) {
+    override fun showPreTournamentView(timeLeft: Long) {
         containerPreTournament.visibility = View.VISIBLE
         containerGameHolder.visibility = View.GONE
-        txtStartTime.text = startTime.substring(0, startTime.length - 3)
+        createTimer(TIMER_TYPE_TIME_LEFT, timeLeft)
+        timer?.start()
     }
 
     override fun displayQuestion(questionContent: String) {
+
         containerGameHolder.visibility = View.VISIBLE
         containerPreTournament.visibility = View.GONE
         tvQuestionContent.text = questionContent
         etAnswerInput.inputType = InputType.TYPE_CLASS_TEXT
+        createTimer(TIMER_TYPE_QUESTION, 120000)
         timer?.start()
     }
 
@@ -148,11 +147,6 @@ class TournamentGameActivity : AppCompatActivity(), TournamentGameContract.Tourn
         txtInfo.text = info
         containerPreTournament.visibility = View.VISIBLE
         containerGameHolder.visibility = View.GONE
-        txtAction.text = "მთავარი გვერდი"
-        txtAction.setOnClickListener {
-            HomeActivity.start(this, null)
-            finish()
-        }
         txtStartTime.visibility = View.GONE
 
     }
@@ -176,16 +170,29 @@ class TournamentGameActivity : AppCompatActivity(), TournamentGameContract.Tourn
         return "" + seconds / 60 + ":" + seconds % 60
     }
 
-    private fun createTimer() {
+
+    private fun createTimer(timerType: Int, timeToCountDown: Long) {
+        timeOnSingleQuestion = timeToCountDown
+        if (timerType == TIMER_TYPE_TIME_LEFT) {
+            timeOnSingleQuestion *= 1000
+        }
         timer = object : CountDownTimer(timeOnSingleQuestion, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 timeOnSingleQuestion = millisUntilFinished
-                tvTime.text = toTime(timeOnSingleQuestion / 1000)
+                if (timerType == TIMER_TYPE_QUESTION) {
+                    tvTime.text = toTime(timeOnSingleQuestion / 1000)
+                } else {
+                    txtStartTime.text = toTime(timeOnSingleQuestion / 1000)
+                }
             }
 
             override fun onFinish() {
-                presenter?.checkSentAnswer()
-                timer?.cancel()
+                if (timerType == TIMER_TYPE_QUESTION) {
+                    presenter?.checkSentAnswer()
+                    timer?.cancel()
+                } else if (timerType == TIMER_TYPE_TIME_LEFT) {
+                    presenter?.getNextQuestion()
+                }
             }
         }
     }
