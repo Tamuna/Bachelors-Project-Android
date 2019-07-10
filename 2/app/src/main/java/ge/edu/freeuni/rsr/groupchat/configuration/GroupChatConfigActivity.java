@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -18,9 +17,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.OnTextChanged;
 import ge.edu.freeuni.rsr.R;
 import ge.edu.freeuni.rsr.common.entity.User;
+import ge.edu.freeuni.rsr.groupchat.addfriend.AddFriendActivity;
 import ge.edu.freeuni.rsr.groupchat.chat.GroupChatActivity;
 import ge.edu.freeuni.rsr.groupchat.configuration.recycler.FriendsRecyclerAdapter;
 
@@ -32,12 +31,11 @@ public class GroupChatConfigActivity extends AppCompatActivity implements GroupC
     @BindView(R.id.loader_view)
     LinearLayout loaderView;
 
-    @BindView(R.id.et_search_users)
-    EditText etSearchUsers;
 
-    @OnTextChanged(R.id.et_search_users)
-    void onTextChanged(CharSequence text) {
-        adapter.filterUsers(text);
+    @OnClick(R.id.txtAddFriend)
+    void onAddFriendClicked() {
+        finish();
+        AddFriendActivity.start(this);
     }
 
     private FriendsRecyclerAdapter adapter;

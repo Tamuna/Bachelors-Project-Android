@@ -34,12 +34,7 @@ public class FriendViewHolder extends RecyclerView.ViewHolder {
         }
         txtFullName.setText(friend.getUserName());
 
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onItemClickListener.onFriendSelected(friend, getAdapterPosition());
-            }
-        });
+        itemView.setOnClickListener(v -> onItemClickListener.onFriendSelected(friend, getAdapterPosition()));
 
     }
 }

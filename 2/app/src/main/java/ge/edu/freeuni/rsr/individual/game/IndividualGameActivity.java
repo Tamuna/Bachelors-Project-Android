@@ -20,11 +20,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ge.edu.freeuni.rsr.R;
-import ge.edu.freeuni.rsr.common.component.AfterAnswerSubmissionDialog;
+import ge.edu.freeuni.rsr.common.component.CustomDialogFragment;
 import ge.edu.freeuni.rsr.individual.game.entity.Answer;
 import ge.edu.freeuni.rsr.individual.game.entity.Question;
 
-public class IndividualGameActivity extends AppCompatActivity implements IndividualGameContract.IndividualGameView, AfterAnswerSubmissionDialog.AnswerSubmissionDialogListener {
+public class IndividualGameActivity extends AppCompatActivity implements IndividualGameContract.IndividualGameView, CustomDialogFragment.AnswerSubmissionDialogListener {
 
     private long timeOnSingleQuestion = 120000;
     private CountDownTimer timer;
@@ -110,12 +110,12 @@ public class IndividualGameActivity extends AppCompatActivity implements Individ
 
     @Override
     public void renderCorrectAnswerScreen() {
-        AfterAnswerSubmissionDialog.newInstance(true, "", false).show(getSupportFragmentManager(), "");
+        CustomDialogFragment.newInstance(true, "", false).show(getSupportFragmentManager(), "");
     }
 
     @Override
     public void renderWrongAnswerScreen(Answer correctAnswer) {
-        AfterAnswerSubmissionDialog.newInstance(false, correctAnswer.getAnswer(), false).show(getSupportFragmentManager(), "");
+        CustomDialogFragment.newInstance(false, correctAnswer.getAnswer(), false).show(getSupportFragmentManager(), "");
     }
 
     @Override

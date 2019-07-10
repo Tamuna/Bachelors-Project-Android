@@ -5,7 +5,9 @@ import java.util.List;
 import ge.edu.freeuni.rsr.auth.entity.AuthResult;
 import ge.edu.freeuni.rsr.auth.entity.Credentials;
 import ge.edu.freeuni.rsr.auth.entity.UserResult;
+import ge.edu.freeuni.rsr.common.FriendCredentials;
 import ge.edu.freeuni.rsr.common.entity.RsrResponse;
+import ge.edu.freeuni.rsr.common.entity.User;
 import ge.edu.freeuni.rsr.groupchat.FriendsResult;
 import ge.edu.freeuni.rsr.groupchat.configuration.NotificationBody;
 import ge.edu.freeuni.rsr.individual.game.entity.CorrectAnswers;
@@ -68,5 +70,13 @@ public interface Api {
     @POST("api/tour/save-tour-results")
     Call<RsrResponse<String>> saveTourResults(@Body TournamentConfigBody tournamentConfigBody);
 
+    @POST("api/profile/search-user")
+    Call<RsrResponse<List<User>>> getFilteredUsers(@Body Credentials body);
+
+    @POST("api/profile/send-friend-request")
+    Call<RsrResponse<String>> sendFriendRequest(@Body NotificationBody body);
+
+    @POST("api/profile/response-friend-request")
+    Call<RsrResponse<String>> confirmFriendRequest(@Body FriendCredentials body);
 }
 

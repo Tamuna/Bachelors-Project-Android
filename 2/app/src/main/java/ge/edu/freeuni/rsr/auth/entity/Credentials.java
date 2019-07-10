@@ -7,6 +7,11 @@ public class Credentials {
     private String c_password;
     private Integer chat_id;
     private String device_token;
+    private String username;
+
+    public Credentials(String username) {
+        this.username = username;
+    }
 
     public Credentials(String user_name, String email, String password, String c_password) {
         this.user_name = user_name;

@@ -18,6 +18,7 @@ import ge.edu.freeuni.rsr.R;
 import ge.edu.freeuni.rsr.groupchat.chat.GroupChatActivity;
 import ge.edu.freeuni.rsr.home.HomeActivity;
 
+
 public class AuthActivity extends AppCompatActivity implements AuthContract.AuthView {
 
     @BindView(R.id.loader_view)
@@ -40,6 +41,7 @@ public class AuthActivity extends AppCompatActivity implements AuthContract.Auth
 
     @BindView(R.id.et_reg_confirm_password)
     EditText etRegConfirmPassword;
+
 
     public static void start(Context previous) {
         Intent intent = new Intent(previous, AuthActivity.class);
@@ -91,6 +93,7 @@ public class AuthActivity extends AppCompatActivity implements AuthContract.Auth
     private AuthContract.AuthPresenter presenter;
 
     private String dialogId;
+    private String friendUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +104,8 @@ public class AuthActivity extends AppCompatActivity implements AuthContract.Auth
 
         presenter = new AuthPresenterImpl(new AuthInteractorImpl(), this);
         dialogId = getIntent().getStringExtra("dialog_id");
+        friendUsername = getIntent().getStringExtra("friend_username");
+
     }
 
     @Override
@@ -112,10 +117,10 @@ public class AuthActivity extends AppCompatActivity implements AuthContract.Auth
     @Override
     public void redirectToHome() {
         finish();
-        if (dialogId == null) {
-            HomeActivity.start(this);
-        } else {
+        if (dialogId != null) {
             GroupChatActivity.start(this, dialogId);
+        } else {
+            HomeActivity.start(this, friendUsername);
         }
     }
 

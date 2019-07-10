@@ -44,6 +44,6 @@ public class CustomToolbar extends Toolbar {
 
     @OnClick(R.id.txt_name)
     public void onAppNameClick() {
-        HomeActivity.start((Activity) getContext());
+        HomeActivity.start((Activity) getContext(), null);
     }
 }

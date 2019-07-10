@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.rd.PageIndicatorView;
@@ -16,14 +18,19 @@ import java.util.List;
 import butterknife.ButterKnife;
 import ge.edu.freeuni.rsr.R;
 import ge.edu.freeuni.rsr.common.animation.ZoomOutPageTransformer;
+import ge.edu.freeuni.rsr.common.component.CustomTwoButtonDialog;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements CustomTwoButtonDialog.AnswerDecisionListener, HomeContract.HomeView {
     ViewPager pager;
     GameTypesPagerAdapter adapter;
     List<GameTypeCardModel> models;
+    private HomeContract.HomePresenter presenter;
 
-    public static void start(Activity previous) {
+    private static final String FRIEND_USERNAME = "friend_username";
+
+    public static void start(Activity previous, String friendUsername) {
         Intent intent = new Intent(previous, HomeActivity.class);
+        intent.putExtra(FRIEND_USERNAME, friendUsername);
         previous.startActivity(intent);
     }
 
@@ -66,6 +73,27 @@ public class HomeActivity extends AppCompatActivity {
             public void onPageScrollStateChanged(int state) {
             }
         });
+
+        if (getIntent().getStringExtra(FRIEND_USERNAME) != null) {
+            CustomTwoButtonDialog.newInstance(getIntent().getStringExtra(FRIEND_USERNAME), true)
+                    .show(getSupportFragmentManager(), "alert");
+        }
+        presenter = new HomePresenterImpl(this, new HomeInteractorImpl());
     }
 
+    @Override
+    public void onPositiveDecision(DialogFragment dialog) {
+        presenter.addFriend(getIntent().getStringExtra(FRIEND_USERNAME));
+        dialog.dismiss();
+    }
+
+    @Override
+    public void onNegativeDecision(DialogFragment dialog) {
+        dialog.dismiss();
+    }
+
+    @Override
+    public void onFriendAdded() {
+        Toast.makeText(this, "მოაზროვნე წარმატებით დაემატა თქვენს მეგობრებში", Toast.LENGTH_SHORT).show();
+    }
 }

@@ -15,8 +15,11 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".tournaments.game.game.TournamentGameActivity"
+            android:name=".groupchat.addfriend.AddFriendActivity"
             android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".tournaments.game.game.TournamentGameActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".tournaments.create.TournamentCreateActivity"
             android:screenOrientation="portrait" />

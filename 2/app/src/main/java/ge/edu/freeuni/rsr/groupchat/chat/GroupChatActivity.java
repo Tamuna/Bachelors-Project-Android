@@ -27,11 +27,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ge.edu.freeuni.rsr.R;
+import ge.edu.freeuni.rsr.common.component.CustomTwoButtonDialog;
 import ge.edu.freeuni.rsr.groupchat.chat.entity.Message;
 import ge.edu.freeuni.rsr.groupchat.chat.recycler.MessagesRecyclerAdapter;
 import ge.edu.freeuni.rsr.home.HomeActivity;
 
-public class GroupChatActivity extends AppCompatActivity implements GroupChatContract.GroupChatView, GroupAnswerSubmittedDialog.AnswerDecisionListener {
+public class GroupChatActivity extends AppCompatActivity implements GroupChatContract.GroupChatView, CustomTwoButtonDialog.AnswerDecisionListener {
 
     @BindView(R.id.rv_messages)
     RecyclerView rvMessages;
@@ -179,7 +180,7 @@ public class GroupChatActivity extends AppCompatActivity implements GroupChatCon
 
     @Override
     public void showAnswerDialog(String answer) {
-        GroupAnswerSubmittedDialog.newInstance(answer).show(getSupportFragmentManager(), "alert");
+        CustomTwoButtonDialog.newInstance(answer, false).show(getSupportFragmentManager(), "alert");
     }
 
     @Override
@@ -224,7 +225,7 @@ public class GroupChatActivity extends AppCompatActivity implements GroupChatCon
 
     @Override
     public void onBackPressed() {
-        HomeActivity.start(this);
+        HomeActivity.start(this, null);
         finish();
     }
 }

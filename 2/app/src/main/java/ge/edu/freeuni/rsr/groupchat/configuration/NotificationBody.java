@@ -9,11 +9,22 @@ public class NotificationBody {
     private List<Integer> chat_ids;
     private List<Integer> chat_user_ids;
 
+    private String friend_username;
+
+    public NotificationBody(String message, String friend_username) {
+        this.message = message;
+        this.friend_username = friend_username;
+    }
+
     public NotificationBody(String dialog_id, String message, List<String> friend_usernames, List<Integer> chat_user_ids) {
         this.dialog_id = dialog_id;
         this.message = message;
         this.friend_usernames = friend_usernames;
         this.chat_user_ids = chat_user_ids;
+    }
+
+    public NotificationBody(String friend_username) {
+        this.friend_username = friend_username;
     }
 
     public NotificationBody(List<Integer> chat_ids) {

@@ -16,7 +16,7 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import ge.edu.freeuni.rsr.R
-import ge.edu.freeuni.rsr.common.component.AfterAnswerSubmissionDialog
+import ge.edu.freeuni.rsr.common.component.CustomDialogFragment
 import ge.edu.freeuni.rsr.home.HomeActivity
 
 
@@ -128,13 +128,13 @@ class TournamentGameActivity : AppCompatActivity(), TournamentGameContract.Tourn
     }
 
     override fun renderCorrectAnswer() {
-        val dialog = AfterAnswerSubmissionDialog.newInstance(true, "", true)
+        val dialog = CustomDialogFragment.newInstance(true, "", true)
         dialog.show(supportFragmentManager, "alert")
         dismissAfterFiveSec(dialog)
     }
 
     override fun renderWrongAnswer(correctAnswer: String) {
-        val dialog = AfterAnswerSubmissionDialog.newInstance(false, correctAnswer, true)
+        val dialog = CustomDialogFragment.newInstance(false, correctAnswer, true)
         dialog.show(supportFragmentManager, "alert")
         dismissAfterFiveSec(dialog)
     }
@@ -150,7 +150,7 @@ class TournamentGameActivity : AppCompatActivity(), TournamentGameContract.Tourn
         containerGameHolder.visibility = View.GONE
         txtAction.text = "მთავარი გვერდი"
         txtAction.setOnClickListener {
-            HomeActivity.start(this)
+            HomeActivity.start(this, null)
             finish()
         }
         txtStartTime.visibility = View.GONE

@@ -18,7 +18,7 @@ import androidx.fragment.app.DialogFragment;
 
 import ge.edu.freeuni.rsr.R;
 
-public class AfterAnswerSubmissionDialog extends DialogFragment {
+public class CustomDialogFragment extends DialogFragment {
 
     public static final String IS_CORRECT = "isCorrect";
     public static final String CORRECT_ANSWER = "correctAnswer";
@@ -34,12 +34,12 @@ public class AfterAnswerSubmissionDialog extends DialogFragment {
     private boolean isTournament;
 
 
-    public static AfterAnswerSubmissionDialog newInstance(boolean isCorrect, String answer, boolean isTournament) {
+    public static CustomDialogFragment newInstance(boolean isCorrect, String answer, boolean isTournament) {
         Bundle args = new Bundle();
         args.putBoolean(IS_CORRECT, isCorrect);
         args.putString(CORRECT_ANSWER, answer);
         args.putBoolean(IS_TOURNAMENT, isTournament);
-        AfterAnswerSubmissionDialog fragment = new AfterAnswerSubmissionDialog();
+        CustomDialogFragment fragment = new CustomDialogFragment();
         fragment.setArguments(args);
         fragment.setCancelable(false);
         return fragment;
@@ -85,7 +85,7 @@ public class AfterAnswerSubmissionDialog extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         builder.setView(view);
-        btnNext.setOnClickListener(v -> listener.OnNextQuestionClicked(AfterAnswerSubmissionDialog.this));
+        btnNext.setOnClickListener(v -> listener.OnNextQuestionClicked(CustomDialogFragment.this));
 
         return builder.create();
     }
