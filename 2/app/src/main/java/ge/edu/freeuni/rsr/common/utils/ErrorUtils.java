@@ -16,7 +16,8 @@ public class ErrorUtils {
         errorValues.put("The email has already been taken.", "მოცემული იმეილით მომხმარებელი უკვე დარეგისრირებულია");
         errorValues.put("The email must be a valid email address.", "გთხოვთ მიუთითოთ ვალიდური იმეილი");
         errorValues.put("Unauthorized", "მომხმარებლის სახელი ან პაროლი არასწორია");
-        errorValues.put("password short", "პაროლი უნდა შედგებოდეს მინიმუმ 8 სიმბოლოსგან");
+        errorValues.put("Please, Confirm Your Email Address!", "გთხოვთ, დაადასტუროთ რეგისტრაცია იმეილზე მიღებული ბმულით");
+        errorValues.put("პაროლი უნდა შედგებოდეს მინიმუმ 8 სიმბოლოსგან", "პაროლი უნდა შედგებოდეს მინიმუმ 8 სიმბოლოსგან");
     }
 
     public String processError(String errorKey) {

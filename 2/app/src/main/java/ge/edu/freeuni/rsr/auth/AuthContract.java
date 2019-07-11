@@ -7,6 +7,8 @@ public interface AuthContract {
         void showError(String error);
 
         void showLoader(boolean isLoading);
+
+        void registeredSuccessful();
     }
 
     interface AuthPresenter {

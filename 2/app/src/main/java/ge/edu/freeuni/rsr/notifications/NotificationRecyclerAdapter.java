@@ -14,7 +14,13 @@ import ge.edu.freeuni.rsr.R;
 import ge.edu.freeuni.rsr.notifications.entity.Dialog;
 
 public class NotificationRecyclerAdapter extends RecyclerView.Adapter<ChatItemViewHolder> {
-    List<Dialog> dialogList = new ArrayList<>();
+    private List<Dialog> dialogs = new ArrayList<>();
+
+    public void bindData(List<Dialog> dialogs) {
+        this.dialogs.clear();
+        this.dialogs.addAll(dialogs);
+        notifyDataSetChanged();
+    }
 
     public interface OnItemClickListener {
         void onDialogSelected(String dialogId);
@@ -36,16 +42,11 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<ChatItemVi
 
     @Override
     public void onBindViewHolder(@NonNull ChatItemViewHolder holder, int position) {
-        holder.setData(dialogList.get(position), listener);
+        holder.setData(dialogs.get(position), listener);
     }
 
     @Override
     public int getItemCount() {
-        return dialogList.size();
-    }
-
-    public void setSingleItem(Dialog dialog) {
-        dialogList.add(dialog);
-        notifyItemChanged(dialogList.size() - 1);
+        return dialogs.size();
     }
 }

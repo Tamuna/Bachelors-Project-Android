@@ -34,7 +34,7 @@ class TournamentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         header.text = tournament.tournament_name
         if (tournament.expired) {
             container.setBackgroundResource(R.color.light_gray)
-            itemView.setOnClickListener { null }
+            itemView.setOnClickListener { listener.onExpiredItemClick(tournament.id) }
         } else {
             container.setBackgroundResource(R.color.white)
             itemView.setOnClickListener { listener.onItemClicked(tournament.id) }

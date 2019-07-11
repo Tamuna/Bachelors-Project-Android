@@ -29,5 +29,6 @@ class TournamentsRecyclerAdapter(private val listener: OnItemClickListener) : Re
 
     interface OnItemClickListener {
         fun onItemClicked(tournamentId: Int)
+        fun onExpiredItemClick(tournamentId: Int)
     }
 }

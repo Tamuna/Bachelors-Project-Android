@@ -24,13 +24,13 @@ public class ChatItemViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void setData(Dialog dialog, NotificationRecyclerAdapter.OnItemClickListener listener) {
-        for (User user : dialog.getOccupants()) {
+        for (User user : dialog.getUsers()) {
             TextView textView = new TextView(itemView.getContext());
             textView.setText(user.getUserName());
             textView.setTextColor(itemView.getContext().getResources().getColor(R.color.text_color));
             textView.setGravity(Gravity.CENTER);
             layout.addView(textView);
-            itemView.setOnClickListener(v -> listener.onDialogSelected(dialog.getDialogId()));
+            itemView.setOnClickListener(v -> listener.onDialogSelected(dialog.getDialog_id()));
         }
     }
 }

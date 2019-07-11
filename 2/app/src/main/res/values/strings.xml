@@ -35,9 +35,10 @@
     <string name="questionhint">დაწერეთ კითხვა…</string>
     <string name="answerhint">დაწერეთ პასუხი…</string>
     <string name="several_answers_possible">შეგიძლიათ დაამატოთ პასუხის რამდენიმე ვარიანტი, რომლებიც გამოყოფილი იქნება <b>;</b> სიმბოლოთი</string>
-    <string name="tour_start_time_is">ტურნირის დაწყების დროა:</string>
+    <string name="tour_start_time_is">ტურნირის დაწყებამდე დარჩა</string>
     <string name="existing_tour">არსებულ ტურნირში შესვლა</string>
     <string name="create_tour">ტურნირის შექმნა</string>
     <string name="add">დამატება</string>
     <string name="find_by_name">მოძებნე სახელით...</string>
+    <string name="confirm_email_info">თქვენს იმეილზე გამოიგზავნა ბმული, რომლითაც შეძლებთ რეგისტრაციის დადასტურებას</string>
 </resources>

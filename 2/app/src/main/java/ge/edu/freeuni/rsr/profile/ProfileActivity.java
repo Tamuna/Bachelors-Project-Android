@@ -22,6 +22,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_logout)
     void onLogoutClick() {
+        AppUser.getInstance().setUser(null);
         finishAffinity();
         AuthActivity.start(this);
     }

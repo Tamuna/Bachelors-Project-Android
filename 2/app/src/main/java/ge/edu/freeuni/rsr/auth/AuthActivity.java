@@ -138,4 +138,9 @@ public class AuthActivity extends AppCompatActivity implements AuthContract.Auth
         }
     }
 
+    @Override
+    public void registeredSuccessful() {
+        Toast.makeText(this, getResources().getString(R.string.confirm_email_info), Toast.LENGTH_LONG).show();
+    }
+
 }

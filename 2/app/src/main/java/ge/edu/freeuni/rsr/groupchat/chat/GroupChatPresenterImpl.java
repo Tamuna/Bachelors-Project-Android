@@ -110,6 +110,7 @@ public class GroupChatPresenterImpl implements GroupChatContract.GroupChatPresen
 
             @Override
             public void onError(ResponseException errors) {
+                getHistory(chatId);
             }
         });
     }

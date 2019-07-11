@@ -122,7 +122,7 @@ class TournamentGameActivity : AppCompatActivity(), TournamentGameContract.Tourn
         containerPreTournament.visibility = View.GONE
         tvQuestionContent.text = questionContent
         etAnswerInput.inputType = InputType.TYPE_CLASS_TEXT
-        createTimer(TIMER_TYPE_QUESTION, 120000)
+        createTimer(TIMER_TYPE_QUESTION, 10000)
         timer?.start()
     }
 
@@ -148,7 +148,6 @@ class TournamentGameActivity : AppCompatActivity(), TournamentGameContract.Tourn
         containerPreTournament.visibility = View.VISIBLE
         containerGameHolder.visibility = View.GONE
         txtStartTime.visibility = View.GONE
-
     }
 
 
@@ -159,7 +158,7 @@ class TournamentGameActivity : AppCompatActivity(), TournamentGameContract.Tourn
             }
 
             override fun onFinish() {
-                dialog.dismiss()
+                dialog.dismissAllowingStateLoss()
                 presenter?.getNextQuestion()
                 imgSendAnswer.isEnabled = true
             }
@@ -182,7 +181,7 @@ class TournamentGameActivity : AppCompatActivity(), TournamentGameContract.Tourn
                 if (timerType == TIMER_TYPE_QUESTION) {
                     tvTime.text = toTime(timeOnSingleQuestion / 1000)
                 } else {
-                    txtStartTime.text = toTime(timeOnSingleQuestion / 1000)
+                    txtStartTime.text = toDayAndTime(timeOnSingleQuestion / 1000)
                 }
             }
 
@@ -195,5 +194,18 @@ class TournamentGameActivity : AppCompatActivity(), TournamentGameContract.Tourn
                 }
             }
         }
+    }
+
+    private fun toDayAndTime(timeInSecs: Long): String {
+        var remainingTime = timeInSecs
+        val days = (remainingTime / (24 * 60 * 60)).toInt()
+        remainingTime -= (days * 24 * 60 * 60)
+        val hours = (remainingTime / (3600)).toInt()
+        remainingTime -= hours * 3600
+        val mins = (remainingTime / 60).toInt()
+        remainingTime -= mins * 60
+        val seconds = remainingTime
+
+        return "$days დღე, $hours საათი, $mins:$seconds"
     }
 }

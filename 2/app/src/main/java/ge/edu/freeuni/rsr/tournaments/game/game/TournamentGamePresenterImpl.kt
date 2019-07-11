@@ -10,7 +10,7 @@ class TournamentGamePresenterImpl(
 
 
     private var tournament: Tournament? = null
-    private var currQuestion: Int = 0
+    private var currQuestion: Int = -1
     private var lastAnswerState = false
 
     private var numCorrect = 0
@@ -41,12 +41,13 @@ class TournamentGamePresenterImpl(
     }
 
     override fun getNextQuestion() {
+        currQuestion++
         if (currQuestion < tournament!!.questions.size) {
             view.displayQuestion(tournament!!.questions[currQuestion].question_content)
         } else {
             interactor.updateTournamentResults(AppUser.getInstance().user.id, tournament!!.id, numCorrect, OnFinishListenerImpl())
         }
-        currQuestion++
+
     }
 
     inner class OnFinishListenerImpl : TournamentGameContract.TournamentGameInteractor.OnFinishListener {

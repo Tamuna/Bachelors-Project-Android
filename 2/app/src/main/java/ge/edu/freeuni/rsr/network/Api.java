@@ -13,8 +13,10 @@ import ge.edu.freeuni.rsr.groupchat.configuration.NotificationBody;
 import ge.edu.freeuni.rsr.individual.game.entity.CorrectAnswers;
 import ge.edu.freeuni.rsr.individual.game.entity.IndGameResponse;
 import ge.edu.freeuni.rsr.individual.game.entity.Question;
+import ge.edu.freeuni.rsr.notifications.entity.Dialog;
 import ge.edu.freeuni.rsr.tournaments.create.TournamentConfigBody;
 import ge.edu.freeuni.rsr.tournaments.entity.Tournament;
+import ge.edu.freeuni.rsr.tournaments.game.ratings.Rating;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -78,5 +80,11 @@ public interface Api {
 
     @POST("api/profile/response-friend-request")
     Call<RsrResponse<String>> confirmFriendRequest(@Body FriendCredentials body);
+
+    @GET("api/group/get-dialogs")
+    Call<RsrResponse<List<Dialog>>> getDialogs();
+
+    @GET("api/tour/get-tournament-results/{tournamentId}")
+    Call<RsrResponse<List<Rating>>> getTourRatings(@Path("tournamentId") int tournamentId);
 }
 

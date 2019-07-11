@@ -1,17 +1,7 @@
 package ge.edu.freeuni.rsr.notifications;
 
-import android.os.Bundle;
-
-import com.connectycube.chat.ConnectycubeRestChatService;
-import com.connectycube.chat.model.ConnectycubeChatDialog;
-import com.connectycube.core.EntityCallback;
-import com.connectycube.core.exception.ResponseException;
-import com.connectycube.core.request.RequestGetBuilder;
-
-import java.util.ArrayList;
 import java.util.List;
 
-import ge.edu.freeuni.rsr.AppUser;
 import ge.edu.freeuni.rsr.notifications.entity.Dialog;
 
 public class NotificationPresenterImpl implements NotificationsContract.NotificationsPresenter {
@@ -25,43 +15,18 @@ public class NotificationPresenterImpl implements NotificationsContract.Notifica
         this.interactor = interactor;
     }
 
+
     @Override
-    public void getUserChats() {
-        RequestGetBuilder requestBuilder = new RequestGetBuilder();
-        requestBuilder.sortAsc("last_message_date_sent");
-
-
-        ConnectycubeRestChatService.getChatDialogs(null, requestBuilder).performAsync(new EntityCallback<ArrayList<ConnectycubeChatDialog>>() {
-            @Override
-            public void onSuccess(ArrayList<ConnectycubeChatDialog> connectycubeChatDialogs, Bundle bundle) {
-                getUsersInDialogs(filterOnCurrentUser(connectycubeChatDialogs));
-
-            }
-
-            @Override
-            public void onError(ResponseException e) {
-
-            }
-        });
+    public void getDialogsForUser() {
+        interactor.getChatOccupants(new OnFinishListenerImpl());
     }
 
-    private void getUsersInDialogs(List<ConnectycubeChatDialog> filtereDialogs) {
-        for (ConnectycubeChatDialog dialog : filtereDialogs) {
-            interactor.getChatOccupants(occupants -> {
-                view.onUserChatLoaded(new Dialog(dialog.getDialogId(), occupants));
-            }, dialog.getOccupants());
+    class OnFinishListenerImpl implements NotificationsContract.NotificationsInteractor.OnFinishListener {
+
+        @Override
+        public void onDialogsLoaded(List<Dialog> dialogs) {
+            view.onDialogsLoaded(dialogs);
         }
     }
-
-    private List<ConnectycubeChatDialog> filterOnCurrentUser(ArrayList<ConnectycubeChatDialog> connectycubeChatDialogs) {
-        List<ConnectycubeChatDialog> userDialog = new ArrayList<>();
-        for (ConnectycubeChatDialog dialog : connectycubeChatDialogs) {
-            if (dialog.getOccupants().contains(AppUser.getInstance().getUser().getChatUserId())) {
-                userDialog.add(dialog);
-            }
-        }
-        return userDialog;
-    }
-
 
 }

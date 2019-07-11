@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ge.edu.freeuni.rsr.R;
@@ -47,13 +49,12 @@ public class NotificationsActivity extends AppCompatActivity implements Notifica
         rvChats.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
 
         presenter = new NotificationPresenterImpl(this, new NotificationsInteractorImpl());
-        presenter.getUserChats();
+        presenter.getDialogsForUser();
     }
 
-
     @Override
-    public void onUserChatLoaded(Dialog dialog) {
-        adapter.setSingleItem(dialog);
+    public void onDialogsLoaded(List<Dialog> dialogs) {
+        adapter.bindData(dialogs);
         loaderView.setVisibility(View.GONE);
     }
 

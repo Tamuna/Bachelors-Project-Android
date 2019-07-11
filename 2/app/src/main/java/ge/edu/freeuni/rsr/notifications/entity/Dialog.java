@@ -6,21 +6,21 @@ import ge.edu.freeuni.rsr.common.entity.User;
 
 public class Dialog {
 
-    private String dialogId;
+    private String dialog_id;
 
-    private List<User> occupants;
+    private List<User> users;
 
-    public Dialog(String dialogId, List<User> occupantIds) {
-        this.dialogId = dialogId;
-        this.occupants = occupantIds;
+    public Dialog(String dialog_id, List<User> users) {
+        this.dialog_id = dialog_id;
+        this.users = users;
     }
 
-    public String getDialogId() {
-        return dialogId;
+    public String getDialog_id() {
+        return dialog_id;
     }
 
 
-    public List<User> getOccupants() {
-        return occupants;
+    public List<User> getUsers() {
+        return users;
     }
 }

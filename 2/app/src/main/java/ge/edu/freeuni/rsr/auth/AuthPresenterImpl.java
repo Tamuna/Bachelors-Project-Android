@@ -1,7 +1,6 @@
 package ge.edu.freeuni.rsr.auth;
 
 import ge.edu.freeuni.rsr.common.utils.ErrorUtils;
-import ge.edu.freeuni.rsr.network.RequestInterceptor;
 
 public class AuthPresenterImpl implements AuthContract.AuthPresenter {
 
@@ -51,7 +50,7 @@ public class AuthPresenterImpl implements AuthContract.AuthPresenter {
         public void onRegistered(boolean success, String info) {
             view.showLoader(false);
             if (success) {
-                view.redirectToHome();
+                view.registeredSuccessful();
             } else {
                 view.showError(new ErrorUtils().processError(info));
             }
