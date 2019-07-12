@@ -75,8 +75,10 @@ public class HomeActivity extends AppCompatActivity implements CustomTwoButtonDi
         });
 
         if (getIntent().getStringExtra(FRIEND_USERNAME) != null) {
-            CustomTwoButtonDialog.newInstance(getIntent().getStringExtra(FRIEND_USERNAME), true)
-                    .show(getSupportFragmentManager(), "alert");
+//            if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
+                CustomTwoButtonDialog.newInstance(getIntent().getStringExtra(FRIEND_USERNAME), true)
+                        .show(getSupportFragmentManager(), "alert");
+//            }
         }
         presenter = new HomePresenterImpl(this, new HomeInteractorImpl());
     }
@@ -84,12 +86,12 @@ public class HomeActivity extends AppCompatActivity implements CustomTwoButtonDi
     @Override
     public void onPositiveDecision(DialogFragment dialog) {
         presenter.addFriend(getIntent().getStringExtra(FRIEND_USERNAME));
-        dialog.dismiss();
+        dialog.dismissAllowingStateLoss();
     }
 
     @Override
     public void onNegativeDecision(DialogFragment dialog) {
-        dialog.dismiss();
+        dialog.dismissAllowingStateLoss();
     }
 
     @Override

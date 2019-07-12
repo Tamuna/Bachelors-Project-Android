@@ -23,6 +23,9 @@ class TournamentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     @BindView(R.id.txtTourName)
     lateinit var header: TextView
 
+    @BindView(R.id.txtInfoEnded)
+    lateinit var txtInfoEnded: TextView
+
 
     init {
         ButterKnife.bind(this, itemView)
@@ -35,7 +38,10 @@ class TournamentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         if (tournament.expired) {
             container.setBackgroundResource(R.color.light_gray)
             itemView.setOnClickListener { listener.onExpiredItemClick(tournament.id) }
+            txtInfoEnded.visibility = View.VISIBLE
+
         } else {
+            txtInfoEnded.visibility = View.GONE
             container.setBackgroundResource(R.color.white)
             itemView.setOnClickListener { listener.onItemClicked(tournament.id) }
         }

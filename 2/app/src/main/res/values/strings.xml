@@ -41,4 +41,5 @@
     <string name="add">დამატება</string>
     <string name="find_by_name">მოძებნე სახელით...</string>
     <string name="confirm_email_info">თქვენს იმეილზე გამოიგზავნა ბმული, რომლითაც შეძლებთ რეგისტრაციის დადასტურებას</string>
+    <string name="tournir_ended">ტურნირი დასრულდა, იხილეთ რეიტინგი</string>
 </resources>

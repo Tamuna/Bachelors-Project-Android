@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.os.PersistableBundle
 import android.text.InputType
 import android.view.View
 import android.view.WindowManager
@@ -17,6 +18,7 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import ge.edu.freeuni.rsr.R
 import ge.edu.freeuni.rsr.common.component.CustomDialogFragment
+import ge.edu.freeuni.rsr.tournaments.game.list.TournamentListActivity
 
 
 class TournamentGameActivity : AppCompatActivity(), TournamentGameContract.TournamentGameView {
@@ -122,20 +124,28 @@ class TournamentGameActivity : AppCompatActivity(), TournamentGameContract.Tourn
         containerPreTournament.visibility = View.GONE
         tvQuestionContent.text = questionContent
         etAnswerInput.inputType = InputType.TYPE_CLASS_TEXT
-        createTimer(TIMER_TYPE_QUESTION, 10000)
+        createTimer(TIMER_TYPE_QUESTION, 120000)
         timer?.start()
     }
 
+    override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
+
+    }
+
     override fun renderCorrectAnswer() {
+//        if (lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) {
         val dialog = CustomDialogFragment.newInstance(true, "", true)
         dialog.show(supportFragmentManager, "alert")
         dismissAfterFiveSec(dialog)
+//        }
     }
 
     override fun renderWrongAnswer(correctAnswer: String) {
+//        if (lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) {
         val dialog = CustomDialogFragment.newInstance(false, correctAnswer, true)
         dialog.show(supportFragmentManager, "alert")
         dismissAfterFiveSec(dialog)
+//        }
     }
 
     override fun showTournamentEndedInfo(numCorrect: Int) {
@@ -158,9 +168,11 @@ class TournamentGameActivity : AppCompatActivity(), TournamentGameContract.Tourn
             }
 
             override fun onFinish() {
+//                if (lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) {
                 dialog.dismissAllowingStateLoss()
                 presenter?.getNextQuestion()
                 imgSendAnswer.isEnabled = true
+//                }
             }
         }.start()
     }
@@ -207,5 +219,10 @@ class TournamentGameActivity : AppCompatActivity(), TournamentGameContract.Tourn
         val seconds = remainingTime
 
         return "$days დღე, $hours საათი, $mins:$seconds"
+    }
+
+    override fun onBackPressed() {
+        finish()
+        TournamentListActivity.start(this)
     }
 }

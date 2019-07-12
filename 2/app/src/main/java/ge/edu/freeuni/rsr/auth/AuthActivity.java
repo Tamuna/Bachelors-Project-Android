@@ -140,6 +140,12 @@ public class AuthActivity extends AppCompatActivity implements AuthContract.Auth
 
     @Override
     public void registeredSuccessful() {
+        layoutRegistration.setVisibility(View.GONE);
+        layoutRegistrationBottom.setVisibility(View.GONE);
+
+        layoutLogin.setVisibility(View.VISIBLE);
+        layoutLoginBottom.setVisibility(View.VISIBLE);
+
         Toast.makeText(this, getResources().getString(R.string.confirm_email_info), Toast.LENGTH_LONG).show();
     }
 

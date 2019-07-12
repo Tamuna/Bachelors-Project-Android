@@ -68,6 +68,7 @@ class TournamentListActivity : AppCompatActivity(), TournamentListContract.Tourn
         }
 
         override fun onItemClicked(tournamentId: Int) {
+            finish()
             TournamentGameActivity.start(this@TournamentListActivity, tournamentId)
         }
 

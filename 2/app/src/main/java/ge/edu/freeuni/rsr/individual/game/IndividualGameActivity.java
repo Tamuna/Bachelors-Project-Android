@@ -56,7 +56,9 @@ public class IndividualGameActivity extends AppCompatActivity implements Individ
         hideKeyboard();
         presenter.checkAnswer(etAnswerInput.getText().toString());
         etAnswerInput.setText("");
-        timer.cancel();
+        if (timer != null) {
+            timer.cancel();
+        }
         view.setEnabled(false);
     }
 
@@ -96,7 +98,9 @@ public class IndividualGameActivity extends AppCompatActivity implements Individ
             @Override
             public void onFinish() {
                 presenter.checkAnswer(String.valueOf(etAnswerInput.getText()));
-                timer.cancel();
+                if (timer != null) {
+                    timer.cancel();
+                }
             }
         };
     }

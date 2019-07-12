@@ -138,12 +138,16 @@ public class GroupChatActivity extends AppCompatActivity implements GroupChatCon
 
     @Override
     public void capAlreadyAcquired(String name) {
+//        if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
         AfterRoleAcquiredDialog.newInstance(name, "კაპიტანი").show(getSupportFragmentManager(), "alert");
+//        }
     }
 
     @Override
     public void hostAlreadyAcquired(String name) {
+//        if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
         AfterRoleAcquiredDialog.newInstance(name, "წამყვანი").show(getSupportFragmentManager(), "alert");
+//        }
     }
 
     @Override
@@ -175,19 +179,25 @@ public class GroupChatActivity extends AppCompatActivity implements GroupChatCon
     @Override
     public void startTimer() {
         tvTime.setVisibility(View.VISIBLE);
-        if (timer != null) timer.cancel();
+        if (timer != null) {
+            timer.cancel();
+        }
         createTimer();
         timer.start();
     }
 
     @Override
     public void showAnswerDialog(String answer) {
+//        if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
         CustomTwoButtonDialog.newInstance(answer, false).show(getSupportFragmentManager(), "alert");
+//        }
     }
 
     @Override
     public void timerCancel() {
-        timer.cancel();
+        if (timer != null) {
+            timer.cancel();
+        }
     }
 
     private String toTime(long seconds) {
@@ -207,7 +217,9 @@ public class GroupChatActivity extends AppCompatActivity implements GroupChatCon
 
             @Override
             public void onFinish() {
-                timer.cancel();
+                if (timer != null) {
+                    timer.cancel();
+                }
                 presenter.sendMessage("-", true);
             }
         };
@@ -215,13 +227,13 @@ public class GroupChatActivity extends AppCompatActivity implements GroupChatCon
 
     @Override
     public void onPositiveDecision(DialogFragment dialog) {
-        dialog.dismiss();
+        dialog.dismissAllowingStateLoss();
         presenter.sendMessage("სწორია", false);
     }
 
     @Override
     public void onNegativeDecision(DialogFragment dialog) {
-        dialog.dismiss();
+        dialog.dismissAllowingStateLoss();
         presenter.sendMessage("არასწორია", false);
     }
 

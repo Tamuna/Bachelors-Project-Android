@@ -76,6 +76,20 @@
             app:layout_constraintBottom_toBottomOf="@+id/textView6"
             app:layout_constraintStart_toEndOf="@+id/textView6"
             app:layout_constraintTop_toTopOf="@+id/textView6" />
+
+        <TextView
+            android:id="@+id/txtInfoEnded"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+
+            android:text="@string/tournir_ended"
+            android:textColor="@color/light_red"
+            android:textSize="11sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/txtTourName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

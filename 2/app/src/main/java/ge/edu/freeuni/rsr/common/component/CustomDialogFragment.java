@@ -15,6 +15,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import ge.edu.freeuni.rsr.R;
 
@@ -88,5 +90,13 @@ public class CustomDialogFragment extends DialogFragment {
         btnNext.setOnClickListener(v -> listener.OnNextQuestionClicked(CustomDialogFragment.this));
 
         return builder.create();
+    }
+
+
+    @Override
+    public void show(@NonNull FragmentManager manager, @Nullable String tag) {
+        FragmentTransaction ft = manager.beginTransaction();
+        ft.add(this, tag);
+        ft.commitAllowingStateLoss();
     }
 }
